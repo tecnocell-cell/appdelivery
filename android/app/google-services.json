@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "964100369378",
+    "project_id": "comanda-2023e",
+    "storage_bucket": "comanda-2023e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964100369378:android:139505de69468e3a3467bb",
+        "android_client_info": {
+          "package_name": "com.mycompany.appcatalogo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAemtcGJcHjjLyVShKcRAVnUhdUgABXKrY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964100369378:android:3d51d39e430769793467bb",
+        "android_client_info": {
+          "package_name": "com.mycompany.comandadigital"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAemtcGJcHjjLyVShKcRAVnUhdUgABXKrY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
