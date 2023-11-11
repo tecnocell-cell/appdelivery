@@ -1,10 +1,10 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'home_page_widget.dart' show HomePageWidget;
+import 'home_page_copy_widget.dart' show HomePageCopyWidget;
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 
-class HomePageModel extends FlutterFlowModel<HomePageWidget> {
+class HomePageCopyModel extends FlutterFlowModel<HomePageCopyWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

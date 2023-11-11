@@ -11,19 +11,19 @@ import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'home_page_model.dart';
-export 'home_page_model.dart';
+import 'home_page_copy_model.dart';
+export 'home_page_copy_model.dart';
 
-class HomePageWidget extends StatefulWidget {
-  const HomePageWidget({super.key});
+class HomePageCopyWidget extends StatefulWidget {
+  const HomePageCopyWidget({super.key});
 
   @override
-  _HomePageWidgetState createState() => _HomePageWidgetState();
+  _HomePageCopyWidgetState createState() => _HomePageCopyWidgetState();
 }
 
-class _HomePageWidgetState extends State<HomePageWidget>
+class _HomePageCopyWidgetState extends State<HomePageCopyWidget>
     with TickerProviderStateMixin {
-  late HomePageModel _model;
+  late HomePageCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -65,7 +65,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => HomePageModel());
+    _model = createModel(context, () => HomePageCopyModel());
 
     _model.searchController ??= TextEditingController();
     _model.searchFocusNode ??= FocusNode();
