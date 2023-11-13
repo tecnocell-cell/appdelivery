@@ -25,16 +25,6 @@ class ProdutosRecord extends FirestoreRecord {
   double get preco => _preco ?? 0.0;
   bool hasPreco() => _preco != null;
 
-  // "categoria" field.
-  String? _categoria;
-  String get categoria => _categoria ?? '';
-  bool hasCategoria() => _categoria != null;
-
-  // "subCategoria" field.
-  String? _subCategoria;
-  String get subCategoria => _subCategoria ?? '';
-  bool hasSubCategoria() => _subCategoria != null;
-
   // "sabor" field.
   String? _sabor;
   String get sabor => _sabor ?? '';
@@ -45,13 +35,29 @@ class ProdutosRecord extends FirestoreRecord {
   int get quantidade => _quantidade ?? 0;
   bool hasQuantidade() => _quantidade != null;
 
+  // "descri" field.
+  String? _descri;
+  String get descri => _descri ?? '';
+  bool hasDescri() => _descri != null;
+
+  // "categoria" field.
+  DocumentReference? _categoria;
+  DocumentReference? get categoria => _categoria;
+  bool hasCategoria() => _categoria != null;
+
+  // "restaurante" field.
+  DocumentReference? _restaurante;
+  DocumentReference? get restaurante => _restaurante;
+  bool hasRestaurante() => _restaurante != null;
+
   void _initializeFields() {
     _nome = snapshotData['nome'] as String?;
     _preco = castToType<double>(snapshotData['preco']);
-    _categoria = snapshotData['categoria'] as String?;
-    _subCategoria = snapshotData['subCategoria'] as String?;
     _sabor = snapshotData['sabor'] as String?;
     _quantidade = castToType<int>(snapshotData['quantidade']);
+    _descri = snapshotData['descri'] as String?;
+    _categoria = snapshotData['categoria'] as DocumentReference?;
+    _restaurante = snapshotData['restaurante'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -91,19 +97,21 @@ class ProdutosRecord extends FirestoreRecord {
 Map<String, dynamic> createProdutosRecordData({
   String? nome,
   double? preco,
-  String? categoria,
-  String? subCategoria,
   String? sabor,
   int? quantidade,
+  String? descri,
+  DocumentReference? categoria,
+  DocumentReference? restaurante,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'nome': nome,
       'preco': preco,
-      'categoria': categoria,
-      'subCategoria': subCategoria,
       'sabor': sabor,
       'quantidade': quantidade,
+      'descri': descri,
+      'categoria': categoria,
+      'restaurante': restaurante,
     }.withoutNulls,
   );
 
@@ -117,20 +125,22 @@ class ProdutosRecordDocumentEquality implements Equality<ProdutosRecord> {
   bool equals(ProdutosRecord? e1, ProdutosRecord? e2) {
     return e1?.nome == e2?.nome &&
         e1?.preco == e2?.preco &&
-        e1?.categoria == e2?.categoria &&
-        e1?.subCategoria == e2?.subCategoria &&
         e1?.sabor == e2?.sabor &&
-        e1?.quantidade == e2?.quantidade;
+        e1?.quantidade == e2?.quantidade &&
+        e1?.descri == e2?.descri &&
+        e1?.categoria == e2?.categoria &&
+        e1?.restaurante == e2?.restaurante;
   }
 
   @override
   int hash(ProdutosRecord? e) => const ListEquality().hash([
         e?.nome,
         e?.preco,
-        e?.categoria,
-        e?.subCategoria,
         e?.sabor,
-        e?.quantidade
+        e?.quantidade,
+        e?.descri,
+        e?.categoria,
+        e?.restaurante
       ]);
 
   @override

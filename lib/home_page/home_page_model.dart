@@ -18,6 +18,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   // State field(s) for ChoiceChips widget.
   String? choiceChipsValue;
   FormFieldController<List<String>>? choiceChipsValueController;
+  // State field(s) for Expandable widget.
+  late ExpandableController expandableController2;
 
   /// Initialization and disposal methods.
 
@@ -31,6 +33,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     searchController?.dispose();
 
     expandableController1.dispose();
+    expandableController2.dispose();
   }
 
   /// Action blocks are added here.

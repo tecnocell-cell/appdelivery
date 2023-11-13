@@ -45,6 +45,21 @@ class UsersRecord extends FirestoreRecord {
   String get phoneNumber => _phoneNumber ?? '';
   bool hasPhoneNumber() => _phoneNumber != null;
 
+  // "endereco" field.
+  List<DocumentReference>? _endereco;
+  List<DocumentReference> get endereco => _endereco ?? const [];
+  bool hasEndereco() => _endereco != null;
+
+  // "produtoVenda" field.
+  List<DocumentReference>? _produtoVenda;
+  List<DocumentReference> get produtoVenda => _produtoVenda ?? const [];
+  bool hasProdutoVenda() => _produtoVenda != null;
+
+  // "vendas" field.
+  List<DocumentReference>? _vendas;
+  List<DocumentReference> get vendas => _vendas ?? const [];
+  bool hasVendas() => _vendas != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -52,6 +67,9 @@ class UsersRecord extends FirestoreRecord {
     _uid = snapshotData['uid'] as String?;
     _createdTime = snapshotData['created_time'] as DateTime?;
     _phoneNumber = snapshotData['phone_number'] as String?;
+    _endereco = getDataList(snapshotData['endereco']);
+    _produtoVenda = getDataList(snapshotData['produtoVenda']);
+    _vendas = getDataList(snapshotData['vendas']);
   }
 
   static CollectionReference get collection =>
@@ -114,12 +132,16 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
 
   @override
   bool equals(UsersRecord? e1, UsersRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.email == e2?.email &&
         e1?.displayName == e2?.displayName &&
         e1?.photoUrl == e2?.photoUrl &&
         e1?.uid == e2?.uid &&
         e1?.createdTime == e2?.createdTime &&
-        e1?.phoneNumber == e2?.phoneNumber;
+        e1?.phoneNumber == e2?.phoneNumber &&
+        listEquality.equals(e1?.endereco, e2?.endereco) &&
+        listEquality.equals(e1?.produtoVenda, e2?.produtoVenda) &&
+        listEquality.equals(e1?.vendas, e2?.vendas);
   }
 
   @override
@@ -129,7 +151,10 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.photoUrl,
         e?.uid,
         e?.createdTime,
-        e?.phoneNumber
+        e?.phoneNumber,
+        e?.endereco,
+        e?.produtoVenda,
+        e?.vendas
       ]);
 
   @override
