@@ -13,13 +13,11 @@ class ComercioModel extends FlutterFlowModel<ComercioWidget> {
   TextEditingController? searchController;
   String? Function(BuildContext, String?)? searchControllerValidator;
   // State field(s) for Expandable widget.
-  late ExpandableController expandableController1;
+  late ExpandableController expandableController;
 
   // State field(s) for ChoiceChips widget.
   String? choiceChipsValue;
   FormFieldController<List<String>>? choiceChipsValueController;
-  // State field(s) for Expandable widget.
-  late ExpandableController expandableController2;
 
   /// Initialization and disposal methods.
 
@@ -32,8 +30,7 @@ class ComercioModel extends FlutterFlowModel<ComercioWidget> {
     searchFocusNode?.dispose();
     searchController?.dispose();
 
-    expandableController1.dispose();
-    expandableController2.dispose();
+    expandableController.dispose();
   }
 
   /// Action blocks are added here.

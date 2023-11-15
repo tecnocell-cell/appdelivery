@@ -38,8 +38,7 @@ class _ComercioWidgetState extends State<ComercioWidget> {
     _model.searchController ??= TextEditingController();
     _model.searchFocusNode ??= FocusNode();
 
-    _model.expandableController1 = ExpandableController(initialExpanded: false);
-    _model.expandableController2 = ExpandableController(initialExpanded: false);
+    _model.expandableController = ExpandableController(initialExpanded: false);
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -142,16 +141,47 @@ class _ComercioWidgetState extends State<ComercioWidget> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          Text(
-                                            'Super X',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  fontSize: 18.0,
-                                                  letterSpacing: 2.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
+                                          StreamBuilder<RestauranteRecord>(
+                                            stream:
+                                                RestauranteRecord.getDocument(
+                                                    widget.detalheRestaurante!),
+                                            builder: (context, snapshot) {
+                                              // Customize what your widget looks like when it's loading.
+                                              if (!snapshot.hasData) {
+                                                return Center(
+                                                  child: SizedBox(
+                                                    width: 50.0,
+                                                    height: 50.0,
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      valueColor:
+                                                          AlwaysStoppedAnimation<
+                                                              Color>(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primary,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              }
+                                              final textRestauranteRecord =
+                                                  snapshot.data!;
+                                              return Text(
+                                                textRestauranteRecord.nome,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 18.0,
+                                                          letterSpacing: 2.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                              );
+                                            },
                                           ),
                                         ],
                                       ),
@@ -657,7 +687,7 @@ class _ComercioWidgetState extends State<ComercioWidget> {
                                                   color: Colors.white,
                                                   child: ExpandableNotifier(
                                                     controller: _model
-                                                        .expandableController1,
+                                                        .expandableController,
                                                     child: ExpandablePanel(
                                                       header: Padding(
                                                         padding:
@@ -1052,7 +1082,7 @@ class _ComercioWidgetState extends State<ComercioWidget> {
                                         Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  12.0, 0.0, 12.0, 0.0),
+                                                  16.0, 0.0, 16.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
@@ -1060,344 +1090,238 @@ class _ComercioWidgetState extends State<ComercioWidget> {
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Expanded(
-                                                    child: ListView(
-                                                      padding: EdgeInsets.zero,
-                                                      shrinkWrap: true,
-                                                      scrollDirection:
-                                                          Axis.vertical,
-                                                      children: [
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Expanded(
-                                                              child: Padding(
-                                                                padding: const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        12.0,
-                                                                        0.0,
-                                                                        12.0),
-                                                                child:
-                                                                    Container(
+                                                    child: StreamBuilder<
+                                                        List<ProdutosRecord>>(
+                                                      stream:
+                                                          queryProdutosRecord(
+                                                        queryBuilder:
+                                                            (produtosRecord) =>
+                                                                produtosRecord
+                                                                    .where(
+                                                          'restaurante',
+                                                          isEqualTo: widget
+                                                              .detalheRestaurante,
+                                                        ),
+                                                      ),
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        // Customize what your widget looks like when it's loading.
+                                                        if (!snapshot.hasData) {
+                                                          return Center(
+                                                            child: SizedBox(
+                                                              width: 50.0,
+                                                              height: 50.0,
+                                                              child:
+                                                                  CircularProgressIndicator(
+                                                                valueColor:
+                                                                    AlwaysStoppedAnimation<
+                                                                        Color>(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }
+                                                        List<ProdutosRecord>
+                                                            listViewProdutosRecordList =
+                                                            snapshot.data!;
+                                                        return ListView.builder(
+                                                          padding:
+                                                              EdgeInsets.zero,
+                                                          shrinkWrap: true,
+                                                          scrollDirection:
+                                                              Axis.vertical,
+                                                          itemCount:
+                                                              listViewProdutosRecordList
+                                                                  .length,
+                                                          itemBuilder: (context,
+                                                              listViewIndex) {
+                                                            final listViewProdutosRecord =
+                                                                listViewProdutosRecordList[
+                                                                    listViewIndex];
+                                                            return Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Container(
                                                                   width: double
                                                                       .infinity,
-                                                                  color: Colors
-                                                                      .white,
-                                                                  child:
-                                                                      ExpandableNotifier(
-                                                                    controller:
-                                                                        _model
-                                                                            .expandableController2,
-                                                                    child:
-                                                                        ExpandablePanel(
-                                                                      header:
+                                                                  height: 70.0,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            16.0),
+                                                                  ),
+                                                                  child: Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceBetween,
+                                                                        children: [
                                                                           Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                            12.0,
-                                                                            0.0,
-                                                                            12.0,
-                                                                            12.0),
-                                                                        child:
-                                                                            Container(
-                                                                          width:
-                                                                              100.0,
-                                                                          height:
-                                                                              90.0,
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).secondaryBackground,
-                                                                            boxShadow: const [
-                                                                              BoxShadow(
-                                                                                blurRadius: 4.0,
-                                                                                color: Color(0x33000000),
-                                                                                offset: Offset(0.0, 2.0),
-                                                                              )
-                                                                            ],
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(8.0),
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                                5.0,
+                                                                                5.0,
+                                                                                5.0,
+                                                                                5.0),
+                                                                            child:
+                                                                                ClipRRect(
+                                                                              borderRadius: BorderRadius.circular(8.0),
+                                                                              child: Image.asset(
+                                                                                'assets/images/prato-raso.jpg',
+                                                                                width: 60.0,
+                                                                                height: 60.0,
+                                                                                fit: BoxFit.cover,
+                                                                              ),
+                                                                            ),
                                                                           ),
-                                                                          child:
-                                                                              Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.start,
-                                                                            children: [
-                                                                              Stack(
-                                                                                children: [
-                                                                                  Container(
-                                                                                    width: MediaQuery.sizeOf(context).width * 0.35,
-                                                                                    height: 100.0,
-                                                                                    decoration: BoxDecoration(
-                                                                                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                                      borderRadius: const BorderRadius.only(
-                                                                                        bottomLeft: Radius.circular(0.0),
-                                                                                        bottomRight: Radius.circular(8.0),
-                                                                                        topLeft: Radius.circular(0.0),
-                                                                                        topRight: Radius.circular(8.0),
-                                                                                      ),
-                                                                                    ),
-                                                                                    child: Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(2.0, 2.0, 0.0, 2.0),
-                                                                                      child: ClipRRect(
-                                                                                        borderRadius: BorderRadius.circular(8.0),
-                                                                                        child: Image.asset(
-                                                                                          'assets/images/prato-raso.jpg',
-                                                                                          width: double.infinity,
-                                                                                          height: double.infinity,
-                                                                                          fit: BoxFit.cover,
-                                                                                        ),
-                                                                                      ),
-                                                                                    ),
-                                                                                  ),
-                                                                                  Align(
-                                                                                    alignment: const AlignmentDirectional(1.00, 0.00),
-                                                                                    child: Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(70.0, 0.0, 0.0, 0.0),
-                                                                                      child: Container(
-                                                                                        width: MediaQuery.sizeOf(context).width * 0.68,
-                                                                                        height: 100.0,
-                                                                                        decoration: BoxDecoration(
-                                                                                          color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                                          borderRadius: const BorderRadius.only(
-                                                                                            bottomLeft: Radius.circular(20.0),
-                                                                                            bottomRight: Radius.circular(8.0),
-                                                                                            topLeft: Radius.circular(20.0),
-                                                                                            topRight: Radius.circular(8.0),
-                                                                                          ),
-                                                                                        ),
-                                                                                        child: Row(
+                                                                        ],
+                                                                      ),
+                                                                      Expanded(
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.start,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.start,
+                                                                          children: [
+                                                                            Expanded(
+                                                                              child: Padding(
+                                                                                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 5.0),
+                                                                                child: Column(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                  children: [
+                                                                                    Column(
+                                                                                      mainAxisSize: MainAxisSize.max,
+                                                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                      children: [
+                                                                                        Row(
                                                                                           mainAxisSize: MainAxisSize.max,
-                                                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                                           children: [
-                                                                                            Expanded(
-                                                                                              child: Column(
-                                                                                                mainAxisSize: MainAxisSize.max,
-                                                                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                                                                children: [
-                                                                                                  Text(
-                                                                                                    'PIZZAS TRADICIONAIS',
-                                                                                                    style: FlutterFlowTheme.of(context).displaySmall.override(
-                                                                                                          fontFamily: 'Outfit',
-                                                                                                          fontSize: 14.0,
-                                                                                                          letterSpacing: 1.0,
-                                                                                                        ),
+                                                                                            Text(
+                                                                                              listViewProdutosRecord.nome,
+                                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                    fontFamily: 'Readex Pro',
+                                                                                                    fontSize: 18.0,
+                                                                                                    letterSpacing: 1.0,
                                                                                                   ),
-                                                                                                  Text(
-                                                                                                    'Qual seu Sabor Favorito?',
-                                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                          fontFamily: 'Readex Pro',
-                                                                                                          fontSize: 12.0,
-                                                                                                        ),
-                                                                                                  ),
-                                                                                                  Text(
-                                                                                                    'Descubra os Melhores Aqui',
-                                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                          fontFamily: 'Readex Pro',
-                                                                                                          fontSize: 12.0,
-                                                                                                        ),
-                                                                                                  ),
-                                                                                                ],
-                                                                                              ),
-                                                                                            ),
-                                                                                            Column(
-                                                                                              mainAxisSize: MainAxisSize.max,
-                                                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                                                              children: [
-                                                                                                Container(
-                                                                                                  width: 80.0,
-                                                                                                  height: 30.0,
-                                                                                                  decoration: BoxDecoration(
-                                                                                                    color: FlutterFlowTheme.of(context).secondary,
-                                                                                                    borderRadius: BorderRadius.circular(8.0),
-                                                                                                  ),
-                                                                                                  child: Row(
-                                                                                                    mainAxisSize: MainAxisSize.max,
-                                                                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                    children: [
-                                                                                                      Text(
-                                                                                                        'Ver Mais',
-                                                                                                        style: FlutterFlowTheme.of(context).displaySmall.override(
-                                                                                                              fontFamily: 'Outfit',
-                                                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                                                              fontSize: 14.0,
-                                                                                                            ),
-                                                                                                      ),
-                                                                                                    ],
-                                                                                                  ),
-                                                                                                ),
-                                                                                              ],
                                                                                             ),
                                                                                           ],
                                                                                         ),
-                                                                                      ),
+                                                                                        Row(
+                                                                                          mainAxisSize: MainAxisSize.max,
+                                                                                          children: [
+                                                                                            Text(
+                                                                                              listViewProdutosRecord.sabor,
+                                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                    fontFamily: 'Readex Pro',
+                                                                                                    fontSize: 15.0,
+                                                                                                  ),
+                                                                                            ),
+                                                                                          ],
+                                                                                        ),
+                                                                                      ],
                                                                                     ),
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      collapsed:
-                                                                          Container(),
-                                                                      expanded:
-                                                                          Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                            12.0,
-                                                                            0.0,
-                                                                            12.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          children: [
-                                                                            Expanded(
-                                                                              child: ListView(
-                                                                                padding: EdgeInsets.zero,
-                                                                                shrinkWrap: true,
-                                                                                scrollDirection: Axis.vertical,
-                                                                                children: [
-                                                                                  Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
-                                                                                    child: Container(
-                                                                                      width: double.infinity,
-                                                                                      height: 50.0,
-                                                                                      decoration: BoxDecoration(
-                                                                                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                                        boxShadow: const [
-                                                                                          BoxShadow(
-                                                                                            blurRadius: 4.0,
-                                                                                            color: Color(0x33000000),
-                                                                                            offset: Offset(0.0, 2.0),
-                                                                                          )
-                                                                                        ],
-                                                                                        borderRadius: BorderRadius.circular(8.0),
-                                                                                      ),
+                                                                                    Expanded(
                                                                                       child: Row(
                                                                                         mainAxisSize: MainAxisSize.max,
-                                                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                                         children: [
-                                                                                          Column(
-                                                                                            mainAxisSize: MainAxisSize.max,
-                                                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                                                            children: [
-                                                                                              ClipRRect(
-                                                                                                borderRadius: const BorderRadius.only(
-                                                                                                  bottomLeft: Radius.circular(20.0),
-                                                                                                  bottomRight: Radius.circular(20.0),
-                                                                                                  topLeft: Radius.circular(20.0),
-                                                                                                  topRight: Radius.circular(0.0),
+                                                                                          Text(
+                                                                                            listViewProdutosRecord.descri,
+                                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                  fontFamily: 'Readex Pro',
+                                                                                                  fontSize: 12.0,
                                                                                                 ),
-                                                                                                child: Image.asset(
-                                                                                                  'assets/images/fundo.png',
-                                                                                                  width: 50.0,
-                                                                                                  height: 50.0,
-                                                                                                  fit: BoxFit.cover,
-                                                                                                ),
-                                                                                              ),
-                                                                                            ],
-                                                                                          ),
-                                                                                          Expanded(
-                                                                                            child: Padding(
-                                                                                              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
-                                                                                              child: Column(
-                                                                                                mainAxisSize: MainAxisSize.max,
-                                                                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                                children: [
-                                                                                                  Row(
-                                                                                                    mainAxisSize: MainAxisSize.max,
-                                                                                                    children: [
-                                                                                                      Expanded(
-                                                                                                        child: Text(
-                                                                                                          'Produto',
-                                                                                                          style: FlutterFlowTheme.of(context).displaySmall.override(
-                                                                                                                fontFamily: 'Outfit',
-                                                                                                                fontSize: 16.0,
-                                                                                                                letterSpacing: 1.0,
-                                                                                                              ),
-                                                                                                        ),
-                                                                                                      ),
-                                                                                                    ],
-                                                                                                  ),
-                                                                                                  Row(
-                                                                                                    mainAxisSize: MainAxisSize.max,
-                                                                                                    children: [
-                                                                                                      Expanded(
-                                                                                                        child: Text(
-                                                                                                          'Descrição',
-                                                                                                          style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                                fontFamily: 'Readex Pro',
-                                                                                                                fontSize: 12.0,
-                                                                                                              ),
-                                                                                                        ),
-                                                                                                      ),
-                                                                                                    ],
-                                                                                                  ),
-                                                                                                ],
-                                                                                              ),
-                                                                                            ),
-                                                                                          ),
-                                                                                          Column(
-                                                                                            mainAxisSize: MainAxisSize.max,
-                                                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                                                            crossAxisAlignment: CrossAxisAlignment.end,
-                                                                                            children: [
-                                                                                              Padding(
-                                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 10.0),
-                                                                                                child: Row(
-                                                                                                  mainAxisSize: MainAxisSize.max,
-                                                                                                  children: [
-                                                                                                    ClipRRect(
-                                                                                                      borderRadius: BorderRadius.circular(8.0),
-                                                                                                      child: Image.asset(
-                                                                                                        'assets/images/pedidos_ativo.png',
-                                                                                                        width: 25.0,
-                                                                                                        height: 25.0,
-                                                                                                        fit: BoxFit.cover,
-                                                                                                      ),
-                                                                                                    ),
-                                                                                                  ],
-                                                                                                ),
-                                                                                              ),
-                                                                                            ],
                                                                                           ),
                                                                                         ],
                                                                                       ),
                                                                                     ),
-                                                                                  ),
-                                                                                ],
+                                                                                  ],
+                                                                                ),
                                                                               ),
                                                                             ),
                                                                           ],
                                                                         ),
                                                                       ),
-                                                                      theme:
-                                                                          const ExpandableThemeData(
-                                                                        tapHeaderToExpand:
-                                                                            true,
-                                                                        tapBodyToExpand:
-                                                                            false,
-                                                                        tapBodyToCollapse:
-                                                                            false,
-                                                                        headerAlignment:
-                                                                            ExpandablePanelHeaderAlignment.center,
-                                                                        hasIcon:
-                                                                            false,
+                                                                      Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        children: [
+                                                                          Container(
+                                                                            width:
+                                                                                70.0,
+                                                                            height:
+                                                                                30.0,
+                                                                            decoration:
+                                                                                BoxDecoration(
+                                                                              color: FlutterFlowTheme.of(context).primary,
+                                                                              borderRadius: const BorderRadius.only(
+                                                                                bottomLeft: Radius.circular(16.0),
+                                                                                bottomRight: Radius.circular(0.0),
+                                                                                topLeft: Radius.circular(0.0),
+                                                                                topRight: Radius.circular(16.0),
+                                                                              ),
+                                                                            ),
+                                                                            alignment:
+                                                                                const AlignmentDirectional(0.00, 0.00),
+                                                                            child:
+                                                                                Align(
+                                                                              alignment: const AlignmentDirectional(0.00, 0.00),
+                                                                              child: Text(
+                                                                                formatNumber(
+                                                                                  listViewProdutosRecord.preco,
+                                                                                  formatType: FormatType.custom,
+                                                                                  currency: 'R\$ ',
+                                                                                  format: '.00',
+                                                                                  locale: 'pt_BR',
+                                                                                ).maybeHandleOverflow(
+                                                                                  maxChars: 50,
+                                                                                  replacement: '…',
+                                                                                ),
+                                                                                textAlign: TextAlign.start,
+                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                      fontFamily: 'Readex Pro',
+                                                                                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                      fontWeight: FontWeight.w300,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ],
                                                                       ),
-                                                                    ),
+                                                                    ],
                                                                   ),
                                                                 ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
+                                                                Divider(
+                                                                  thickness:
+                                                                      1.0,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        );
+                                                      },
                                                     ),
                                                   ),
                                                 ],
@@ -1407,15 +1331,6 @@ class _ComercioWidgetState extends State<ComercioWidget> {
                                         ),
                                       ],
                                     ),
-                                  ),
-                                ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.asset(
-                                    'assets/images/fundo.png',
-                                    width: 300.0,
-                                    height: 200.0,
-                                    fit: BoxFit.cover,
                                   ),
                                 ),
                               ],
