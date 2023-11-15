@@ -72,14 +72,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const RestaurantesWidget() : const InicialWidget(),
+          appStateNotifier.loggedIn ? const DeliveryWidget() : const InicialWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? const RestaurantesWidget()
-              : const InicialWidget(),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? const DeliveryWidget() : const InicialWidget(),
         ),
         FFRoute(
           name: 'Inicial',
@@ -87,14 +86,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const InicialWidget(),
         ),
         FFRoute(
-          name: 'comercio',
-          path: '/comercio',
-          builder: (context, params) => const ComercioWidget(),
-        ),
-        FFRoute(
           name: 'login',
           path: '/login',
           builder: (context, params) => const LoginWidget(),
+        ),
+        FFRoute(
+          name: 'delivery',
+          path: '/delivery',
+          builder: (context, params) => const DeliveryWidget(),
         ),
         FFRoute(
           name: 'restaurantes',

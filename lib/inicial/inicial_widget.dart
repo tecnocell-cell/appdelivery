@@ -184,38 +184,47 @@ class _InicialWidgetState extends State<InicialWidget>
                   child: Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 0.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Falta Pouco!',
-                              textAlign: TextAlign.start,
-                              style: GoogleFonts.getFont(
-                                'Roboto Mono',
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                fontSize: 30.0,
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.pushNamed('restaurantes');
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Falta Pouco!',
+                                textAlign: TextAlign.start,
+                                style: GoogleFonts.getFont(
+                                  'Roboto Mono',
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  fontSize: 30.0,
+                                ),
                               ),
-                            ),
-                            Text(
-                              'Para Matar Sua Fome.',
-                              textAlign: TextAlign.start,
-                              style: GoogleFonts.getFont(
-                                'Roboto Mono',
-                                color: Colors.white,
-                                fontWeight: FontWeight.normal,
+                              Text(
+                                'Para Matar Sua Fome.',
+                                textAlign: TextAlign.start,
+                                style: GoogleFonts.getFont(
+                                  'Roboto Mono',
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.normal,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -287,7 +296,7 @@ class _InicialWidgetState extends State<InicialWidget>
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    context.pushNamed('restaurantes');
+                                    context.pushNamed('delivery');
                                   },
                                   child: Text(
                                     'Continuar',

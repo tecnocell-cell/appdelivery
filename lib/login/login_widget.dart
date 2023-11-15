@@ -545,8 +545,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                               }
 
                                               context.pushNamedAuth(
-                                                  'restaurantes',
-                                                  context.mounted);
+                                                  'delivery', context.mounted);
                                             },
                                             text: 'Entrar',
                                             options: FFButtonOptions(
@@ -1198,8 +1197,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   ));
 
                                               context.goNamedAuth(
-                                                  'restaurantes',
-                                                  context.mounted);
+                                                  'delivery', context.mounted);
                                             },
                                             text: 'Criar Conta',
                                             options: FFButtonOptions(
