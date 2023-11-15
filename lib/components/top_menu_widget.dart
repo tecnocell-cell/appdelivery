@@ -56,8 +56,7 @@ class _TopMenuWidgetState extends State<TopMenuWidget> {
                       currentUserDisplayName,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
+                            color: FlutterFlowTheme.of(context).primaryText,
                             fontSize: 12.0,
                           ),
                     ),
@@ -67,22 +66,21 @@ class _TopMenuWidgetState extends State<TopMenuWidget> {
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.location_on,
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: Color(0xFF035176),
                     size: 19.0,
                   ),
                   Text(
                     'Rua Ayrton Senna, 04',
                     style: FlutterFlowTheme.of(context).bodySmall.override(
                           fontFamily: 'Readex Pro',
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                          color: FlutterFlowTheme.of(context).primaryText,
                         ),
                   ),
-                  Icon(
+                  const Icon(
                     Icons.expand_more,
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: Color(0xFF035176),
                     size: 19.0,
                   ),
                 ],
@@ -121,9 +119,9 @@ class _TopMenuWidgetState extends State<TopMenuWidget> {
                 onTap: () async {
                   context.safePop();
                 },
-                child: Icon(
+                child: const Icon(
                   Icons.shopping_cart,
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  color: Color(0xFF035176),
                   size: 19.0,
                 ),
               ),

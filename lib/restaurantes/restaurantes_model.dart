@@ -1,4 +1,4 @@
-import '/components/nav_bar1_widget.dart';
+import '/components/nav_bar12_widget.dart';
 import '/components/top_menuestabelecimento_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'restaurantes_widget.dart' show RestaurantesWidget;
@@ -22,8 +22,8 @@ class RestaurantesModel extends FlutterFlowModel<RestaurantesWidget> {
           pageViewController!.page != null
       ? pageViewController!.page!.round()
       : 0;
-  // Model for NavBar1 component.
-  late NavBar1Model navBar1Model;
+  // Model for NavBar12 component.
+  late NavBar12Model navBar12Model;
 
   /// Initialization and disposal methods.
 
@@ -31,7 +31,7 @@ class RestaurantesModel extends FlutterFlowModel<RestaurantesWidget> {
   void initState(BuildContext context) {
     topMenuestabelecimentoModel =
         createModel(context, () => TopMenuestabelecimentoModel());
-    navBar1Model = createModel(context, () => NavBar1Model());
+    navBar12Model = createModel(context, () => NavBar12Model());
   }
 
   @override
@@ -41,7 +41,7 @@ class RestaurantesModel extends FlutterFlowModel<RestaurantesWidget> {
     searchFocusNode?.dispose();
     searchController?.dispose();
 
-    navBar1Model.dispose();
+    navBar12Model.dispose();
   }
 
   /// Action blocks are added here.

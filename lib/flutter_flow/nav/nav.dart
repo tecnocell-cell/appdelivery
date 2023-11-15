@@ -89,10 +89,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'comercio',
           path: '/comercio',
-          builder: (context, params) => ComercioWidget(
-            detalheRestaurante: params.getParam('detalheRestaurante',
-                ParamType.DocumentReference, false, ['restaurante']),
-          ),
+          builder: (context, params) => const ComercioWidget(),
         ),
         FFRoute(
           name: 'login',
