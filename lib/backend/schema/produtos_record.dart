@@ -30,11 +30,6 @@ class ProdutosRecord extends FirestoreRecord {
   String get sabor => _sabor ?? '';
   bool hasSabor() => _sabor != null;
 
-  // "quantidade" field.
-  int? _quantidade;
-  int get quantidade => _quantidade ?? 0;
-  bool hasQuantidade() => _quantidade != null;
-
   // "descri" field.
   String? _descri;
   String get descri => _descri ?? '';
@@ -50,14 +45,19 @@ class ProdutosRecord extends FirestoreRecord {
   DocumentReference? get restaurante => _restaurante;
   bool hasRestaurante() => _restaurante != null;
 
+  // "image" field.
+  String? _image;
+  String get image => _image ?? '';
+  bool hasImage() => _image != null;
+
   void _initializeFields() {
     _nome = snapshotData['nome'] as String?;
     _preco = castToType<double>(snapshotData['preco']);
     _sabor = snapshotData['sabor'] as String?;
-    _quantidade = castToType<int>(snapshotData['quantidade']);
     _descri = snapshotData['descri'] as String?;
     _categoria = snapshotData['categoria'] as DocumentReference?;
     _restaurante = snapshotData['restaurante'] as DocumentReference?;
+    _image = snapshotData['image'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -98,20 +98,20 @@ Map<String, dynamic> createProdutosRecordData({
   String? nome,
   double? preco,
   String? sabor,
-  int? quantidade,
   String? descri,
   DocumentReference? categoria,
   DocumentReference? restaurante,
+  String? image,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'nome': nome,
       'preco': preco,
       'sabor': sabor,
-      'quantidade': quantidade,
       'descri': descri,
       'categoria': categoria,
       'restaurante': restaurante,
+      'image': image,
     }.withoutNulls,
   );
 
@@ -126,10 +126,10 @@ class ProdutosRecordDocumentEquality implements Equality<ProdutosRecord> {
     return e1?.nome == e2?.nome &&
         e1?.preco == e2?.preco &&
         e1?.sabor == e2?.sabor &&
-        e1?.quantidade == e2?.quantidade &&
         e1?.descri == e2?.descri &&
         e1?.categoria == e2?.categoria &&
-        e1?.restaurante == e2?.restaurante;
+        e1?.restaurante == e2?.restaurante &&
+        e1?.image == e2?.image;
   }
 
   @override
@@ -137,10 +137,10 @@ class ProdutosRecordDocumentEquality implements Equality<ProdutosRecord> {
         e?.nome,
         e?.preco,
         e?.sabor,
-        e?.quantidade,
         e?.descri,
         e?.categoria,
-        e?.restaurante
+        e?.restaurante,
+        e?.image
       ]);
 
   @override

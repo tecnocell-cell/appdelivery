@@ -287,7 +287,7 @@ class _InicialWidgetState extends State<InicialWidget>
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    context.pushNamed('HomePage');
+                                    context.pushNamed('restaurantes');
                                   },
                                   child: Text(
                                     'Continuar',

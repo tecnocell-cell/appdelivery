@@ -72,13 +72,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const HomePageWidget() : const InicialWidget(),
+          appStateNotifier.loggedIn ? const RestaurantesWidget() : const InicialWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) =>
-              appStateNotifier.loggedIn ? const HomePageWidget() : const InicialWidget(),
+          builder: (context, _) => appStateNotifier.loggedIn
+              ? const RestaurantesWidget()
+              : const InicialWidget(),
         ),
         FFRoute(
           name: 'Inicial',
@@ -86,14 +87,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const InicialWidget(),
         ),
         FFRoute(
-          name: 'HomePage',
-          path: '/homePage',
-          builder: (context, params) => const HomePageWidget(),
+          name: 'comercio',
+          path: '/comercio',
+          builder: (context, params) => ComercioWidget(
+            detalheRestaurante: params.getParam('detalheRestaurante',
+                ParamType.DocumentReference, false, ['restaurante']),
+          ),
         ),
         FFRoute(
           name: 'login',
           path: '/login',
           builder: (context, params) => const LoginWidget(),
+        ),
+        FFRoute(
+          name: 'restaurantes',
+          path: '/restaurantes',
+          builder: (context, params) => const RestaurantesWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

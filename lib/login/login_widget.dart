@@ -153,7 +153,7 @@ class _LoginWidgetState extends State<LoginWidget>
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(16.0),
                             child: Image.asset(
-                              'assets/images/Orange_and_Red_Modern_Spicy_Sauce_Logo_(3).png',
+                              'assets/images/Orange_and_Red_Modern_Spicy_Sauce_Logo.png',
                               width: 150.0,
                               height: 150.0,
                               fit: BoxFit.cover,
@@ -168,7 +168,7 @@ class _LoginWidgetState extends State<LoginWidget>
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 32.0, 0.0),
                 child: Column(
                   children: [
                     Align(
@@ -545,7 +545,8 @@ class _LoginWidgetState extends State<LoginWidget>
                                               }
 
                                               context.pushNamedAuth(
-                                                  'HomePage', context.mounted);
+                                                  'restaurantes',
+                                                  context.mounted);
                                             },
                                             text: 'Entrar',
                                             options: FFButtonOptions(
@@ -1197,7 +1198,8 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   ));
 
                                               context.goNamedAuth(
-                                                  'HomePage', context.mounted);
+                                                  'restaurantes',
+                                                  context.mounted);
                                             },
                                             text: 'Criar Conta',
                                             options: FFButtonOptions(

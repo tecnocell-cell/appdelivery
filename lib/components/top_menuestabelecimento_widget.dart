@@ -3,18 +3,20 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
-import 'top_menu_model.dart';
-export 'top_menu_model.dart';
+import 'top_menuestabelecimento_model.dart';
+export 'top_menuestabelecimento_model.dart';
 
-class TopMenuWidget extends StatefulWidget {
-  const TopMenuWidget({super.key});
+class TopMenuestabelecimentoWidget extends StatefulWidget {
+  const TopMenuestabelecimentoWidget({super.key});
 
   @override
-  _TopMenuWidgetState createState() => _TopMenuWidgetState();
+  _TopMenuestabelecimentoWidgetState createState() =>
+      _TopMenuestabelecimentoWidgetState();
 }
 
-class _TopMenuWidgetState extends State<TopMenuWidget> {
-  late TopMenuModel _model;
+class _TopMenuestabelecimentoWidgetState
+    extends State<TopMenuestabelecimentoWidget> {
+  late TopMenuestabelecimentoModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -25,7 +27,7 @@ class _TopMenuWidgetState extends State<TopMenuWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => TopMenuModel());
+    _model = createModel(context, () => TopMenuestabelecimentoModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -56,8 +58,7 @@ class _TopMenuWidgetState extends State<TopMenuWidget> {
                       currentUserDisplayName,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
+                            color: FlutterFlowTheme.of(context).primaryText,
                             fontSize: 12.0,
                           ),
                     ),
@@ -67,22 +68,21 @@ class _TopMenuWidgetState extends State<TopMenuWidget> {
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.location_on,
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: Color(0xFF035176),
                     size: 19.0,
                   ),
                   Text(
                     'Rua Ayrton Senna, 04',
                     style: FlutterFlowTheme.of(context).bodySmall.override(
                           fontFamily: 'Readex Pro',
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                          color: FlutterFlowTheme.of(context).primaryText,
                         ),
                   ),
-                  Icon(
+                  const Icon(
                     Icons.expand_more,
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: Color(0xFF035176),
                     size: 19.0,
                   ),
                 ],
@@ -121,9 +121,9 @@ class _TopMenuWidgetState extends State<TopMenuWidget> {
                 onTap: () async {
                   context.safePop();
                 },
-                child: Icon(
-                  Icons.shopping_cart,
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                child: const Icon(
+                  Icons.notifications_sharp,
+                  color: Color(0xFF035176),
                   size: 19.0,
                 ),
               ),

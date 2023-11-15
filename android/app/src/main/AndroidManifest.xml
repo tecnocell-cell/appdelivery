@@ -5,7 +5,7 @@
 
 
     <application
-        android:label="Appcatalogo"
+        android:label="appDelivery"
         tools:replace="android:label"
         android:icon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true">
@@ -45,7 +45,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="appcatalogo" android:host="appcatalogo.com" />
+                <data android:scheme="appdelivery" android:host="appdelivery.com" />
             </intent-filter>
 
         </activity>
