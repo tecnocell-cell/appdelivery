@@ -798,7 +798,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                                                         fontFamily:
                                                                             'Readex Pro',
                                                                         fontSize:
-                                                                            18.0,
+                                                                            16.0,
                                                                         letterSpacing:
                                                                             2.0,
                                                                       ),
@@ -862,7 +862,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                                                             fontFamily:
                                                                                 'Readex Pro',
                                                                             fontSize:
-                                                                                14.0,
+                                                                                12.0,
                                                                             letterSpacing:
                                                                                 2.0,
                                                                           ),
@@ -883,7 +883,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                                               color: FlutterFlowTheme
                                                                       .of(context)
                                                                   .warning,
-                                                              size: 24.0,
+                                                              size: 20.0,
                                                             ),
                                                             Padding(
                                                               padding:
@@ -897,7 +897,13 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                                                 '4.5',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyMedium,
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      fontSize:
+                                                                          11.0,
+                                                                    ),
                                                               ),
                                                             ),
                                                           ],
@@ -916,26 +922,52 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                                             Icons.access_time,
                                                             color: Color(
                                                                 0xFF035176),
-                                                            size: 24.0,
+                                                            size: 20.0,
                                                           ),
-                                                          Text(
-                                                            '20 - 35 ',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        5.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              '20 - 35 ',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                    fontSize:
+                                                                        11.0,
+                                                                  ),
+                                                            ),
                                                           ),
-                                                          Text(
-                                                            '7.5 km',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium,
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        5.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              '7.5 km',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    fontSize:
+                                                                        11.0,
+                                                                  ),
+                                                            ),
                                                           ),
                                                         ],
                                                       ),
@@ -955,7 +987,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                                     CrossAxisAlignment.center,
                                                 children: [
                                                   Container(
-                                                    width: 80.0,
+                                                    width: 70.0,
                                                     height: 30.0,
                                                     decoration: BoxDecoration(
                                                       color:
@@ -984,7 +1016,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryBackground,
-                                                                fontSize: 16.0,
+                                                                fontSize: 14.0,
                                                               ),
                                                         ),
                                                       ],
