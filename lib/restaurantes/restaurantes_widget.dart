@@ -336,7 +336,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: const Icon(
-                                      Icons.tune,
+                                      FFIcons.kfilter3,
                                       color: Color(0xFF035176),
                                       size: 24.0,
                                     ),
