@@ -187,7 +187,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                         children: [
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                12.0, 16.0, 12.0, 0.0),
+                                12.0, 25.0, 12.0, 0.0),
                             child: wrapWithModel(
                               model: _model.topMenuestabelecimentoModel,
                               updateCallback: () => setState(() {}),
