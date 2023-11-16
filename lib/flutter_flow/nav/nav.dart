@@ -98,7 +98,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'restaurantes',
           path: '/restaurantes',
-          builder: (context, params) => const RestaurantesWidget(),
+          builder: (context, params) => RestaurantesWidget(
+            paramRestaurantes: params.getParam('paramRestaurantes',
+                ParamType.DocumentReference, false, ['restaurante']),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
