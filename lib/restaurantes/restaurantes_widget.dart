@@ -179,140 +179,6 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                 ),
               ),
             ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Align(
-                  alignment: const AlignmentDirectional(0.00, -1.00),
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(12.0, 16.0, 12.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            context.safePop();
-                          },
-                          child: Container(
-                            width: 40.0,
-                            height: 40.0,
-                            decoration: BoxDecoration(
-                              color: const Color(0x8B9B1814),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: ClipRRect(
-                              child: BackdropFilter(
-                                filter: ImageFilter.blur(
-                                  sigmaX: 1.0,
-                                  sigmaY: 1.0,
-                                ),
-                                child: const Icon(
-                                  Icons.chevron_left,
-                                  color: Colors.white,
-                                  size: 19.0,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    10.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  'usuarios',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    10.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  'endereço ususario',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 40.0,
-                          height: 40.0,
-                          decoration: BoxDecoration(
-                            color: const Color(0x8C9B1814),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          child: ClipRRect(
-                            child: BackdropFilter(
-                              filter: ImageFilter.blur(
-                                sigmaX: 1.0,
-                                sigmaY: 1.0,
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 10.0, 10.0, 0.0),
-                                child: badges.Badge(
-                                  badgeContent: Text(
-                                    '1',
-                                    style: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: Colors.white,
-                                          fontSize: 14.0,
-                                        ),
-                                  ),
-                                  showBadge: true,
-                                  shape: badges.BadgeShape.circle,
-                                  badgeColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  elevation: 4.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      8.0, 8.0, 8.0, 8.0),
-                                  position: badges.BadgePosition.topEnd(),
-                                  animationType:
-                                      badges.BadgeAnimationType.scale,
-                                  toAnimate: true,
-                                  child: Icon(
-                                    Icons.shopping_cart_sharp,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    size: 19.0,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
             SingleChildScrollView(
               primary: false,
               child: Column(
@@ -896,7 +762,13 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 12.0, 0.0),
                                   child: StreamBuilder<List<ProdutosRecord>>(
-                                    stream: queryProdutosRecord(),
+                                    stream: queryProdutosRecord(
+                                      queryBuilder: (produtosRecord) =>
+                                          produtosRecord.where(
+                                        'restaurante',
+                                        isEqualTo: widget.paramRestaurantes,
+                                      ),
+                                    ),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
                                       if (!snapshot.hasData) {
@@ -1112,6 +984,136 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                   ),
                 ],
               ),
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(12.0, 16.0, 12.0, 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed('delivery');
+                        },
+                        child: Container(
+                          width: 40.0,
+                          height: 40.0,
+                          decoration: BoxDecoration(
+                            color: const Color(0x8B9B1814),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          child: ClipRRect(
+                            child: BackdropFilter(
+                              filter: ImageFilter.blur(
+                                sigmaX: 1.0,
+                                sigmaY: 1.0,
+                              ),
+                              child: const Icon(
+                                Icons.chevron_left,
+                                color: Colors.white,
+                                size: 19.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 0.0, 0.0, 0.0),
+                              child: Text(
+                                'usuarios',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                    ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 0.0, 0.0, 0.0),
+                              child: Text(
+                                'endereço ususario',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: 40.0,
+                        height: 40.0,
+                        decoration: BoxDecoration(
+                          color: const Color(0x8C9B1814),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: ClipRRect(
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(
+                              sigmaX: 1.0,
+                              sigmaY: 1.0,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 10.0, 10.0, 0.0),
+                              child: badges.Badge(
+                                badgeContent: Text(
+                                  '1',
+                                  style: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: Colors.white,
+                                        fontSize: 14.0,
+                                      ),
+                                ),
+                                showBadge: true,
+                                shape: badges.BadgeShape.circle,
+                                badgeColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                elevation: 4.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    8.0, 8.0, 8.0, 8.0),
+                                position: badges.BadgePosition.topEnd(),
+                                animationType: badges.BadgeAnimationType.scale,
+                                toAnimate: true,
+                                child: Icon(
+                                  Icons.shopping_cart_sharp,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  size: 19.0,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ],
         ),
