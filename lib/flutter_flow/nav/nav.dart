@@ -102,6 +102,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             paramRestaurantes: params.getParam('paramRestaurantes',
                 ParamType.DocumentReference, false, ['restaurante']),
           ),
+        ),
+        FFRoute(
+          name: 'detalhePedidos',
+          path: '/detalhePedidos',
+          builder: (context, params) => const DetalhePedidosWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
