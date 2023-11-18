@@ -150,9 +150,12 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                                 fontSize: 16.0,
                                                               ),
                                                     ),
-                                                    const Icon(
-                                                      Icons.close_rounded,
-                                                      color: Color(0xFFB3B3B3),
+                                                    Icon(
+                                                      FFIcons.kdelete2,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
                                                       size: 24.0,
                                                     ),
                                                   ],
@@ -324,15 +327,19 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                   ),
                             ),
                           ),
-                          Container(
-                            width: 80.0,
+                          SizedBox(
                             height: 40.0,
+                            child: VerticalDivider(
+                              thickness: 2.0,
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                            ),
+                          ),
+                          Container(
+                            width: 100.0,
+                            height: 50.0,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8.0),
-                              border: Border.all(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                              ),
                             ),
                             child: Align(
                               alignment: const AlignmentDirectional(0.00, 0.00),
@@ -344,7 +351,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                       fontFamily: 'Readex Pro',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryBackground,
-                                      fontSize: 14.0,
+                                      fontSize: 20.0,
                                       fontWeight: FontWeight.w600,
                                     ),
                               ),
