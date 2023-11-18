@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
+import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
@@ -72,13 +73,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const DeliveryWidget() : const InicialWidget(),
+          appStateNotifier.loggedIn ? const NavBarPage() : const InicialWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const DeliveryWidget() : const InicialWidget(),
+              appStateNotifier.loggedIn ? const NavBarPage() : const InicialWidget(),
         ),
         FFRoute(
           name: 'Inicial',
@@ -93,7 +94,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'delivery',
           path: '/delivery',
-          builder: (context, params) => const DeliveryWidget(),
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'delivery')
+              : const DeliveryWidget(),
         ),
         FFRoute(
           name: 'restaurantes',
@@ -114,7 +117,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Carrinho',
           path: '/carrinho',
-          builder: (context, params) => const CarrinhoWidget(),
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'Carrinho')
+              : const CarrinhoWidget(),
+        ),
+        FFRoute(
+          name: 'conta',
+          path: '/conta',
+          builder: (context, params) =>
+              params.isEmpty ? const NavBarPage(initialPage: 'conta') : const ContaWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

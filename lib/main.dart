@@ -10,6 +10,8 @@ import 'backend/firebase/firebase_config.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'index.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -102,6 +104,80 @@ class _MyAppState extends State<MyApp> {
       ),
       themeMode: _themeMode,
       routerConfig: _router,
+    );
+  }
+}
+
+class NavBarPage extends StatefulWidget {
+  const NavBarPage({super.key, this.initialPage, this.page});
+
+  final String? initialPage;
+  final Widget? page;
+
+  @override
+  _NavBarPageState createState() => _NavBarPageState();
+}
+
+/// This is the private State class that goes with NavBarPage.
+class _NavBarPageState extends State<NavBarPage> {
+  String _currentPageName = 'delivery';
+  late Widget? _currentPage;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentPageName = widget.initialPage ?? _currentPageName;
+    _currentPage = widget.page;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final tabs = {
+      'delivery': const DeliveryWidget(),
+      'Carrinho': const CarrinhoWidget(),
+      'conta': const ContaWidget(),
+    };
+    final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
+
+    return Scaffold(
+      body: _currentPage ?? tabs[_currentPageName],
+      bottomNavigationBar: GNav(
+        selectedIndex: currentIndex,
+        onTabChange: (i) => setState(() {
+          _currentPage = null;
+          _currentPageName = tabs.keys.toList()[i];
+        }),
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        color: FlutterFlowTheme.of(context).primaryText,
+        activeColor: FlutterFlowTheme.of(context).secondaryBackground,
+        tabBackgroundColor: FlutterFlowTheme.of(context).primary,
+        tabBorderRadius: 8.0,
+        tabMargin: const EdgeInsetsDirectional.fromSTEB(3.0, 3.0, 3.0, 3.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(3.0, 3.0, 3.0, 3.0),
+        gap: 5.0,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        duration: const Duration(milliseconds: 50),
+        haptic: false,
+        tabs: [
+          const GButton(
+            icon: Icons.home_outlined,
+            text: 'Inicio',
+            iconSize: 24.0,
+          ),
+          GButton(
+            icon: currentIndex == 1
+                ? Icons.shopping_cart_outlined
+                : Icons.shopping_cart_outlined,
+            text: 'Carrinho',
+            iconSize: 24.0,
+          ),
+          const GButton(
+            icon: Icons.person_outline,
+            text: 'conta',
+            iconSize: 24.0,
+          )
+        ],
+      ),
     );
   }
 }

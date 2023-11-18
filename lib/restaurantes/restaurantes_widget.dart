@@ -225,27 +225,42 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                     ),
                   ),
                 ),
-                badges.Badge(
-                  badgeContent: Text(
-                    '1',
-                    textAlign: TextAlign.justify,
-                    style: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Readex Pro',
-                          color: FlutterFlowTheme.of(context).primary,
-                          fontSize: 19.0,
+                InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.pushNamed('Carrinho');
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      badges.Badge(
+                        badgeContent: Text(
+                          '1',
+                          textAlign: TextAlign.justify,
+                          style:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    fontSize: 19.0,
+                                  ),
                         ),
-                  ),
-                  showBadge: true,
-                  shape: badges.BadgeShape.circle,
-                  badgeColor: const Color(0x00FFFFFF),
-                  elevation: 1.0,
-                  position: badges.BadgePosition.topEnd(),
-                  animationType: badges.BadgeAnimationType.scale,
-                  toAnimate: true,
-                  child: Icon(
-                    Icons.shopping_cart_rounded,
-                    color: FlutterFlowTheme.of(context).primary,
-                    size: 24.0,
+                        showBadge: true,
+                        shape: badges.BadgeShape.circle,
+                        badgeColor: const Color(0x00FFFFFF),
+                        elevation: 1.0,
+                        position: badges.BadgePosition.topEnd(),
+                        animationType: badges.BadgeAnimationType.scale,
+                        toAnimate: true,
+                        child: Icon(
+                          Icons.shopping_cart_rounded,
+                          color: FlutterFlowTheme.of(context).primary,
+                          size: 24.0,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

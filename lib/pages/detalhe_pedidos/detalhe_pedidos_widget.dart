@@ -498,11 +498,20 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                                       decoration: const BoxDecoration(
                                         color: Color(0x809B1814),
                                       ),
-                                      child: Icon(
-                                        Icons.local_mall,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        size: 24.0,
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          context.pushNamed('Carrinho');
+                                        },
+                                        child: Icon(
+                                          Icons.shopping_cart_outlined,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          size: 24.0,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -663,14 +672,26 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'Nutritions',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            setState(() {
+                              FFAppState().produtoVendaLocal = [];
+                            });
+                          },
+                          child: Text(
+                            'Nutritions',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
