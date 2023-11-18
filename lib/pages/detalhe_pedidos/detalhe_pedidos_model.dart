@@ -8,6 +8,8 @@ class DetalhePedidosModel extends FlutterFlowModel<DetalhePedidosWidget> {
   final unfocusNode = FocusNode();
   // State field(s) for RatingBar widget.
   double? ratingBarValue;
+  // State field(s) for CountController widget.
+  int? countControllerValue;
 
   /// Initialization and disposal methods.
 
