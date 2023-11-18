@@ -10,6 +10,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:provider/provider.dart';
 import 'delivery_model.dart';
 export 'delivery_model.dart';
 
@@ -170,6 +171,8 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
         ),
       );
     }
+
+    context.watch<FFAppState>();
 
     return StreamBuilder<List<RestauranteRecord>>(
       stream: queryRestauranteRecord(),

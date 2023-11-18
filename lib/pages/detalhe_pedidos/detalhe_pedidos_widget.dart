@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_count_controller.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'detalhe_pedidos_model.dart';
 export 'detalhe_pedidos_model.dart';
 
@@ -389,6 +391,8 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
         ),
       );
     }
+
+    context.watch<FFAppState>();
 
     return StreamBuilder<ProdutosRecord>(
       stream: ProdutosRecord.getDocument(widget.detalheProduto!),
@@ -813,53 +817,93 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                           ),
                         ).animateOnPageLoad(animationsMap[
                             'countControllerOnPageLoadAnimation']!),
-                        Container(
-                          width: 180.0,
-                          height: 45.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).primary,
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                12.0, 0.0, 12.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Adicionar',
-                                  maxLines: 1,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                                Text(
-                                  formatNumber(
-                                    functions.subtotalProdutos(
-                                        detalhePedidosProdutosRecord.preco,
-                                        _model.countControllerValue!),
-                                    formatType: FormatType.custom,
-                                    currency: 'R\$ ',
-                                    format: '.00',
-                                    locale: 'pt_BR',
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            var produtoVendaRecordReference =
+                                ProdutoVendaRecord.collection.doc();
+                            await produtoVendaRecordReference
+                                .set(createProdutoVendaRecordData(
+                              valorSubtotal: functions.subtotalProdutos(
+                                  detalhePedidosProdutosRecord.preco,
+                                  _model.countControllerValue!),
+                              produto: detalhePedidosProdutosRecord.reference,
+                              quantidade: _model.countControllerValue,
+                              usuario: currentUserReference,
+                            ));
+                            _model.stadoProdutoVenda =
+                                ProdutoVendaRecord.getDocumentFromData(
+                                    createProdutoVendaRecordData(
+                                      valorSubtotal: functions.subtotalProdutos(
+                                          detalhePedidosProdutosRecord.preco,
+                                          _model.countControllerValue!),
+                                      produto: detalhePedidosProdutosRecord
+                                          .reference,
+                                      quantidade: _model.countControllerValue,
+                                      usuario: currentUserReference,
+                                    ),
+                                    produtoVendaRecordReference);
+                            setState(() {
+                              FFAppState().addToProdutoVendaLocal(
+                                  _model.stadoProdutoVenda!.reference);
+                            });
+
+                            context.pushNamed('Carrinho');
+
+                            setState(() {});
+                          },
+                          child: Container(
+                            width: 180.0,
+                            height: 45.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context).primary,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  12.0, 0.0, 12.0, 0.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Adicionar',
+                                    maxLines: 1,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                   ),
-                                  textAlign: TextAlign.end,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                ),
-                              ],
+                                  Text(
+                                    formatNumber(
+                                      functions.subtotalProdutos(
+                                          detalhePedidosProdutosRecord.preco,
+                                          _model.countControllerValue!),
+                                      formatType: FormatType.custom,
+                                      currency: 'R\$ ',
+                                      format: '.00',
+                                      locale: 'pt_BR',
+                                    ),
+                                    textAlign: TextAlign.end,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ).animateOnPageLoad(
