@@ -110,6 +110,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             detalheProduto: params.getParam('detalheProduto',
                 ParamType.DocumentReference, false, ['produtos']),
           ),
+        ),
+        FFRoute(
+          name: 'Carrinho',
+          path: '/carrinho',
+          builder: (context, params) => const CarrinhoWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
