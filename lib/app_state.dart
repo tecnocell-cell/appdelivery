@@ -33,6 +33,9 @@ class FFAppState extends ChangeNotifier {
               .toList() ??
           _pedido;
     });
+    _safeInit(() {
+      _subTotalItem = prefs.getInt('ff_subTotalItem') ?? _subTotalItem;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -80,6 +83,13 @@ class FFAppState extends ChangeNotifier {
     _pedido.insert(index, value);
     prefs.setStringList(
         'ff_pedido', _pedido.map((x) => x.serialize()).toList());
+  }
+
+  int _subTotalItem = 0;
+  int get subTotalItem => _subTotalItem;
+  set subTotalItem(int value) {
+    _subTotalItem = value;
+    prefs.setInt('ff_subTotalItem', value);
   }
 }
 

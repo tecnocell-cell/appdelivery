@@ -325,20 +325,19 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                 CrossAxisAlignment.center,
                                             children: [
                                               Container(
-                                                width: 80.0,
-                                                height: 30.0,
+                                                width: 102.0,
+                                                height: 32.0,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .alternate,
+                                                      .secondaryBackground,
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          4.0),
+                                                          8.0),
                                                   border: Border.all(
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .alternate,
-                                                    width: 1.0,
                                                   ),
                                                 ),
                                                 child: Row(
@@ -349,38 +348,53 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.center,
                                                   children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  10.0,
-                                                                  0.0),
+                                                    InkWell(
+                                                      splashColor:
+                                                          Colors.transparent,
+                                                      focusColor:
+                                                          Colors.transparent,
+                                                      hoverColor:
+                                                          Colors.transparent,
+                                                      highlightColor:
+                                                          Colors.transparent,
+                                                      onTap: () async {
+                                                        if (carrinhoItem
+                                                                .quantidade >=
+                                                            1) {
+                                                          setState(() {
+                                                            FFAppState()
+                                                                .updatePedidoAtIndex(
+                                                              carrinhoIndex,
+                                                              (e) => e
+                                                                ..incrementQuantidade(
+                                                                    -1),
+                                                            );
+                                                          });
+                                                          if (carrinhoItem
+                                                                  .quantidade <=
+                                                              0) {
+                                                            setState(() {
+                                                              FFAppState()
+                                                                  .removeAtIndexFromPedido(
+                                                                      carrinhoIndex);
+                                                            });
+                                                          } else {
+                                                            return;
+                                                          }
+
+                                                          return;
+                                                        } else {
+                                                          return;
+                                                        }
+                                                      },
                                                       child: Icon(
                                                         FFIcons.kminus,
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .primary,
-                                                        size: 18.0,
+                                                                .primaryText,
+                                                        size: 16.0,
                                                       ),
-                                                    ),
-                                                    Text(
-                                                      carrinhoItem.quantidade
-                                                          .toString(),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                fontSize: 14.0,
-                                                              ),
                                                     ),
                                                     Padding(
                                                       padding:
@@ -388,15 +402,47 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                               .fromSTEB(
                                                                   10.0,
                                                                   0.0,
-                                                                  0.0,
+                                                                  10.0,
                                                                   0.0),
+                                                      child: Text(
+                                                        carrinhoItem.quantidade
+                                                            .toString(),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium,
+                                                      ),
+                                                    ),
+                                                    InkWell(
+                                                      splashColor:
+                                                          Colors.transparent,
+                                                      focusColor:
+                                                          Colors.transparent,
+                                                      hoverColor:
+                                                          Colors.transparent,
+                                                      highlightColor:
+                                                          Colors.transparent,
+                                                      onTap: () async {
+                                                        setState(() {
+                                                          FFAppState()
+                                                              .updatePedidoAtIndex(
+                                                            valueOrDefault<int>(
+                                                              carrinhoIndex,
+                                                              1,
+                                                            ),
+                                                            (e) => e
+                                                              ..incrementQuantidade(
+                                                                  1),
+                                                          );
+                                                        });
+                                                      },
                                                       child: Icon(
                                                         FFIcons.kadd,
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primary,
-                                                        size: 18.0,
+                                                        size: 16.0,
                                                       ),
                                                     ),
                                                   ],

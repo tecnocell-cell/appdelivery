@@ -192,10 +192,19 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Icon(
-                  Icons.arrow_back_sharp,
-                  color: FlutterFlowTheme.of(context).primary,
-                  size: 24.0,
+                InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.safePop();
+                  },
+                  child: Icon(
+                    Icons.arrow_back_sharp,
+                    color: FlutterFlowTheme.of(context).primary,
+                    size: 24.0,
+                  ),
                 ),
                 Expanded(
                   child: Padding(
