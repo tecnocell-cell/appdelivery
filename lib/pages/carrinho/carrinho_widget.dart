@@ -210,13 +210,17 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                   borderRadius: BorderRadius.circular(8.0),
                                   shape: BoxShape.rectangle,
                                 ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.network(
-                                    carrinhoItem.img,
-                                    width: 70.0,
-                                    height: 70.0,
-                                    fit: BoxFit.cover,
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      5.0, 5.0, 5.0, 5.0),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Image.network(
+                                      carrinhoItem.img,
+                                      width: 70.0,
+                                      height: 70.0,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                               ),
