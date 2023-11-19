@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_count_controller.dart';
@@ -672,26 +671,14 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            setState(() {
-                              FFAppState().produtoVendaLocal = [];
-                            });
-                          },
-                          child: Text(
-                            'Nutritions',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                          ),
+                        Text(
+                          'Nutritions',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -844,37 +831,16 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            var produtoVendaRecordReference =
-                                ProdutoVendaRecord.collection.doc();
-                            await produtoVendaRecordReference
-                                .set(createProdutoVendaRecordData(
-                              valorSubtotal: functions.subtotalProdutos(
-                                  detalhePedidosProdutosRecord.preco,
-                                  _model.countControllerValue!),
-                              produto: detalhePedidosProdutosRecord.reference,
-                              quantidade: _model.countControllerValue,
-                              usuario: currentUserReference,
-                            ));
-                            _model.stadoProdutoVenda =
-                                ProdutoVendaRecord.getDocumentFromData(
-                                    createProdutoVendaRecordData(
-                                      valorSubtotal: functions.subtotalProdutos(
-                                          detalhePedidosProdutosRecord.preco,
-                                          _model.countControllerValue!),
-                                      produto: detalhePedidosProdutosRecord
-                                          .reference,
-                                      quantidade: _model.countControllerValue,
-                                      usuario: currentUserReference,
-                                    ),
-                                    produtoVendaRecordReference);
                             setState(() {
-                              FFAppState().addToProdutoVendaLocal(
-                                  _model.stadoProdutoVenda!.reference);
+                              FFAppState().addToPedido(PedidoStruct(
+                                nomePedido: detalhePedidosProdutosRecord.nome,
+                                preco: detalhePedidosProdutosRecord.preco,
+                                quantidade: _model.countControllerValue,
+                                img: detalhePedidosProdutosRecord.image,
+                              ));
                             });
 
                             context.pushNamed('Carrinho');
-
-                            setState(() {});
                           },
                           child: Container(
                             width: 180.0,

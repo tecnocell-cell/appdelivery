@@ -1,4 +1,3 @@
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -192,40 +191,32 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: Builder(
                     builder: (context) {
-                      final produtoVendaCliente =
-                          FFAppState().produtoVendaLocal.map((e) => e).toList();
+                      final carrinho = FFAppState().pedido.toList();
                       return Column(
                         mainAxisSize: MainAxisSize.max,
-                        children: List.generate(produtoVendaCliente.length,
-                            (produtoVendaClienteIndex) {
-                          final produtoVendaClienteItem =
-                              produtoVendaCliente[produtoVendaClienteIndex];
-                          return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children:
+                            List.generate(carrinho.length, (carrinhoIndex) {
+                          final carrinhoItem = carrinho[carrinhoIndex];
+                          return Row(
                             mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              StreamBuilder<ProdutoVendaRecord>(
-                                stream: ProdutoVendaRecord.getDocument(
-                                    produtoVendaClienteItem),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        child: CircularProgressIndicator(
-                                          valueColor:
-                                              AlwaysStoppedAnimation<Color>(
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                  final rowGeralItensProdutoVendaRecord =
-                                      snapshot.data!;
-                                  return Row(
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.network(
+                                  carrinhoItem.img,
+                                  width: 70.0,
+                                  height: 70.0,
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                              Flexible(
+                                child: Container(
+                                  width:
+                                      MediaQuery.sizeOf(context).width * 0.74,
+                                  decoration: const BoxDecoration(),
+                                  child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
@@ -242,47 +233,23 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Expanded(
-                                                  child: StreamBuilder<
-                                                      ProdutosRecord>(
-                                                    stream: ProdutosRecord
-                                                        .getDocument(
-                                                            rowGeralItensProdutoVendaRecord
-                                                                .produto!),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      // Customize what your widget looks like when it's loading.
-                                                      if (!snapshot.hasData) {
-                                                        return Center(
-                                                          child: SizedBox(
-                                                            width: 50.0,
-                                                            height: 50.0,
-                                                            child:
-                                                                CircularProgressIndicator(
-                                                              valueColor:
-                                                                  AlwaysStoppedAnimation<
-                                                                      Color>(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(10.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      carrinhoItem.nomePedido,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLarge
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                fontSize: 14.0,
                                                               ),
-                                                            ),
-                                                          ),
-                                                        );
-                                                      }
-                                                      final textProdutosRecord =
-                                                          snapshot.data!;
-                                                      return Text(
-                                                        textProdutosRecord.nome,
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 14.0,
-                                                            ),
-                                                      );
-                                                    },
+                                                    ),
                                                   ),
                                                 ),
                                               ],
@@ -293,11 +260,10 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                 Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
-                                                          0.0, 2.0, 0.0, 0.0),
+                                                          10.0, 2.0, 0.0, 0.0),
                                                   child: Text(
                                                     formatNumber(
-                                                      rowGeralItensProdutoVendaRecord
-                                                          .valorSubtotal,
+                                                      carrinhoItem.preco,
                                                       formatType:
                                                           FormatType.custom,
                                                       currency: 'R\$ ',
@@ -313,6 +279,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primary,
+                                                          fontSize: 14.0,
                                                         ),
                                                   ),
                                                 ),
@@ -364,15 +331,17 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  rowGeralItensProdutoVendaRecord
-                                                      .quantidade
-                                                      .toString(),
+                                                  '1',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
                                                             'Readex Pro',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
                                                         fontSize: 14.0,
                                                       ),
                                                 ),
@@ -394,14 +363,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                         ],
                                       ),
                                     ],
-                                  );
-                                },
-                              ),
-                              const SizedBox(
-                                width: 350.0,
-                                child: Divider(
-                                  thickness: 1.0,
-                                  color: Color(0xFFFEF0EF),
+                                  ),
                                 ),
                               ),
                             ],
@@ -537,28 +499,16 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                     fontWeight: FontWeight.normal,
                                   ),
                             ),
-                            InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                setState(() {
-                                  FFAppState().produtoVendaLocal = [];
-                                });
-                              },
-                              child: Text(
-                                'R\$ 12345',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
+                            Text(
+                              'R\$ 12345',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                             ),
                           ],
                         ),

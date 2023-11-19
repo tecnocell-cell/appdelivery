@@ -1,4 +1,3 @@
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'detalhe_pedidos_widget.dart' show DetalhePedidosWidget;
 import 'package:flutter/material.dart';
@@ -11,8 +10,6 @@ class DetalhePedidosModel extends FlutterFlowModel<DetalhePedidosWidget> {
   double? ratingBarValue;
   // State field(s) for CountController widget.
   int? countControllerValue;
-  // Stores action output result for [Backend Call - Create Document] action in Container widget.
-  ProdutoVendaRecord? stadoProdutoVenda;
 
   /// Initialization and disposal methods.
 

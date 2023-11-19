@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/backend/backend.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 
@@ -18,11 +19,19 @@ class FFAppState extends ChangeNotifier {
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
     _safeInit(() {
-      _produtoVendaLocal = prefs
-              .getStringList('ff_produtoVendaLocal')
-              ?.map((path) => path.ref)
+      _pedido = prefs
+              .getStringList('ff_pedido')
+              ?.map((x) {
+                try {
+                  return PedidoStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
               .toList() ??
-          _produtoVendaLocal;
+          _pedido;
     });
   }
 
@@ -33,45 +42,44 @@ class FFAppState extends ChangeNotifier {
 
   late SharedPreferences prefs;
 
-  List<DocumentReference> _produtoVendaLocal = [];
-  List<DocumentReference> get produtoVendaLocal => _produtoVendaLocal;
-  set produtoVendaLocal(List<DocumentReference> value) {
-    _produtoVendaLocal = value;
-    prefs.setStringList(
-        'ff_produtoVendaLocal', value.map((x) => x.path).toList());
+  List<PedidoStruct> _pedido = [];
+  List<PedidoStruct> get pedido => _pedido;
+  set pedido(List<PedidoStruct> value) {
+    _pedido = value;
+    prefs.setStringList('ff_pedido', value.map((x) => x.serialize()).toList());
   }
 
-  void addToProdutoVendaLocal(DocumentReference value) {
-    _produtoVendaLocal.add(value);
+  void addToPedido(PedidoStruct value) {
+    _pedido.add(value);
     prefs.setStringList(
-        'ff_produtoVendaLocal', _produtoVendaLocal.map((x) => x.path).toList());
+        'ff_pedido', _pedido.map((x) => x.serialize()).toList());
   }
 
-  void removeFromProdutoVendaLocal(DocumentReference value) {
-    _produtoVendaLocal.remove(value);
+  void removeFromPedido(PedidoStruct value) {
+    _pedido.remove(value);
     prefs.setStringList(
-        'ff_produtoVendaLocal', _produtoVendaLocal.map((x) => x.path).toList());
+        'ff_pedido', _pedido.map((x) => x.serialize()).toList());
   }
 
-  void removeAtIndexFromProdutoVendaLocal(int index) {
-    _produtoVendaLocal.removeAt(index);
+  void removeAtIndexFromPedido(int index) {
+    _pedido.removeAt(index);
     prefs.setStringList(
-        'ff_produtoVendaLocal', _produtoVendaLocal.map((x) => x.path).toList());
+        'ff_pedido', _pedido.map((x) => x.serialize()).toList());
   }
 
-  void updateProdutoVendaLocalAtIndex(
+  void updatePedidoAtIndex(
     int index,
-    DocumentReference Function(DocumentReference) updateFn,
+    PedidoStruct Function(PedidoStruct) updateFn,
   ) {
-    _produtoVendaLocal[index] = updateFn(_produtoVendaLocal[index]);
+    _pedido[index] = updateFn(_pedido[index]);
     prefs.setStringList(
-        'ff_produtoVendaLocal', _produtoVendaLocal.map((x) => x.path).toList());
+        'ff_pedido', _pedido.map((x) => x.serialize()).toList());
   }
 
-  void insertAtIndexInProdutoVendaLocal(int index, DocumentReference value) {
-    _produtoVendaLocal.insert(index, value);
+  void insertAtIndexInPedido(int index, PedidoStruct value) {
+    _pedido.insert(index, value);
     prefs.setStringList(
-        'ff_produtoVendaLocal', _produtoVendaLocal.map((x) => x.path).toList());
+        'ff_pedido', _pedido.map((x) => x.serialize()).toList());
   }
 }
 
