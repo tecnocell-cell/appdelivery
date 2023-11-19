@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -202,13 +203,16 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.network(
-                                  carrinhoItem.img,
-                                  width: 70.0,
-                                  height: 70.0,
-                                  fit: BoxFit.contain,
+                              Container(
+                                decoration: const BoxDecoration(),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.network(
+                                    carrinhoItem.img,
+                                    width: 70.0,
+                                    height: 70.0,
+                                    fit: BoxFit.contain,
+                                  ),
                                 ),
                               ),
                               Flexible(
@@ -263,7 +267,12 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                           10.0, 2.0, 0.0, 0.0),
                                                   child: Text(
                                                     formatNumber(
-                                                      carrinhoItem.preco,
+                                                      functions
+                                                          .subtotalProdutos(
+                                                              carrinhoItem
+                                                                  .preco,
+                                                              carrinhoItem
+                                                                  .quantidade),
                                                       formatType:
                                                           FormatType.custom,
                                                       currency: 'R\$ ',
@@ -331,7 +340,8 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  '1',
+                                                  carrinhoItem.quantidade
+                                                      .toString(),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -385,9 +395,16 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  8.0, 0.0, 0.0, 0.0),
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                setState(() {
+                                  FFAppState().pedido = [];
+                                });
+                              },
                               child: Text(
                                 'VALORES',
                                 style: FlutterFlowTheme.of(context)
