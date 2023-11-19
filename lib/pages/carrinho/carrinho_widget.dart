@@ -204,14 +204,19 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Container(
-                                decoration: const BoxDecoration(),
+                                width: 70.0,
+                                height: 70.0,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  shape: BoxShape.rectangle,
+                                ),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8.0),
                                   child: Image.network(
                                     carrinhoItem.img,
                                     width: 70.0,
                                     height: 70.0,
-                                    fit: BoxFit.contain,
+                                    fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
@@ -686,7 +691,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
