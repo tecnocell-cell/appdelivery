@@ -372,11 +372,9 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                             FFAppState()
                                                                 .soma = FFAppState()
                                                                     .soma +
-                                                                functions.subtrair(functions.subtotalProdutos(
+                                                                functions.subtrair(
                                                                     carrinhoItem
-                                                                        .preco,
-                                                                    carrinhoItem
-                                                                        .quantidade)!);
+                                                                        .preco);
                                                           });
                                                           if (carrinhoItem
                                                                   .quantidade <=
@@ -447,6 +445,11 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                               ..incrementQuantidade(
                                                                   1),
                                                           );
+                                                          FFAppState().soma =
+                                                              FFAppState()
+                                                                      .soma +
+                                                                  carrinhoItem
+                                                                      .preco;
                                                         });
                                                       },
                                                       child: Icon(
