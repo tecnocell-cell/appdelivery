@@ -45,6 +45,9 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _soma2 = prefs.getDouble('ff_soma2') ?? _soma2;
     });
+    _safeInit(() {
+      _localRefer = prefs.getDouble('ff_localRefer') ?? _localRefer;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -120,6 +123,13 @@ class FFAppState extends ChangeNotifier {
   set soma2(double value) {
     _soma2 = value;
     prefs.setDouble('ff_soma2', value);
+  }
+
+  double _localRefer = 0.0;
+  double get localRefer => _localRefer;
+  set localRefer(double value) {
+    _localRefer = value;
+    prefs.setDouble('ff_localRefer', value);
   }
 }
 
