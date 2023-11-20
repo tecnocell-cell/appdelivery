@@ -247,7 +247,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                     children: [
                       badges.Badge(
                         badgeContent: Text(
-                          '1',
+                          FFAppState().addCarrinho.toString(),
                           textAlign: TextAlign.justify,
                           style:
                               FlutterFlowTheme.of(context).titleSmall.override(

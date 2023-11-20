@@ -369,6 +369,14 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                                 ..incrementQuantidade(
                                                                     -1),
                                                             );
+                                                            FFAppState()
+                                                                .soma = FFAppState()
+                                                                    .soma +
+                                                                functions.subtrair(functions.subtotalProdutos(
+                                                                    carrinhoItem
+                                                                        .preco,
+                                                                    carrinhoItem
+                                                                        .quantidade)!);
                                                           });
                                                           if (carrinhoItem
                                                                   .quantidade <=
@@ -377,6 +385,11 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                               FFAppState()
                                                                   .removeAtIndexFromPedido(
                                                                       carrinhoIndex);
+                                                              FFAppState()
+                                                                      .addCarrinho =
+                                                                  FFAppState()
+                                                                          .addCarrinho +
+                                                                      -1.0;
                                                             });
                                                           } else {
                                                             return;
@@ -486,7 +499,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 setState(() {
-                                  FFAppState().pedido = [];
+                                  FFAppState().soma = 0.0;
                                 });
                               },
                               child: Text(
@@ -521,7 +534,13 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                   ),
                             ),
                             Text(
-                              'R\$ 12345',
+                              formatNumber(
+                                FFAppState().soma,
+                                formatType: FormatType.custom,
+                                currency: 'R\$ ',
+                                format: '.00',
+                                locale: 'pt_BR',
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -572,7 +591,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                             style: FlutterFlowTheme.of(context).bodyMedium,
                           ),
                           Text(
-                            'R\$ 12345',
+                            'R\$ 3,00',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(

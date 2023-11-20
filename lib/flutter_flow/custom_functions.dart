@@ -19,3 +19,7 @@ double? subtotalProdutos(
 ) {
   return valor * quantidade;
 }
+
+double subtrair(double valor1) {
+  return valor1 * -1;
+}

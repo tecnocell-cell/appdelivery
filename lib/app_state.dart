@@ -36,6 +36,15 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _subTotalItem = prefs.getInt('ff_subTotalItem') ?? _subTotalItem;
     });
+    _safeInit(() {
+      _addCarrinho = prefs.getDouble('ff_addCarrinho') ?? _addCarrinho;
+    });
+    _safeInit(() {
+      _soma = prefs.getDouble('ff_soma') ?? _soma;
+    });
+    _safeInit(() {
+      _soma2 = prefs.getDouble('ff_soma2') ?? _soma2;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -90,6 +99,27 @@ class FFAppState extends ChangeNotifier {
   set subTotalItem(int value) {
     _subTotalItem = value;
     prefs.setInt('ff_subTotalItem', value);
+  }
+
+  double _addCarrinho = 0.0;
+  double get addCarrinho => _addCarrinho;
+  set addCarrinho(double value) {
+    _addCarrinho = value;
+    prefs.setDouble('ff_addCarrinho', value);
+  }
+
+  double _soma = 0.0;
+  double get soma => _soma;
+  set soma(double value) {
+    _soma = value;
+    prefs.setDouble('ff_soma', value);
+  }
+
+  double _soma2 = 0.0;
+  double get soma2 => _soma2;
+  set soma2(double value) {
+    _soma2 = value;
+    prefs.setDouble('ff_soma2', value);
   }
 }
 

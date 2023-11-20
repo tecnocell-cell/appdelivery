@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -497,20 +498,59 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                                       decoration: const BoxDecoration(
                                         color: Color(0x809B1814),
                                       ),
-                                      child: InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          context.pushNamed('Carrinho');
-                                        },
-                                        child: Icon(
-                                          Icons.shopping_cart_outlined,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          size: 24.0,
-                                        ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              setState(() {
+                                                FFAppState().addCarrinho = 0.0;
+                                              });
+                                            },
+                                            child: badges.Badge(
+                                              badgeContent: Text(
+                                                FFAppState()
+                                                    .addCarrinho
+                                                    .toString(),
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .titleSmall
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondary,
+                                                      fontSize: 14.0,
+                                                    ),
+                                              ),
+                                              showBadge: true,
+                                              shape: badges.BadgeShape.circle,
+                                              badgeColor: const Color(0x00EEABAC),
+                                              elevation: 4.0,
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(2.0, 2.0, 2.0, 2.0),
+                                              position:
+                                                  badges.BadgePosition.topEnd(),
+                                              animationType: badges
+                                                  .BadgeAnimationType.scale,
+                                              toAnimate: true,
+                                              child: Icon(
+                                                Icons.shopping_cart_outlined,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                size: 24.0,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
@@ -838,6 +878,12 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                                 quantidade: _model.countControllerValue,
                                 img: detalhePedidosProdutosRecord.image,
                               ));
+                              FFAppState().addCarrinho =
+                                  FFAppState().addCarrinho + 1.0;
+                              FFAppState().soma = FFAppState().soma +
+                                  functions.subtotalProdutos(
+                                      detalhePedidosProdutosRecord.preco,
+                                      _model.countControllerValue!)!;
                             });
 
                             context.pushNamed('Carrinho');
