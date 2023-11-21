@@ -121,27 +121,16 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  setState(() {
-                                    FFAppState().localRefer = 0;
-                                  });
-                                },
-                                child: Text(
-                                  'Finalizer Pedido',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        fontSize: 20.0,
-                                        letterSpacing: 1.0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                ),
+                              Text(
+                                'Finalizer Pedido',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      fontSize: 20.0,
+                                      letterSpacing: 1.0,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                               ),
                             ],
                           ),
@@ -569,26 +558,15 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      setState(() {
-                                        FFAppState().soma = 0.0;
-                                      });
-                                    },
-                                    child: Text(
-                                      'VALORES',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            fontSize: 18.0,
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                    ),
+                                  Text(
+                                    'VALORES',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.normal,
+                                        ),
                                   ),
                                 ],
                               ),
