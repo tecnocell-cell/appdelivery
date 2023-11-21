@@ -46,7 +46,7 @@ class FFAppState extends ChangeNotifier {
       _soma2 = prefs.getDouble('ff_soma2') ?? _soma2;
     });
     _safeInit(() {
-      _localRefer = prefs.getDouble('ff_localRefer') ?? _localRefer;
+      _localRefer = prefs.getInt('ff_localRefer') ?? _localRefer;
     });
   }
 
@@ -125,11 +125,11 @@ class FFAppState extends ChangeNotifier {
     prefs.setDouble('ff_soma2', value);
   }
 
-  double _localRefer = 0.0;
-  double get localRefer => _localRefer;
-  set localRefer(double value) {
+  int _localRefer = 0;
+  int get localRefer => _localRefer;
+  set localRefer(int value) {
     _localRefer = value;
-    prefs.setDouble('ff_localRefer', value);
+    prefs.setInt('ff_localRefer', value);
   }
 }
 

@@ -874,7 +874,7 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                                       detalhePedidosProdutosRecord.preco,
                                       _model.countControllerValue!)!;
                               FFAppState().localRefer =
-                                  FFAppState().localRefer + 1.0;
+                                  FFAppState().localRefer + 1;
                             });
 
                             context.pushNamed('Carrinho');

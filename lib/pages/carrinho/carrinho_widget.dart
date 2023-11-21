@@ -108,7 +108,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                if (FFAppState().localRefer > 0)
+                if (FFAppState().localRefer.toDouble() > 0)
                   Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
@@ -420,7 +420,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                                     .localRefer =
                                                                 FFAppState()
                                                                         .localRefer +
-                                                                    -1.0;
+                                                                    -1;
                                                           });
                                                           if (carrinhoItem
                                                                   .quantidade <=
@@ -500,7 +500,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                                   .localRefer =
                                                               FFAppState()
                                                                       .localRefer +
-                                                                  1.0;
+                                                                  1;
                                                         });
                                                       },
                                                       child: Icon(
@@ -534,7 +534,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                     },
                   ),
                 ),
-                if (FFAppState().localRefer > 0)
+                if (FFAppState().localRefer.toDouble() > 0)
                   Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
