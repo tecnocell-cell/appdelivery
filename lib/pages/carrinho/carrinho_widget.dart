@@ -1,5 +1,5 @@
 import '/componentes/carrinho_vazio/carrinho_vazio_widget.dart';
-import '/components/endereco_widget.dart';
+import '/componentes/endereco/endereco_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -155,7 +155,12 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                           : FocusScope.of(context).unfocus(),
                                   child: Padding(
                                     padding: MediaQuery.viewInsetsOf(context),
-                                    child: const EnderecoWidget(),
+                                    child: SizedBox(
+                                      height:
+                                          MediaQuery.sizeOf(context).height *
+                                              0.5,
+                                      child: const EnderecoWidget(),
+                                    ),
                                   ),
                                 );
                               },
