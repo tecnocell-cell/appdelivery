@@ -62,7 +62,7 @@ class _CarrinhoVazioWidgetState extends State<CarrinhoVazioWidget> {
                 style: FlutterFlowTheme.of(context).headlineSmall.override(
                       fontFamily: 'Outfit',
                       color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 20.0,
+                      fontSize: 19.0,
                     ),
               ),
             ],

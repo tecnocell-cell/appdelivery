@@ -1,7 +1,11 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'conta_model.dart';
@@ -14,10 +18,34 @@ class ContaWidget extends StatefulWidget {
   _ContaWidgetState createState() => _ContaWidgetState();
 }
 
-class _ContaWidgetState extends State<ContaWidget> {
+class _ContaWidgetState extends State<ContaWidget>
+    with TickerProviderStateMixin {
   late ContaModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = {
+    'blurOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        ShakeEffect(
+          curve: Curves.easeInOut,
+          delay: 80.ms,
+          duration: 1000.ms,
+          hz: 5,
+          offset: const Offset(0.0, 0.0),
+          rotation: 0.105,
+        ),
+        ScaleEffect(
+          curve: Curves.easeInOut,
+          delay: 80.ms,
+          duration: 1000.ms,
+          begin: const Offset(0.0, 0.0),
+          end: const Offset(1.0, 1.0),
+        ),
+      ],
+    ),
+  };
 
   @override
   void initState() {
@@ -73,8 +101,8 @@ class _ContaWidgetState extends State<ContaWidget> {
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.circular(27.0),
-                              child: Image.network(
-                                'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxM3x8cGVvcGxlfGVufDB8fHx8MTY5NzcwMzM3NHww&ixlib=rb-4.0.3&q=80&w=1080',
+                              child: Image.asset(
+                                'assets/images/Red_Illustrated_Mascot_Chef_Free_Logo.png',
                                 width: 64.0,
                                 height: 64.0,
                                 fit: BoxFit.cover,
@@ -91,14 +119,17 @@ class _ContaWidgetState extends State<ContaWidget> {
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Text(
-                                        'Afsar Hossen',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              fontSize: 20.0,
-                                            ),
+                                      AuthUserStreamWidget(
+                                        builder: (context) => Text(
+                                          currentUserDisplayName,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                fontSize: 20.0,
+                                                letterSpacing: 1.0,
+                                              ),
+                                        ),
                                       ),
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
@@ -113,12 +144,13 @@ class _ContaWidgetState extends State<ContaWidget> {
                                     ],
                                   ),
                                   Text(
-                                    'imshuvo97@gmail.com',
+                                    currentUserEmail,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Readex Pro',
-                                          color: const Color(0xFF7C7C7C),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
                                           fontSize: 16.0,
                                         ),
                                   ),
@@ -128,9 +160,9 @@ class _ContaWidgetState extends State<ContaWidget> {
                           ],
                         ),
                       ),
-                      const Divider(
-                        thickness: 1.0,
-                        color: Color(0xFFE2E2E2),
+                      Divider(
+                        thickness: 2.0,
+                        color: FlutterFlowTheme.of(context).primary,
                       ),
                       Container(
                         width: double.infinity,
@@ -148,15 +180,14 @@ class _ContaWidgetState extends State<ContaWidget> {
                               children: [
                                 FaIcon(
                                   FontAwesomeIcons.ticketAlt,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  color: FlutterFlowTheme.of(context).primary,
                                   size: 24.0,
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 0.0, 0.0),
                                   child: Text(
-                                    'Promo Card',
+                                    'Cartão Promocional',
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                   ),
@@ -191,15 +222,14 @@ class _ContaWidgetState extends State<ContaWidget> {
                               children: [
                                 Icon(
                                   Icons.credit_card,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  color: FlutterFlowTheme.of(context).primary,
                                   size: 24.0,
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 0.0, 0.0),
                                   child: Text(
-                                    'Payment Methods',
+                                    'Meios de Pagamento',
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                   ),
@@ -234,15 +264,14 @@ class _ContaWidgetState extends State<ContaWidget> {
                               children: [
                                 Icon(
                                   Icons.person_pin_circle_outlined,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  color: FlutterFlowTheme.of(context).primary,
                                   size: 24.0,
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 0.0, 0.0),
                                   child: Text(
-                                    'Delivery Address',
+                                    'Meus Endereços',
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                   ),
@@ -277,15 +306,14 @@ class _ContaWidgetState extends State<ContaWidget> {
                               children: [
                                 FaIcon(
                                   FontAwesomeIcons.bell,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  color: FlutterFlowTheme.of(context).primary,
                                   size: 24.0,
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 0.0, 0.0),
                                   child: Text(
-                                    'Notifications',
+                                    'Notificaçoes',
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                   ),
@@ -320,15 +348,14 @@ class _ContaWidgetState extends State<ContaWidget> {
                               children: [
                                 Icon(
                                   Icons.shopping_cart_outlined,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  color: FlutterFlowTheme.of(context).primary,
                                   size: 24.0,
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 0.0, 0.0),
                                   child: Text(
-                                    'Orders',
+                                    'Meus Pedidos',
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                   ),
@@ -363,15 +390,14 @@ class _ContaWidgetState extends State<ContaWidget> {
                               children: [
                                 FaIcon(
                                   FontAwesomeIcons.solidIdCard,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  color: FlutterFlowTheme.of(context).primary,
                                   size: 24.0,
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 0.0, 0.0),
                                   child: Text(
-                                    'My Details',
+                                    'Meus Perfil',
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                   ),
@@ -406,15 +432,14 @@ class _ContaWidgetState extends State<ContaWidget> {
                               children: [
                                 Icon(
                                   Icons.help_outline,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  color: FlutterFlowTheme.of(context).primary,
                                   size: 24.0,
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 0.0, 0.0),
                                   child: Text(
-                                    'Help',
+                                    'Ajuda',
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                   ),
@@ -449,15 +474,14 @@ class _ContaWidgetState extends State<ContaWidget> {
                               children: [
                                 FaIcon(
                                   FontAwesomeIcons.exclamationCircle,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  color: FlutterFlowTheme.of(context).primary,
                                   size: 24.0,
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 0.0, 0.0),
                                   child: Text(
-                                    'Abount',
+                                    'Sobre Nós',
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                   ),
@@ -478,45 +502,78 @@ class _ContaWidgetState extends State<ContaWidget> {
                       ),
                     ],
                   ),
-                  Container(
-                    width: double.infinity,
-                    height: 67.0,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFF2F3F2),
-                      borderRadius: BorderRadius.circular(19.0),
-                    ),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(
-                            Icons.logout_outlined,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(30.0),
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(
+                        sigmaX: 2.0,
+                        sigmaY: 2.0,
+                      ),
+                      child: Material(
+                        color: Colors.transparent,
+                        elevation: 20.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        child: Container(
+                          width: 300.0,
+                          height: 80.0,
+                          decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context).primary,
-                            size: 24.0,
+                            borderRadius: BorderRadius.circular(30.0),
                           ),
-                          Text(
-                            'Log Out',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                24.0, 0.0, 24.0, 0.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                GoRouter.of(context).prepareAuthEvent();
+                                await authManager.signOut();
+                                GoRouter.of(context).clearRedirectLocation();
+
+                                context.goNamedAuth('Inicial', context.mounted);
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Icon(
+                                    Icons.logout_outlined,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    size: 24.0,
+                                  ),
+                                  Text(
+                                    'Sair',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                  const Icon(
+                                    Icons.settings_outlined,
+                                    color: Color(0xA79B1814),
+                                    size: 24.0,
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                          const Icon(
-                            Icons.settings_outlined,
-                            color: Color(0xFFF2F3F2),
-                            size: 24.0,
-                          ),
-                        ],
+                        ),
                       ),
                     ),
-                  ),
+                  ).animateOnPageLoad(
+                      animationsMap['blurOnPageLoadAnimation']!),
                 ].divide(const SizedBox(height: 44.0)),
               ),
             ),
