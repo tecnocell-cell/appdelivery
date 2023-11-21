@@ -245,7 +245,7 @@ class _InicialWidgetState extends State<InicialWidget>
                           width: 300.0,
                           height: 80.0,
                           decoration: BoxDecoration(
-                            color: const Color(0xA59B1814),
+                            color: const Color(0xA79B1814),
                             borderRadius: BorderRadius.circular(30.0),
                           ),
                           child: Row(

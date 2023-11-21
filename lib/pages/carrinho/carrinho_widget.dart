@@ -107,91 +107,95 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 16.0, 0.0, 16.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Text(
-                              'Finalizer Pedido',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: 20.0,
-                                    letterSpacing: 1.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: double.infinity,
-                        height: 40.0,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFFEF0EF),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: Padding(
+                if (FFAppState().localRefer > 0)
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 8.0, 0.0),
+                              16.0, 16.0, 0.0, 16.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Icon(
-                                Icons.location_on_rounded,
-                                color: FlutterFlowTheme.of(context).primary,
-                                size: 24.0,
-                              ),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 0.0, 0.0),
-                                  child: Text(
-                                    'Definir Endereço',
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyLarge,
-                                  ),
-                                ),
-                              ),
                               Text(
-                                'DEFINIR',
+                                'Finalizer Pedido',
                                 style: FlutterFlowTheme.of(context)
-                                    .bodyLarge
+                                    .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20.0,
+                                      letterSpacing: 1.0,
+                                      fontWeight: FontWeight.w500,
                                     ),
                               ),
                             ],
                           ),
                         ),
-                      ),
-                      const Divider(
-                        thickness: 1.0,
-                        color: Color(0xFFFEF0EF),
-                      ),
-                    ],
+                        Container(
+                          width: double.infinity,
+                          height: 40.0,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFFEF0EF),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 8.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.location_on_rounded,
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  size: 24.0,
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 0.0, 0.0, 0.0),
+                                    child: Text(
+                                      'Definir Endereço',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyLarge,
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  'DEFINIR',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const Divider(
+                          thickness: 1.0,
+                          color: Color(0xFFFEF0EF),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: Builder(
                     builder: (context) {
                       final carrinho = FFAppState().pedido.toList();
                       if (carrinho.isEmpty) {
-                        return const CarrinhoVazioWidget();
+                        return const Center(
+                          child: CarrinhoVazioWidget(),
+                        );
                       }
                       return Column(
                         mainAxisSize: MainAxisSize.max,

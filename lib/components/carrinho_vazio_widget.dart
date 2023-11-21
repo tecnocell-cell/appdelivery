@@ -45,9 +45,9 @@ class _CarrinhoVazioWidgetState extends State<CarrinhoVazioWidget> {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Icon(
+        Icon(
           Icons.fastfood_outlined,
-          color: Color(0xB99B1814),
+          color: FlutterFlowTheme.of(context).primary,
           size: 90.0,
         ),
         Padding(
@@ -57,7 +57,7 @@ class _CarrinhoVazioWidgetState extends State<CarrinhoVazioWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Você ainda não tem ítens no carrinho!',
+                'Você ainda não tem ítens no carrinho :(',
                 textAlign: TextAlign.center,
                 style: FlutterFlowTheme.of(context).headlineSmall.override(
                       fontFamily: 'Outfit',
@@ -94,7 +94,7 @@ class _CarrinhoVazioWidgetState extends State<CarrinhoVazioWidget> {
             options: FFButtonOptions(
               padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
               iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-              color: const Color(0xB99B1814),
+              color: FlutterFlowTheme.of(context).primary,
               textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                     fontFamily: 'Lexend Deca',
                     color: Colors.white,
