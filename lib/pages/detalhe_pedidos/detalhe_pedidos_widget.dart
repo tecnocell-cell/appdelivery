@@ -503,51 +503,40 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              setState(() {
-                                                FFAppState().addCarrinho = 0.0;
-                                              });
-                                            },
-                                            child: badges.Badge(
-                                              badgeContent: Text(
-                                                FFAppState()
-                                                    .addCarrinho
-                                                    .toString(),
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .titleSmall
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondary,
-                                                      fontSize: 14.0,
-                                                    ),
-                                              ),
-                                              showBadge: true,
-                                              shape: badges.BadgeShape.circle,
-                                              badgeColor: const Color(0x00EEABAC),
-                                              elevation: 4.0,
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(2.0, 2.0, 2.0, 2.0),
-                                              position:
-                                                  badges.BadgePosition.topEnd(),
-                                              animationType: badges
-                                                  .BadgeAnimationType.scale,
-                                              toAnimate: true,
-                                              child: Icon(
-                                                Icons.shopping_cart_outlined,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                size: 24.0,
-                                              ),
+                                          badges.Badge(
+                                            badgeContent: Text(
+                                              FFAppState()
+                                                  .addCarrinho
+                                                  .toString(),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondary,
+                                                    fontSize: 14.0,
+                                                  ),
+                                            ),
+                                            showBadge: true,
+                                            shape: badges.BadgeShape.circle,
+                                            badgeColor: const Color(0x00EEABAC),
+                                            elevation: 4.0,
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    2.0, 2.0, 2.0, 2.0),
+                                            position:
+                                                badges.BadgePosition.topEnd(),
+                                            animationType:
+                                                badges.BadgeAnimationType.scale,
+                                            toAnimate: true,
+                                            child: Icon(
+                                              Icons.shopping_cart_outlined,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              size: 24.0,
                                             ),
                                           ),
                                         ],
