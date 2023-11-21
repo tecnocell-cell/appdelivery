@@ -579,7 +579,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                         const EdgeInsetsDirectional.fromSTEB(12.0, 16.0, 12.0, 0.0),
                     child: Container(
                       width: double.infinity,
-                      height: 180.0,
+                      height: 190.0,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),
@@ -613,7 +613,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                     rowProdutosRecordList[rowIndex];
                                 return Container(
                                   width: 200.0,
-                                  height: 180.0,
+                                  height: 185.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
@@ -650,8 +650,8 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                         .primaryBackground,
                                                 image: DecorationImage(
                                                   fit: BoxFit.cover,
-                                                  image: Image.asset(
-                                                    'assets/images/fundo.png',
+                                                  image: Image.network(
+                                                    rowProdutosRecord.image,
                                                   ).image,
                                                 ),
                                                 borderRadius:
@@ -669,7 +669,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                     10.0, 80.0, 10.0, 0.0),
                                             child: ClipRRect(
                                               borderRadius:
-                                                  BorderRadius.circular(8.0),
+                                                  BorderRadius.circular(16.0),
                                               child: BackdropFilter(
                                                 filter: ImageFilter.blur(
                                                   sigmaX: 2.0,
@@ -713,12 +713,13 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                                     .max,
                                                             children: [
                                                               Padding(
-                                                                padding: const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10.0,
-                                                                        0.0,
-                                                                        10.0,
-                                                                        0.0),
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            5.0,
+                                                                            0.0,
+                                                                            5.0,
+                                                                            0.0),
                                                                 child: Row(
                                                                   mainAxisSize:
                                                                       MainAxisSize
@@ -755,12 +756,13 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                                 ),
                                                               ),
                                                               Padding(
-                                                                padding: const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10.0,
-                                                                        0.0,
-                                                                        10.0,
-                                                                        0.0),
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            5.0,
+                                                                            0.0,
+                                                                            5.0,
+                                                                            0.0),
                                                                 child: Row(
                                                                   mainAxisSize:
                                                                       MainAxisSize
@@ -793,9 +795,9 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                             padding:
                                                                 const EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        10.0,
+                                                                        5.0,
                                                                         0.0,
-                                                                        10.0,
+                                                                        5.0,
                                                                         0.0),
                                                             child: Row(
                                                               mainAxisSize:
@@ -827,8 +829,11 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                                     'Roboto Mono',
                                                                     color: const Color(
                                                                         0xFFFFFF66),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
                                                                     fontSize:
-                                                                        14.0,
+                                                                        16.0,
                                                                   ),
                                                                 ),
                                                               ],
