@@ -1,9 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'top_menuestabelecimento_widget.dart' show TopMenuestabelecimentoWidget;
+import 'endereco_widget.dart' show EnderecoWidget;
 import 'package:flutter/material.dart';
 
-class TopMenuestabelecimentoModel
-    extends FlutterFlowModel<TopMenuestabelecimentoWidget> {
+class EnderecoModel extends FlutterFlowModel<EnderecoWidget> {
   /// Initialization and disposal methods.
 
   @override
