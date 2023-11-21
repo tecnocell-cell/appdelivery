@@ -583,274 +583,342 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              width: 200.0,
-                              height: 180.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                boxShadow: const [
-                                  BoxShadow(
-                                    blurRadius: 4.0,
-                                    color: Color(0x1F000000),
-                                    offset: Offset(0.0, 2.0),
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(16.0),
-                                border: Border.all(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  width: 1.0,
+                      child: StreamBuilder<List<ProdutosRecord>>(
+                        stream: queryProdutosRecord(),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
+                                  ),
                                 ),
                               ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Stack(
+                            );
+                          }
+                          List<ProdutosRecord> rowProdutosRecordList =
+                              snapshot.data!;
+                          return SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: List.generate(
+                                      rowProdutosRecordList.length, (rowIndex) {
+                                final rowProdutosRecord =
+                                    rowProdutosRecordList[rowIndex];
+                                return Container(
+                                  width: 200.0,
+                                  height: 180.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        blurRadius: 4.0,
+                                        color: Color(0x1F000000),
+                                        offset: Offset(0.0, 2.0),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(16.0),
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      width: 1.0,
+                                    ),
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.00, 0.00),
-                                        child: Container(
-                                          width: double.infinity,
-                                          height: 180.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                            image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image: Image.asset(
-                                                'assets/images/fundo.png',
-                                              ).image,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(16.0),
-                                            shape: BoxShape.rectangle,
-                                          ),
-                                          alignment:
-                                              const AlignmentDirectional(0.00, 0.00),
-                                        ).animateOnPageLoad(animationsMap[
-                                            'containerOnPageLoadAnimation2']!),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            15.0, 70.0, 15.0, 0.0),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(30.0),
-                                          child: BackdropFilter(
-                                            filter: ImageFilter.blur(
-                                              sigmaX: 2.0,
-                                              sigmaY: 2.0,
-                                            ),
-                                            child: Material(
-                                              color: Colors.transparent,
-                                              elevation: 20.0,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(20.0),
-                                              ),
-                                              child: Container(
-                                                width: double.infinity,
-                                                height: 100.0,
-                                                decoration: BoxDecoration(
-                                                  color: const Color(0x8F9B1814),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20.0),
+                                      Stack(
+                                        children: [
+                                          Align(
+                                            alignment: const AlignmentDirectional(
+                                                0.00, 0.00),
+                                            child: Container(
+                                              width: double.infinity,
+                                              height: 180.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                                image: DecorationImage(
+                                                  fit: BoxFit.cover,
+                                                  image: Image.asset(
+                                                    'assets/images/fundo.png',
+                                                  ).image,
                                                 ),
-                                                child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(10.0, 10.0,
-                                                          10.0, 10.0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    10.0,
-                                                                    0.0,
-                                                                    10.0,
-                                                                    0.0),
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Text(
-                                                              'Produto',
-                                                              style: GoogleFonts
-                                                                  .getFont(
-                                                                'Roboto Mono',
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 14.0,
+                                                borderRadius:
+                                                    BorderRadius.circular(16.0),
+                                                shape: BoxShape.rectangle,
+                                              ),
+                                              alignment: const AlignmentDirectional(
+                                                  0.00, 0.00),
+                                            ).animateOnPageLoad(animationsMap[
+                                                'containerOnPageLoadAnimation2']!),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 80.0, 10.0, 0.0),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              child: BackdropFilter(
+                                                filter: ImageFilter.blur(
+                                                  sigmaX: 2.0,
+                                                  sigmaY: 2.0,
+                                                ),
+                                                child: Material(
+                                                  color: Colors.transparent,
+                                                  elevation: 20.0,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            0.0),
+                                                  ),
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    height: 80.0,
+                                                    decoration: BoxDecoration(
+                                                      color: const Color(0x8F9B1814),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0.0),
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  5.0,
+                                                                  5.0,
+                                                                  5.0,
+                                                                  5.0),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Padding(
+                                                                padding: const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10.0,
+                                                                        0.0,
+                                                                        10.0,
+                                                                        0.0),
+                                                                child: Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .center,
+                                                                  children: [
+                                                                    Text(
+                                                                      rowProdutosRecord
+                                                                          .nome,
+                                                                      style: GoogleFonts
+                                                                          .getFont(
+                                                                        'Roboto Mono',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryBackground,
+                                                                        fontSize:
+                                                                            14.0,
+                                                                      ),
+                                                                    ),
+                                                                    Icon(
+                                                                      Icons
+                                                                          .favorite,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                      size:
+                                                                          24.0,
+                                                                    ),
+                                                                  ],
+                                                                ),
                                                               ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    10.0,
-                                                                    0.0,
-                                                                    10.0,
-                                                                    0.0),
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Text(
-                                                              'Produto',
-                                                              style: GoogleFonts
-                                                                  .getFont(
-                                                                'Roboto Mono',
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 12.0,
+                                                              Padding(
+                                                                padding: const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10.0,
+                                                                        0.0,
+                                                                        10.0,
+                                                                        0.0),
+                                                                child: Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .center,
+                                                                  children: [
+                                                                    Text(
+                                                                      rowProdutosRecord
+                                                                          .descri,
+                                                                      style: GoogleFonts
+                                                                          .getFont(
+                                                                        'Roboto Mono',
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            12.0,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
                                                               ),
+                                                            ],
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10.0,
+                                                                        0.0,
+                                                                        10.0,
+                                                                        0.0),
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Text(
+                                                                  formatNumber(
+                                                                    rowProdutosRecord
+                                                                        .preco,
+                                                                    formatType:
+                                                                        FormatType
+                                                                            .custom,
+                                                                    currency:
+                                                                        'R\$ ',
+                                                                    format:
+                                                                        '.00',
+                                                                    locale:
+                                                                        'pt_BR',
+                                                                  ),
+                                                                  style: GoogleFonts
+                                                                      .getFont(
+                                                                    'Roboto Mono',
+                                                                    color: const Color(
+                                                                        0xFFFFFF66),
+                                                                    fontSize:
+                                                                        14.0,
+                                                                  ),
+                                                                ),
+                                                              ],
                                                             ),
-                                                          ],
-                                                        ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    10.0,
-                                                                    0.0,
-                                                                    10.0,
-                                                                    0.0),
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Text(
-                                                              'R\$ 12,00',
-                                                              style: GoogleFonts
-                                                                  .getFont(
-                                                                'Roboto Mono',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondary,
-                                                                fontSize: 12.0,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
+                                                    ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
+                                            ).animateOnPageLoad(animationsMap[
+                                                'blurOnPageLoadAnimation1']!),
                                           ),
-                                        ).animateOnPageLoad(animationsMap[
-                                            'blurOnPageLoadAnimation1']!),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            5.0, 5.0, 0.0, 0.0),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(30.0),
-                                          child: BackdropFilter(
-                                            filter: ImageFilter.blur(
-                                              sigmaX: 2.0,
-                                              sigmaY: 2.0,
-                                            ),
-                                            child: Material(
-                                              color: Colors.transparent,
-                                              elevation: 20.0,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(20.0),
-                                              ),
-                                              child: Container(
-                                                width: 60.0,
-                                                height: 30.0,
-                                                decoration: BoxDecoration(
-                                                  color: const Color(0xA69B1814),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20.0),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 10.0, 0.0, 0.0),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              child: BackdropFilter(
+                                                filter: ImageFilter.blur(
+                                                  sigmaX: 2.0,
+                                                  sigmaY: 2.0,
                                                 ),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Icon(
-                                                      Icons.star_rate_rounded,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
+                                                child: Material(
+                                                  color: Colors.transparent,
+                                                  elevation: 20.0,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            0.0),
+                                                  ),
+                                                  child: Container(
+                                                    width: 60.0,
+                                                    height: 30.0,
+                                                    decoration: BoxDecoration(
+                                                      color: const Color(0xA69B1814),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0.0),
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Icon(
+                                                          Icons
+                                                              .star_rate_rounded,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
                                                               .warning,
-                                                      size: 24.0,
+                                                          size: 24.0,
+                                                        ),
+                                                        Text(
+                                                          '4.5',
+                                                          style: GoogleFonts
+                                                              .getFont(
+                                                            'Roboto Mono',
+                                                            color: Colors.white,
+                                                            fontSize: 12.0,
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                    Text(
-                                                      '4.5',
-                                                      style:
-                                                          GoogleFonts.getFont(
-                                                        'Roboto Mono',
-                                                        color: Colors.white,
-                                                        fontSize: 12.0,
-                                                      ),
-                                                    ),
-                                                  ],
+                                                  ),
                                                 ),
                                               ),
-                                            ),
+                                            ).animateOnPageLoad(animationsMap[
+                                                'blurOnPageLoadAnimation2']!),
                                           ),
-                                        ).animateOnPageLoad(animationsMap[
-                                            'blurOnPageLoadAnimation2']!),
+                                        ],
                                       ),
                                     ],
                                   ),
-                                ],
-                              ),
-                            ).animateOnPageLoad(animationsMap[
-                                'containerOnPageLoadAnimation1']!),
-                          ]
-                              .divide(const SizedBox(width: 14.0))
-                              .around(const SizedBox(width: 14.0)),
-                        ),
+                                ).animateOnPageLoad(animationsMap[
+                                    'containerOnPageLoadAnimation1']!);
+                              })
+                                  .divide(const SizedBox(width: 14.0))
+                                  .around(const SizedBox(width: 14.0)),
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),
