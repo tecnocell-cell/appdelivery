@@ -579,7 +579,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                         const EdgeInsetsDirectional.fromSTEB(12.0, 16.0, 12.0, 0.0),
                     child: Container(
                       width: double.infinity,
-                      height: 190.0,
+                      height: 160.0,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),
@@ -612,24 +612,10 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                 final rowProdutosRecord =
                                     rowProdutosRecordList[rowIndex];
                                 return Container(
-                                  width: 200.0,
-                                  height: 185.0,
+                                  width: 180.0,
+                                  height: 150.0,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        blurRadius: 4.0,
-                                        color: Color(0x1F000000),
-                                        offset: Offset(0.0, 2.0),
-                                      )
-                                    ],
-                                    borderRadius: BorderRadius.circular(16.0),
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      width: 1.0,
-                                    ),
+                                    borderRadius: BorderRadius.circular(0.0),
                                   ),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -643,7 +629,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                 0.00, 0.00),
                                             child: Container(
                                               width: double.infinity,
-                                              height: 180.0,
+                                              height: 150.0,
                                               decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)
@@ -654,6 +640,13 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                     rowProdutosRecord.image,
                                                   ).image,
                                                 ),
+                                                boxShadow: const [
+                                                  BoxShadow(
+                                                    blurRadius: 4.0,
+                                                    color: Color(0x33000000),
+                                                    offset: Offset(0.0, 2.0),
+                                                  )
+                                                ],
                                                 borderRadius:
                                                     BorderRadius.circular(16.0),
                                                 shape: BoxShape.rectangle,
@@ -666,7 +659,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                           Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 80.0, 10.0, 0.0),
+                                                    10.0, 70.0, 10.0, 0.0),
                                             child: ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(16.0),
@@ -685,7 +678,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                   ),
                                                   child: Container(
                                                     width: double.infinity,
-                                                    height: 80.0,
+                                                    height: 70.0,
                                                     decoration: BoxDecoration(
                                                       color: const Color(0x8F9B1814),
                                                       borderRadius:
@@ -740,7 +733,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .secondaryBackground,
                                                                         fontSize:
-                                                                            14.0,
+                                                                            12.0,
                                                                       ),
                                                                     ),
                                                                     Icon(
@@ -775,15 +768,14 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                                           .center,
                                                                   children: [
                                                                     Text(
-                                                                      rowProdutosRecord
-                                                                          .descri,
+                                                                      'Por Apenas',
                                                                       style: GoogleFonts
                                                                           .getFont(
                                                                         'Roboto Mono',
                                                                         color: Colors
                                                                             .white,
                                                                         fontSize:
-                                                                            12.0,
+                                                                            10.0,
                                                                       ),
                                                                     ),
                                                                   ],
@@ -833,7 +825,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                                         FontWeight
                                                                             .bold,
                                                                     fontSize:
-                                                                        16.0,
+                                                                        14.0,
                                                                   ),
                                                                 ),
                                                               ],
@@ -869,7 +861,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                             0.0),
                                                   ),
                                                   child: Container(
-                                                    width: 60.0,
+                                                    width: 70.0,
                                                     height: 30.0,
                                                     decoration: BoxDecoration(
                                                       color: const Color(0xA69B1814),
@@ -895,13 +887,23 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                               .warning,
                                                           size: 24.0,
                                                         ),
-                                                        Text(
-                                                          '4.5',
-                                                          style: GoogleFonts
-                                                              .getFont(
-                                                            'Roboto Mono',
-                                                            color: Colors.white,
-                                                            fontSize: 12.0,
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      5.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            '4.5',
+                                                            style: GoogleFonts
+                                                                .getFont(
+                                                              'Roboto Mono',
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 12.0,
+                                                            ),
                                                           ),
                                                         ),
                                                       ],
@@ -997,6 +999,13 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            blurRadius: 4.0,
+                                            color: Color(0x33000000),
+                                            offset: Offset(0.0, 2.0),
+                                          )
+                                        ],
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
@@ -1333,7 +1342,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                       height: 1.0,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
-                                            .primaryText,
+                                            .alternate,
                                       ),
                                     ).animateOnPageLoad(animationsMap[
                                         'containerOnPageLoadAnimation3']!),
