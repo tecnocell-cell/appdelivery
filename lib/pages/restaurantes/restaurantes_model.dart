@@ -11,9 +11,9 @@ class RestaurantesModel extends FlutterFlowModel<RestaurantesWidget> {
   FocusNode? searchFocusNode;
   TextEditingController? searchController;
   String? Function(BuildContext, String?)? searchControllerValidator;
-  // State field(s) for ChoiceChips widget.
-  String? choiceChipsValue;
-  FormFieldController<List<String>>? choiceChipsValueController;
+  // State field(s) for filtroCategoria widget.
+  String? filtroCategoriaValue;
+  FormFieldController<List<String>>? filtroCategoriaValueController;
 
   /// Initialization and disposal methods.
 

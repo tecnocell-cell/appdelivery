@@ -264,12 +264,13 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                         badgeContent: Text(
                           FFAppState().addCarrinho.toString(),
                           textAlign: TextAlign.justify,
-                          style:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    fontSize: 19.0,
-                                  ),
+                          style: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .override(
+                                fontFamily: 'Readex Pro',
+                                color: FlutterFlowTheme.of(context).secondary,
+                                fontSize: 19.0,
+                              ),
                         ),
                         showBadge: true,
                         shape: badges.BadgeShape.circle,
@@ -593,19 +594,30 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                           const EdgeInsetsDirectional.fromSTEB(12.0, 16.0, 12.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text(
-                            'PROMOÇÕES',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 14.0,
-                                  letterSpacing: 2.0,
-                                ),
+                          Icon(
+                            FFIcons.ktag2,
+                            color: FlutterFlowTheme.of(context).primary,
+                            size: 24.0,
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 0.0, 0.0, 0.0),
+                              child: Text(
+                                'PROMOÇÕES',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      fontSize: 14.0,
+                                      letterSpacing: 2.0,
+                                    ),
+                              ),
+                            ),
                           ),
                           Text(
                             'Ver Todas',
@@ -1012,7 +1024,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                         ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 5.0, 0.0, 0.0),
+                              10.0, 5.0, 10.0, 0.0),
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
@@ -1024,10 +1036,18 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                       0.0, 13.0, 0.0, 13.0),
                                   child: FlutterFlowChoiceChips(
                                     options: const [
-                                      ChipData('Pizza', Icons.local_pizza)
+                                      ChipData('Massas', Icons.local_pizza),
+                                      ChipData('Doces', Icons.cookie),
+                                      ChipData('Carnes', Icons.food_bank),
+                                      ChipData(
+                                          'Fast Food', Icons.fastfood_sharp),
+                                      ChipData(
+                                          'Hamburguer', Icons.fastfood_sharp),
+                                      ChipData(
+                                          'Bebidas', Icons.local_drink_sharp)
                                     ],
-                                    onChanged: (val) => setState(() =>
-                                        _model.choiceChipsValue = val?.first),
+                                    onChanged: (val) => setState(() => _model
+                                        .filtroCategoriaValue = val?.first),
                                     selectedChipStyle: ChipStyle(
                                       backgroundColor:
                                           FlutterFlowTheme.of(context).primary,
@@ -1059,12 +1079,12 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                     rowSpacing: 12.0,
                                     multiselect: false,
                                     initialized:
-                                        _model.choiceChipsValue != null,
+                                        _model.filtroCategoriaValue != null,
                                     alignment: WrapAlignment.start,
-                                    controller:
-                                        _model.choiceChipsValueController ??=
-                                            FormFieldController<List<String>>(
-                                      ['Pizza'],
+                                    controller: _model
+                                            .filtroCategoriaValueController ??=
+                                        FormFieldController<List<String>>(
+                                      ['Massas'],
                                     ),
                                     wrapped: true,
                                   ).animateOnPageLoad(animationsMap[
