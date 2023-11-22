@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'restaurantes_widget.dart' show RestaurantesWidget;
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,9 @@ class RestaurantesModel extends FlutterFlowModel<RestaurantesWidget> {
   FocusNode? searchFocusNode;
   TextEditingController? searchController;
   String? Function(BuildContext, String?)? searchControllerValidator;
+  // State field(s) for ChoiceChips widget.
+  String? choiceChipsValue;
+  FormFieldController<List<String>>? choiceChipsValueController;
 
   /// Initialization and disposal methods.
 
