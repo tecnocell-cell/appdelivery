@@ -262,7 +262,7 @@ class _ConfigWidgetState extends State<ConfigWidget>
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            context.pushNamed('enderecos');
+                            context.pushNamed('meusenderecos');
                           },
                           child: Row(
                             mainAxisSize: MainAxisSize.max,

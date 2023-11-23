@@ -129,9 +129,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : const ConfigWidget(),
         ),
         FFRoute(
-          name: 'enderecos',
+          name: 'enderecosUsuario',
           path: '/perfil',
-          builder: (context, params) => const EnderecosWidget(),
+          builder: (context, params) => const EnderecosUsuarioWidget(),
+        ),
+        FFRoute(
+          name: 'meusenderecos',
+          path: '/meusenderecos',
+          builder: (context, params) => const MeusenderecosWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

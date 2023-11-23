@@ -8,19 +8,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
-import 'enderecos_model.dart';
-export 'enderecos_model.dart';
+import 'enderecos_usuario_model.dart';
+export 'enderecos_usuario_model.dart';
 
-class EnderecosWidget extends StatefulWidget {
-  const EnderecosWidget({super.key});
+class EnderecosUsuarioWidget extends StatefulWidget {
+  const EnderecosUsuarioWidget({super.key});
 
   @override
-  _EnderecosWidgetState createState() => _EnderecosWidgetState();
+  _EnderecosUsuarioWidgetState createState() => _EnderecosUsuarioWidgetState();
 }
 
-class _EnderecosWidgetState extends State<EnderecosWidget>
+class _EnderecosUsuarioWidgetState extends State<EnderecosUsuarioWidget>
     with TickerProviderStateMixin {
-  late EnderecosModel _model;
+  late EnderecosUsuarioModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -50,7 +50,7 @@ class _EnderecosWidgetState extends State<EnderecosWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => EnderecosModel());
+    _model = createModel(context, () => EnderecosUsuarioModel());
 
     _model.textCepController ??= TextEditingController();
     _model.textCepFocusNode ??= FocusNode();

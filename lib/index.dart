@@ -7,4 +7,7 @@ export '/pages/detalhe_pedidos/detalhe_pedidos_widget.dart'
     show DetalhePedidosWidget;
 export '/pages/carrinho/carrinho_widget.dart' show CarrinhoWidget;
 export '/usuario/config/config_widget.dart' show ConfigWidget;
-export '/usuario/enderecos/enderecos_widget.dart' show EnderecosWidget;
+export '/usuario/enderecos_usuario/enderecos_usuario_widget.dart'
+    show EnderecosUsuarioWidget;
+export '/pages/meusenderecos/meusenderecos_widget.dart'
+    show MeusenderecosWidget;

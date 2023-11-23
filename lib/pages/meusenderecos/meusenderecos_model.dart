@@ -1,15 +1,21 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'endereco_widget.dart' show EnderecoWidget;
+import 'meusenderecos_widget.dart' show MeusenderecosWidget;
 import 'package:flutter/material.dart';
 
-class EnderecoModel extends FlutterFlowModel<EnderecoWidget> {
+class MeusenderecosModel extends FlutterFlowModel<MeusenderecosWidget> {
+  ///  State fields for stateful widgets in this page.
+
+  final unfocusNode = FocusNode();
+
   /// Initialization and disposal methods.
 
   @override
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {}
+  void dispose() {
+    unfocusNode.dispose();
+  }
 
   /// Action blocks are added here.
 
