@@ -15,12 +15,14 @@ class PedidoStruct extends FFFirebaseStruct {
     int? quantidade,
     String? img,
     String? id,
+    String? categoaria,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _nomePedido = nomePedido,
         _preco = preco,
         _quantidade = quantidade,
         _img = img,
         _id = id,
+        _categoaria = categoaria,
         super(firestoreUtilData);
 
   // "nome_pedido" field.
@@ -55,12 +57,19 @@ class PedidoStruct extends FFFirebaseStruct {
   set id(String? val) => _id = val;
   bool hasId() => _id != null;
 
+  // "categoaria" field.
+  String? _categoaria;
+  String get categoaria => _categoaria ?? '';
+  set categoaria(String? val) => _categoaria = val;
+  bool hasCategoaria() => _categoaria != null;
+
   static PedidoStruct fromMap(Map<String, dynamic> data) => PedidoStruct(
         nomePedido: data['nome_pedido'] as String?,
         preco: castToType<double>(data['preco']),
         quantidade: castToType<int>(data['quantidade']),
         img: data['img'] as String?,
         id: data['id'] as String?,
+        categoaria: data['categoaria'] as String?,
       );
 
   static PedidoStruct? maybeFromMap(dynamic data) =>
@@ -72,6 +81,7 @@ class PedidoStruct extends FFFirebaseStruct {
         'quantidade': _quantidade,
         'img': _img,
         'id': _id,
+        'categoaria': _categoaria,
       }.withoutNulls;
 
   @override
@@ -94,6 +104,10 @@ class PedidoStruct extends FFFirebaseStruct {
         ),
         'id': serializeParam(
           _id,
+          ParamType.String,
+        ),
+        'categoaria': serializeParam(
+          _categoaria,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -125,6 +139,11 @@ class PedidoStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        categoaria: deserializeParam(
+          data['categoaria'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -137,12 +156,13 @@ class PedidoStruct extends FFFirebaseStruct {
         preco == other.preco &&
         quantidade == other.quantidade &&
         img == other.img &&
-        id == other.id;
+        id == other.id &&
+        categoaria == other.categoaria;
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([nomePedido, preco, quantidade, img, id]);
+  int get hashCode => const ListEquality()
+      .hash([nomePedido, preco, quantidade, img, id, categoaria]);
 }
 
 PedidoStruct createPedidoStruct({
@@ -151,6 +171,7 @@ PedidoStruct createPedidoStruct({
   int? quantidade,
   String? img,
   String? id,
+  String? categoaria,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -162,6 +183,7 @@ PedidoStruct createPedidoStruct({
       quantidade: quantidade,
       img: img,
       id: id,
+      categoaria: categoaria,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

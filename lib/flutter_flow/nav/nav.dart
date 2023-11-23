@@ -122,10 +122,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : const CarrinhoWidget(),
         ),
         FFRoute(
-          name: 'conta',
-          path: '/conta',
-          builder: (context, params) =>
-              params.isEmpty ? const NavBarPage(initialPage: 'conta') : const ContaWidget(),
+          name: 'config',
+          path: '/config',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'config')
+              : const ConfigWidget(),
+        ),
+        FFRoute(
+          name: 'enderecos',
+          path: '/perfil',
+          builder: (context, params) => const EnderecosWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

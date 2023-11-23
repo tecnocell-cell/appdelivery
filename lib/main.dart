@@ -135,7 +135,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'delivery': const DeliveryWidget(),
       'Carrinho': const CarrinhoWidget(),
-      'conta': const ContaWidget(),
+      'config': const ConfigWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 

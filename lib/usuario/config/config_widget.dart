@@ -8,19 +8,19 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'conta_model.dart';
-export 'conta_model.dart';
+import 'config_model.dart';
+export 'config_model.dart';
 
-class ContaWidget extends StatefulWidget {
-  const ContaWidget({super.key});
+class ConfigWidget extends StatefulWidget {
+  const ConfigWidget({super.key});
 
   @override
-  _ContaWidgetState createState() => _ContaWidgetState();
+  _ConfigWidgetState createState() => _ConfigWidgetState();
 }
 
-class _ContaWidgetState extends State<ContaWidget>
+class _ConfigWidgetState extends State<ConfigWidget>
     with TickerProviderStateMixin {
-  late ContaModel _model;
+  late ConfigModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -50,7 +50,7 @@ class _ContaWidgetState extends State<ContaWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ContaModel());
+    _model = createModel(context, () => ConfigModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -98,11 +98,12 @@ class _ContaWidgetState extends State<ContaWidget>
                             const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 25.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.circular(27.0),
                               child: Image.asset(
-                                'assets/images/Red_Illustrated_Mascot_Chef_Free_Logo.png',
+                                'assets/images/20201109_160716.jpg',
                                 width: 64.0,
                                 height: 64.0,
                                 fit: BoxFit.cover,
@@ -397,7 +398,7 @@ class _ContaWidgetState extends State<ContaWidget>
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 0.0, 0.0),
                                   child: Text(
-                                    'Meus Perfil',
+                                    'Meu Perfil',
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                   ),

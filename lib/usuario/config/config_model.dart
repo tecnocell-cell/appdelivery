@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'conta_widget.dart' show ContaWidget;
+import 'config_widget.dart' show ConfigWidget;
 import 'package:flutter/material.dart';
 
-class ContaModel extends FlutterFlowModel<ContaWidget> {
+class ConfigModel extends FlutterFlowModel<ConfigWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

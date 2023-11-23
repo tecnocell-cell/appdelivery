@@ -6,4 +6,5 @@ export '/pages/restaurantes/restaurantes_widget.dart' show RestaurantesWidget;
 export '/pages/detalhe_pedidos/detalhe_pedidos_widget.dart'
     show DetalhePedidosWidget;
 export '/pages/carrinho/carrinho_widget.dart' show CarrinhoWidget;
-export '/usuario/conta/conta_widget.dart' show ContaWidget;
+export '/usuario/config/config_widget.dart' show ConfigWidget;
+export '/usuario/enderecos/enderecos_widget.dart' show EnderecosWidget;
