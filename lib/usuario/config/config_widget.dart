@@ -256,35 +256,44 @@ class _ConfigWidgetState extends State<ConfigWidget>
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Icon(
-                                  Icons.person_pin_circle_outlined,
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  size: 24.0,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 0.0, 0.0, 0.0),
-                                  child: Text(
-                                    'Meus Endereços',
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed('enderecos');
+                          },
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Icon(
+                                    Icons.person_pin_circle_outlined,
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    size: 24.0,
                                   ),
-                                ),
-                              ],
-                            ),
-                            Icon(
-                              Icons.chevron_right_rounded,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
-                            ),
-                          ],
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 0.0, 0.0),
+                                    child: Text(
+                                      'Meus Endereços',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Icon(
+                                Icons.chevron_right_rounded,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       const Divider(
