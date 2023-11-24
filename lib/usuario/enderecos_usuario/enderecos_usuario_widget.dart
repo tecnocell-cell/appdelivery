@@ -1,6 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -959,51 +959,109 @@ class _EnderecosUsuarioWidgetState extends State<EnderecosUsuarioWidget>
                         sigmaX: 2.0,
                         sigmaY: 2.0,
                       ),
-                      child: Material(
-                        color: Colors.transparent,
-                        elevation: 20.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                        child: Container(
-                          width: 200.0,
-                          height: 40.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).primary,
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          var enderecoRecordReference =
+                              EnderecoRecord.collection.doc();
+                          await enderecoRecordReference
+                              .set(createEnderecoRecordData(
+                            rua: _model.textRuaController.text,
+                            bairro: _model.textBairroController.text,
+                            cep: _model.textCepController.text,
+                            cidade: _model.textCidadeController.text,
+                            estado: _model.textEstadoController.text,
+                            complemento: _model.textComplementoController.text,
+                            numero:
+                                (_model.textNumeroFocusNode?.hasFocus ?? false)
+                                    .toString(),
+                            identificador:
+                                _model.textIdentificadorController.text,
+                            usuario: currentUserReference,
+                          ));
+                          _model.gravarEnderecoUser =
+                              EnderecoRecord.getDocumentFromData(
+                                  createEnderecoRecordData(
+                                    rua: _model.textRuaController.text,
+                                    bairro: _model.textBairroController.text,
+                                    cep: _model.textCepController.text,
+                                    cidade: _model.textCidadeController.text,
+                                    estado: _model.textEstadoController.text,
+                                    complemento:
+                                        _model.textComplementoController.text,
+                                    numero:
+                                        (_model.textNumeroFocusNode?.hasFocus ??
+                                                false)
+                                            .toString(),
+                                    identificador:
+                                        _model.textIdentificadorController.text,
+                                    usuario: currentUserReference,
+                                  ),
+                                  enderecoRecordReference);
+
+                          await currentUserReference!.update({
+                            ...mapToFirestore(
+                              {
+                                'endereco': FieldValue.arrayUnion(
+                                    [_model.gravarEnderecoUser?.reference]),
+                              },
+                            ),
+                          });
+
+                          context.pushNamed('delivery');
+
+                          setState(() {});
+                        },
+                        child: Material(
+                          color: Colors.transparent,
+                          elevation: 20.0,
+                          shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30.0),
                           ),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                GoRouter.of(context).prepareAuthEvent();
-                                await authManager.signOut();
-                                GoRouter.of(context).clearRedirectLocation();
+                          child: Container(
+                            width: 200.0,
+                            height: 40.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context).primary,
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  GoRouter.of(context).prepareAuthEvent();
+                                  await authManager.signOut();
+                                  GoRouter.of(context).clearRedirectLocation();
 
-                                context.goNamedAuth('Inicial', context.mounted);
-                              },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Cadasrar',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          fontSize: 18.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                ],
+                                  context.goNamedAuth(
+                                      'Inicial', context.mounted);
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Cadasrar',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            fontSize: 18.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

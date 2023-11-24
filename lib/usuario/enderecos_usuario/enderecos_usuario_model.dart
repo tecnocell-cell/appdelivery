@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'enderecos_usuario_widget.dart' show EnderecosUsuarioWidget;
 import 'package:flutter/material.dart';
@@ -43,6 +44,8 @@ class EnderecosUsuarioModel extends FlutterFlowModel<EnderecosUsuarioWidget> {
   FocusNode? textIdentificadorFocusNode;
   TextEditingController? textIdentificadorController;
   String? Function(BuildContext, String?)? textIdentificadorControllerValidator;
+  // Stores action output result for [Backend Call - Create Document] action in Container widget.
+  EnderecoRecord? gravarEnderecoUser;
 
   /// Initialization and disposal methods.
 
