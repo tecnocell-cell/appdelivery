@@ -9,5 +9,7 @@ export '/pages/carrinho/carrinho_widget.dart' show CarrinhoWidget;
 export '/usuario/config/config_widget.dart' show ConfigWidget;
 export '/usuario/enderecos_usuario/enderecos_usuario_widget.dart'
     show EnderecosUsuarioWidget;
-export '/pages/meusenderecos/meusenderecos_widget.dart'
+export '/usuario/meusenderecos/meusenderecos_widget.dart'
     show MeusenderecosWidget;
+export '/usuario/editar_endereco/editar_endereco_widget.dart'
+    show EditarEnderecoWidget;

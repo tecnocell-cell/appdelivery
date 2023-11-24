@@ -1,11 +1,9 @@
-import '/backend/api_requests/api_calls.dart';
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'enderecos_usuario_widget.dart' show EnderecosUsuarioWidget;
+import 'editar_endereco_widget.dart' show EditarEnderecoWidget;
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class EnderecosUsuarioModel extends FlutterFlowModel<EnderecosUsuarioWidget> {
+class EditarEnderecoModel extends FlutterFlowModel<EditarEnderecoWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -16,8 +14,6 @@ class EnderecosUsuarioModel extends FlutterFlowModel<EnderecosUsuarioWidget> {
   TextEditingController? textCepController;
   final textCepMask = MaskTextInputFormatter(mask: '#####-###');
   String? Function(BuildContext, String?)? textCepControllerValidator;
-  // Stores action output result for [Backend Call - API (buscaCEP)] action in Buscar widget.
-  ApiCallResponse? buscaresultado;
   // State field(s) for TextRua widget.
   FocusNode? textRuaFocusNode;
   TextEditingController? textRuaController;
@@ -46,8 +42,6 @@ class EnderecosUsuarioModel extends FlutterFlowModel<EnderecosUsuarioWidget> {
   FocusNode? textIdentificadorFocusNode;
   TextEditingController? textIdentificadorController;
   String? Function(BuildContext, String?)? textIdentificadorControllerValidator;
-  // Stores action output result for [Backend Call - Create Document] action in Container widget.
-  EnderecoRecord? gravarEnderecoUser;
 
   /// Initialization and disposal methods.
 
