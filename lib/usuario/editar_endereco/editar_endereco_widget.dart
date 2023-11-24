@@ -208,7 +208,7 @@ class _EditarEnderecoWidgetState extends State<EditarEnderecoWidget>
                                         ),
                                       ),
                                       Icon(
-                                        FFIcons.kdelete2,
+                                        Icons.restore_from_trash,
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
                                         size: 30.0,
@@ -1011,39 +1011,63 @@ class _EditarEnderecoWidgetState extends State<EditarEnderecoWidget>
                             sigmaX: 2.0,
                             sigmaY: 2.0,
                           ),
-                          child: Material(
-                            color: Colors.transparent,
-                            elevation: 20.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16.0),
-                            ),
-                            child: Container(
-                              width: 200.0,
-                              height: 40.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).primary,
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              await editarEnderecoEnderecoRecord.reference
+                                  .update(createEnderecoRecordData(
+                                rua: _model.textRuaController.text,
+                                bairro: _model.textBairroController.text,
+                                cep: _model.textCepController.text,
+                                cidade: _model.textCidadeController.text,
+                                estado: _model.textEstadoController.text,
+                                complemento:
+                                    _model.textComplementoController.text,
+                                numero: _model.textNumeroController.text,
+                                identificador:
+                                    _model.textIdentificadorController.text,
+                              ));
+
+                              context.pushNamed('meusenderecos');
+                            },
+                            child: Material(
+                              color: Colors.transparent,
+                              elevation: 20.0,
+                              shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(16.0),
                               ),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 0.0, 24.0, 0.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Excluir Cadastro',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            fontSize: 18.0,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                  ],
+                              child: Container(
+                                width: 200.0,
+                                height: 40.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  borderRadius: BorderRadius.circular(16.0),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Excluir Cadastro',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
