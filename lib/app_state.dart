@@ -131,6 +131,16 @@ class FFAppState extends ChangeNotifier {
     _localRefer = value;
     prefs.setInt('ff_localRefer', value);
   }
+
+  EnderecoStruct _enderecoUsuarioRef = EnderecoStruct();
+  EnderecoStruct get enderecoUsuarioRef => _enderecoUsuarioRef;
+  set enderecoUsuarioRef(EnderecoStruct value) {
+    _enderecoUsuarioRef = value;
+  }
+
+  void updateEnderecoUsuarioRefStruct(Function(EnderecoStruct) updateFn) {
+    updateFn(_enderecoUsuarioRef);
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

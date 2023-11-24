@@ -59,6 +59,11 @@ class EnderecoRecord extends FirestoreRecord {
   DocumentReference? get usuario => _usuario;
   bool hasUsuario() => _usuario != null;
 
+  // "status" field.
+  String? _status;
+  String get status => _status ?? '';
+  bool hasStatus() => _status != null;
+
   void _initializeFields() {
     _rua = snapshotData['rua'] as String?;
     _bairro = snapshotData['bairro'] as String?;
@@ -69,6 +74,7 @@ class EnderecoRecord extends FirestoreRecord {
     _numero = snapshotData['numero'] as String?;
     _identificador = snapshotData['identificador'] as String?;
     _usuario = snapshotData['usuario'] as DocumentReference?;
+    _status = snapshotData['status'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -115,6 +121,7 @@ Map<String, dynamic> createEnderecoRecordData({
   String? numero,
   String? identificador,
   DocumentReference? usuario,
+  String? status,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -127,6 +134,7 @@ Map<String, dynamic> createEnderecoRecordData({
       'numero': numero,
       'identificador': identificador,
       'usuario': usuario,
+      'status': status,
     }.withoutNulls,
   );
 
@@ -146,7 +154,8 @@ class EnderecoRecordDocumentEquality implements Equality<EnderecoRecord> {
         e1?.complemento == e2?.complemento &&
         e1?.numero == e2?.numero &&
         e1?.identificador == e2?.identificador &&
-        e1?.usuario == e2?.usuario;
+        e1?.usuario == e2?.usuario &&
+        e1?.status == e2?.status;
   }
 
   @override
@@ -159,7 +168,8 @@ class EnderecoRecordDocumentEquality implements Equality<EnderecoRecord> {
         e?.complemento,
         e?.numero,
         e?.identificador,
-        e?.usuario
+        e?.usuario,
+        e?.status
       ]);
 
   @override
