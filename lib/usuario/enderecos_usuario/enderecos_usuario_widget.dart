@@ -326,6 +326,14 @@ class _EnderecosUsuarioWidgetState extends State<EnderecosUsuarioWidget>
                                               ).toString();
                                             });
                                           } else {
+                                            setState(() {
+                                              _model.varRua = 'Rua';
+                                              _model.varBairro = 'Bairro';
+                                              _model.varComplemento =
+                                                  'Complemento';
+                                              _model.varEstado = 'Estado';
+                                              _model.variCidade = 'Cidade';
+                                            });
                                             if (shouldSetState) {
                                               setState(() {});
                                             }

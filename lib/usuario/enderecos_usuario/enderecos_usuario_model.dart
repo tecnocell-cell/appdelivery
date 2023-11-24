@@ -6,15 +6,15 @@ import 'package:flutter/material.dart';
 class EnderecosUsuarioModel extends FlutterFlowModel<EnderecosUsuarioWidget> {
   ///  Local state fields for this page.
 
-  String varRua = '';
+  String varRua = 'Rua';
 
-  String varBairro = '';
+  String varBairro = 'Bairro';
 
-  String varComplemento = '';
+  String varComplemento = 'Complemento';
 
-  String varEstado = '';
+  String varEstado = 'Estado';
 
-  String variCidade = '';
+  String variCidade = 'Cidade';
 
   ///  State fields for stateful widgets in this page.
 
