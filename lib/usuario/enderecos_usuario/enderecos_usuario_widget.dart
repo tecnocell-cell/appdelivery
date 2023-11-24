@@ -1,10 +1,12 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -53,25 +55,31 @@ class _EnderecosUsuarioWidgetState extends State<EnderecosUsuarioWidget>
     super.initState();
     _model = createModel(context, () => EnderecosUsuarioModel());
 
-    _model.textCepController ??= TextEditingController();
+    _model.textCepController ??=
+        TextEditingController(text: FFAppState().enderecoUsuarioRef.cep);
     _model.textCepFocusNode ??= FocusNode();
 
-    _model.textRuaController ??= TextEditingController();
+    _model.textRuaController ??=
+        TextEditingController(text: FFAppState().enderecoUsuarioRef.rua);
     _model.textRuaFocusNode ??= FocusNode();
 
-    _model.textBairroController ??= TextEditingController();
+    _model.textBairroController ??=
+        TextEditingController(text: FFAppState().enderecoUsuarioRef.bairro);
     _model.textBairroFocusNode ??= FocusNode();
 
     _model.textNumeroController ??= TextEditingController();
     _model.textNumeroFocusNode ??= FocusNode();
 
-    _model.textComplementoController ??= TextEditingController();
+    _model.textComplementoController ??= TextEditingController(
+        text: FFAppState().enderecoUsuarioRef.complemento);
     _model.textComplementoFocusNode ??= FocusNode();
 
-    _model.textCidadeController ??= TextEditingController();
+    _model.textCidadeController ??=
+        TextEditingController(text: FFAppState().enderecoUsuarioRef.cidade);
     _model.textCidadeFocusNode ??= FocusNode();
 
-    _model.textEstadoController ??= TextEditingController();
+    _model.textEstadoController ??=
+        TextEditingController(text: FFAppState().enderecoUsuarioRef.estado);
     _model.textEstadoFocusNode ??= FocusNode();
 
     _model.textIdentificadorController ??= TextEditingController();
@@ -216,6 +224,12 @@ class _EnderecosUsuarioWidgetState extends State<EnderecosUsuarioWidget>
                                             controller:
                                                 _model.textCepController,
                                             focusNode: _model.textCepFocusNode,
+                                            onChanged: (_) =>
+                                                EasyDebounce.debounce(
+                                              '_model.textCepController',
+                                              const Duration(milliseconds: 2000),
+                                              () => setState(() {}),
+                                            ),
                                             autofocus: true,
                                             obscureText: false,
                                             decoration: InputDecoration(
@@ -273,6 +287,26 @@ class _EnderecosUsuarioWidgetState extends State<EnderecosUsuarioWidget>
                                                 borderRadius:
                                                     BorderRadius.circular(8.0),
                                               ),
+                                              suffixIcon: _model
+                                                      .textCepController!
+                                                      .text
+                                                      .isNotEmpty
+                                                  ? InkWell(
+                                                      onTap: () async {
+                                                        _model.textCepController
+                                                            ?.clear();
+                                                        setState(() {});
+                                                      },
+                                                      child: Icon(
+                                                        Icons.clear,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        size: 22,
+                                                      ),
+                                                    )
+                                                  : null,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium,
@@ -280,67 +314,59 @@ class _EnderecosUsuarioWidgetState extends State<EnderecosUsuarioWidget>
                                             validator: _model
                                                 .textCepControllerValidator
                                                 .asValidator(context),
+                                            inputFormatters: [
+                                              _model.textCepMask
+                                            ],
                                           ),
                                         ),
                                       ),
                                       FFButtonWidget(
                                         onPressed: () async {
-                                          var shouldSetState = false;
-                                          _model.resultadoApi =
+                                          _model.apiResultren =
                                               await BuscaCEPCall.call(
                                             cep: _model.textCepController.text,
                                           );
-                                          shouldSetState = true;
-                                          if ((_model.resultadoApi?.succeeded ??
-                                                  true) ==
-                                              true) {
+                                          if ((_model.apiResultren?.succeeded ??
+                                              true)) {
                                             setState(() {
-                                              _model.varRua = BuscaCEPCall.rua(
-                                                (_model.resultadoApi
-                                                        ?.jsonBody ??
-                                                    ''),
-                                              ).toString();
-                                              _model.varBairro =
-                                                  BuscaCEPCall.bairro(
-                                                (_model.resultadoApi
-                                                        ?.jsonBody ??
-                                                    ''),
-                                              ).toString();
-                                              _model.varComplemento =
-                                                  BuscaCEPCall.complemento(
-                                                (_model.resultadoApi
-                                                        ?.jsonBody ??
-                                                    ''),
-                                              ).toString();
-                                              _model.varEstado =
-                                                  BuscaCEPCall.estado(
-                                                (_model.resultadoApi
-                                                        ?.jsonBody ??
-                                                    ''),
-                                              ).toString();
-                                              _model.variCidade =
-                                                  BuscaCEPCall.cidade(
-                                                (_model.resultadoApi
-                                                        ?.jsonBody ??
-                                                    ''),
-                                              ).toString();
+                                              FFAppState().enderecoUsuarioRef =
+                                                  EnderecoStruct(
+                                                cep: BuscaCEPCall.cep(
+                                                  (_model.apiResultren
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                ).toString(),
+                                                rua: BuscaCEPCall.rua(
+                                                  (_model.apiResultren
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                ).toString(),
+                                                bairro: BuscaCEPCall.bairro(
+                                                  (_model.apiResultren
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                ).toString(),
+                                                cidade: BuscaCEPCall.cidade(
+                                                  (_model.apiResultren
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                ).toString(),
+                                                estado: BuscaCEPCall.estado(
+                                                  (_model.apiResultren
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                ).toString(),
+                                                complemento:
+                                                    BuscaCEPCall.complemento(
+                                                  (_model.apiResultren
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                ).toString(),
+                                              );
                                             });
-                                          } else {
-                                            setState(() {
-                                              _model.varRua = 'Rua';
-                                              _model.varBairro = 'Bairro';
-                                              _model.varComplemento =
-                                                  'Complemento';
-                                              _model.varEstado = 'Estado';
-                                              _model.variCidade = 'Cidade';
-                                            });
-                                            if (shouldSetState) {
-                                              setState(() {});
-                                            }
-                                            return;
                                           }
 
-                                          if (shouldSetState) setState(() {});
+                                          setState(() {});
                                         },
                                         text: '',
                                         icon: const Icon(
@@ -403,9 +429,7 @@ class _EnderecosUsuarioWidgetState extends State<EnderecosUsuarioWidget>
                                   autofocus: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: BuscaCEPCall.rua(
-                                      (_model.resultadoApi?.jsonBody ?? ''),
-                                    ).toString(),
+                                    labelText: 'Rua',
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -480,9 +504,7 @@ class _EnderecosUsuarioWidgetState extends State<EnderecosUsuarioWidget>
                                   autofocus: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: BuscaCEPCall.bairro(
-                                      (_model.resultadoApi?.jsonBody ?? ''),
-                                    ).toString(),
+                                    labelText: 'Bairro',
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -635,9 +657,7 @@ class _EnderecosUsuarioWidgetState extends State<EnderecosUsuarioWidget>
                                   autofocus: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: BuscaCEPCall.complemento(
-                                      (_model.resultadoApi?.jsonBody ?? ''),
-                                    ).toString(),
+                                    labelText: 'Complemento',
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -714,9 +734,7 @@ class _EnderecosUsuarioWidgetState extends State<EnderecosUsuarioWidget>
                                   readOnly: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: BuscaCEPCall.cidade(
-                                      (_model.resultadoApi?.jsonBody ?? ''),
-                                    ).toString(),
+                                    labelText: 'Cidade',
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -793,9 +811,7 @@ class _EnderecosUsuarioWidgetState extends State<EnderecosUsuarioWidget>
                                   readOnly: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: BuscaCEPCall.estado(
-                                      (_model.resultadoApi?.jsonBody ?? ''),
-                                    ).toString(),
+                                    labelText: 'Estado',
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(

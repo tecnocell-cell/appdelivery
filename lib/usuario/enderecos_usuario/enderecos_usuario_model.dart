@@ -2,29 +2,19 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'enderecos_usuario_widget.dart' show EnderecosUsuarioWidget;
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class EnderecosUsuarioModel extends FlutterFlowModel<EnderecosUsuarioWidget> {
-  ///  Local state fields for this page.
-
-  String varRua = 'Rua';
-
-  String varBairro = 'Bairro';
-
-  String varComplemento = 'Complemento';
-
-  String varEstado = 'Estado';
-
-  String variCidade = 'Cidade';
-
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   // State field(s) for TextCep widget.
   FocusNode? textCepFocusNode;
   TextEditingController? textCepController;
+  final textCepMask = MaskTextInputFormatter(mask: '#####-###');
   String? Function(BuildContext, String?)? textCepControllerValidator;
   // Stores action output result for [Backend Call - API (buscaCEP)] action in Buscar widget.
-  ApiCallResponse? resultadoApi;
+  ApiCallResponse? apiResultren;
   // State field(s) for TextRua widget.
   FocusNode? textRuaFocusNode;
   TextEditingController? textRuaController;

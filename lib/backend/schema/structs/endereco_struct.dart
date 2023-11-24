@@ -18,7 +18,6 @@ class EnderecoStruct extends FFFirebaseStruct {
     String? complemento,
     int? numero,
     String? tipoEndereco,
-    DocumentReference? usuario,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _cep = cep,
         _rua = rua,
@@ -28,7 +27,6 @@ class EnderecoStruct extends FFFirebaseStruct {
         _complemento = complemento,
         _numero = numero,
         _tipoEndereco = tipoEndereco,
-        _usuario = usuario,
         super(firestoreUtilData);
 
   // "cep" field.
@@ -80,12 +78,6 @@ class EnderecoStruct extends FFFirebaseStruct {
   set tipoEndereco(String? val) => _tipoEndereco = val;
   bool hasTipoEndereco() => _tipoEndereco != null;
 
-  // "usuario" field.
-  DocumentReference? _usuario;
-  DocumentReference? get usuario => _usuario;
-  set usuario(DocumentReference? val) => _usuario = val;
-  bool hasUsuario() => _usuario != null;
-
   static EnderecoStruct fromMap(Map<String, dynamic> data) => EnderecoStruct(
         cep: data['cep'] as String?,
         rua: data['rua'] as String?,
@@ -95,7 +87,6 @@ class EnderecoStruct extends FFFirebaseStruct {
         complemento: data['complemento'] as String?,
         numero: castToType<int>(data['numero']),
         tipoEndereco: data['tipoEndereco'] as String?,
-        usuario: data['usuario'] as DocumentReference?,
       );
 
   static EnderecoStruct? maybeFromMap(dynamic data) =>
@@ -110,7 +101,6 @@ class EnderecoStruct extends FFFirebaseStruct {
         'complemento': _complemento,
         'numero': _numero,
         'tipoEndereco': _tipoEndereco,
-        'usuario': _usuario,
       }.withoutNulls;
 
   @override
@@ -146,10 +136,6 @@ class EnderecoStruct extends FFFirebaseStruct {
         'tipoEndereco': serializeParam(
           _tipoEndereco,
           ParamType.String,
-        ),
-        'usuario': serializeParam(
-          _usuario,
-          ParamType.DocumentReference,
         ),
       }.withoutNulls;
 
@@ -195,12 +181,6 @@ class EnderecoStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
-        usuario: deserializeParam(
-          data['usuario'],
-          ParamType.DocumentReference,
-          false,
-          collectionNamePath: ['users'],
-        ),
       );
 
   @override
@@ -216,22 +196,12 @@ class EnderecoStruct extends FFFirebaseStruct {
         estado == other.estado &&
         complemento == other.complemento &&
         numero == other.numero &&
-        tipoEndereco == other.tipoEndereco &&
-        usuario == other.usuario;
+        tipoEndereco == other.tipoEndereco;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([
-        cep,
-        rua,
-        bairro,
-        cidade,
-        estado,
-        complemento,
-        numero,
-        tipoEndereco,
-        usuario
-      ]);
+  int get hashCode => const ListEquality().hash(
+      [cep, rua, bairro, cidade, estado, complemento, numero, tipoEndereco]);
 }
 
 EnderecoStruct createEnderecoStruct({
@@ -243,7 +213,6 @@ EnderecoStruct createEnderecoStruct({
   String? complemento,
   int? numero,
   String? tipoEndereco,
-  DocumentReference? usuario,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -258,7 +227,6 @@ EnderecoStruct createEnderecoStruct({
       complemento: complemento,
       numero: numero,
       tipoEndereco: tipoEndereco,
-      usuario: usuario,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

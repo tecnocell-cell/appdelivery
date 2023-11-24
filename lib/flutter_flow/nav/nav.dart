@@ -131,6 +131,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'enderecosUsuario',
           path: '/perfil',
+          requireAuth: true,
           builder: (context, params) => const EnderecosUsuarioWidget(),
         ),
         FFRoute(
