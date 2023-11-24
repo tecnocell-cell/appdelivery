@@ -14,7 +14,7 @@ class EnderecosUsuarioModel extends FlutterFlowModel<EnderecosUsuarioWidget> {
   final textCepMask = MaskTextInputFormatter(mask: '#####-###');
   String? Function(BuildContext, String?)? textCepControllerValidator;
   // Stores action output result for [Backend Call - API (buscaCEP)] action in Buscar widget.
-  ApiCallResponse? apiResultren;
+  ApiCallResponse? buscaresultado;
   // State field(s) for TextRua widget.
   FocusNode? textRuaFocusNode;
   TextEditingController? textRuaController;

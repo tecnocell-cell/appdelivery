@@ -322,48 +322,52 @@ class _EnderecosUsuarioWidgetState extends State<EnderecosUsuarioWidget>
                                       ),
                                       FFButtonWidget(
                                         onPressed: () async {
-                                          _model.apiResultren =
+                                          _model.buscaresultado =
                                               await BuscaCEPCall.call(
                                             cep: _model.textCepController.text,
                                           );
-                                          if ((_model.apiResultren?.succeeded ??
+                                          if ((_model
+                                                  .buscaresultado?.succeeded ??
                                               true)) {
                                             setState(() {
                                               FFAppState().enderecoUsuarioRef =
                                                   EnderecoStruct(
                                                 cep: BuscaCEPCall.cep(
-                                                  (_model.apiResultren
+                                                  (_model.buscaresultado
                                                           ?.jsonBody ??
                                                       ''),
                                                 ).toString(),
                                                 rua: BuscaCEPCall.rua(
-                                                  (_model.apiResultren
+                                                  (_model.buscaresultado
                                                           ?.jsonBody ??
                                                       ''),
                                                 ).toString(),
                                                 bairro: BuscaCEPCall.bairro(
-                                                  (_model.apiResultren
+                                                  (_model.buscaresultado
                                                           ?.jsonBody ??
                                                       ''),
                                                 ).toString(),
                                                 cidade: BuscaCEPCall.cidade(
-                                                  (_model.apiResultren
+                                                  (_model.buscaresultado
                                                           ?.jsonBody ??
                                                       ''),
                                                 ).toString(),
                                                 estado: BuscaCEPCall.estado(
-                                                  (_model.apiResultren
+                                                  (_model.buscaresultado
                                                           ?.jsonBody ??
                                                       ''),
                                                 ).toString(),
                                                 complemento:
                                                     BuscaCEPCall.complemento(
-                                                  (_model.apiResultren
+                                                  (_model.buscaresultado
                                                           ?.jsonBody ??
                                                       ''),
                                                 ).toString(),
                                               );
                                             });
+
+                                            context
+                                                .pushNamed('enderecosUsuario');
                                           }
 
                                           setState(() {});
