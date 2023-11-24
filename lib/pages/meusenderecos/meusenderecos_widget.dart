@@ -288,8 +288,7 @@ class _MeusenderecosWidgetState extends State<MeusenderecosWidget> {
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
+                                                      MainAxisAlignment.center,
                                                   children: [
                                                     Flexible(
                                                       child: Text(
@@ -301,17 +300,27 @@ class _MeusenderecosWidgetState extends State<MeusenderecosWidget> {
                                                             .override(
                                                               fontFamily:
                                                                   'Readex Pro',
-                                                              fontSize: 20.0,
+                                                              fontSize: 18.0,
                                                             ),
                                                       ),
                                                     ),
-                                                    Icon(
-                                                      Icons.location_on_rounded,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      size: 24.0,
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  10.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Icon(
+                                                        Icons
+                                                            .location_on_rounded,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        size: 24.0,
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
@@ -326,14 +335,14 @@ class _MeusenderecosWidgetState extends State<MeusenderecosWidget> {
                                                         MainAxisSize.max,
                                                     children: [
                                                       Text(
-                                                        '${containerEnderecoRecord.rua}, ${containerEnderecoRecord.numero}, ${containerEnderecoRecord.bairro}, ${containerEnderecoRecord.cidade}, ${containerEnderecoRecord.estado}',
+                                                        '${containerEnderecoRecord.rua}, ${containerEnderecoRecord.bairro}, ${containerEnderecoRecord.numero}',
                                                         style: FlutterFlowTheme
                                                                 .of(context)
                                                             .bodyMedium
                                                             .override(
                                                               fontFamily:
                                                                   'Readex Pro',
-                                                              fontSize: 16.0,
+                                                              fontSize: 14.0,
                                                             ),
                                                       ),
                                                     ],
@@ -350,11 +359,15 @@ class _MeusenderecosWidgetState extends State<MeusenderecosWidget> {
                                                         MainAxisSize.max,
                                                     children: [
                                                       Text(
-                                                        'numero',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium,
+                                                        '${containerEnderecoRecord.cidade} - ${containerEnderecoRecord.estado}',
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Readex Pro',
+                                                              fontSize: 14.0,
+                                                            ),
                                                       ),
                                                     ],
                                                   ),

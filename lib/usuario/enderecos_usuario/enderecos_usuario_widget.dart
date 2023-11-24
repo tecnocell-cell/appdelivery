@@ -975,9 +975,7 @@ class _EnderecosUsuarioWidgetState extends State<EnderecosUsuarioWidget>
                             cidade: _model.textCidadeController.text,
                             estado: _model.textEstadoController.text,
                             complemento: _model.textComplementoController.text,
-                            numero:
-                                (_model.textNumeroFocusNode?.hasFocus ?? false)
-                                    .toString(),
+                            numero: _model.textNumeroController.text,
                             identificador:
                                 _model.textIdentificadorController.text,
                             usuario: currentUserReference,
@@ -992,10 +990,7 @@ class _EnderecosUsuarioWidgetState extends State<EnderecosUsuarioWidget>
                                     estado: _model.textEstadoController.text,
                                     complemento:
                                         _model.textComplementoController.text,
-                                    numero:
-                                        (_model.textNumeroFocusNode?.hasFocus ??
-                                                false)
-                                            .toString(),
+                                    numero: _model.textNumeroController.text,
                                     identificador:
                                         _model.textIdentificadorController.text,
                                     usuario: currentUserReference,
