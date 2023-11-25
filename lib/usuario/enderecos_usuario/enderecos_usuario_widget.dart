@@ -135,10 +135,19 @@ class _EnderecosUsuarioWidgetState extends State<EnderecosUsuarioWidget>
                   child: Container(
                     width: 50.0,
                     decoration: const BoxDecoration(),
-                    child: Icon(
-                      Icons.arrow_back_sharp,
-                      color: FlutterFlowTheme.of(context).primary,
-                      size: 24.0,
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.pushNamed('config');
+                      },
+                      child: Icon(
+                        Icons.arrow_back_sharp,
+                        color: FlutterFlowTheme.of(context).primary,
+                        size: 24.0,
+                      ),
                     ),
                   ),
                 ),

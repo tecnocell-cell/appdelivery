@@ -147,6 +147,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             paramEditaEndereco: params.getParam('paramEditaEndereco',
                 ParamType.DocumentReference, false, ['endereco']),
           ),
+        ),
+        FFRoute(
+          name: 'escolhaEndereco',
+          path: '/escolhaEndereco',
+          builder: (context, params) => const EscolhaEnderecoWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

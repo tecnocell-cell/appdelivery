@@ -78,7 +78,7 @@ class _MeusenderecosWidgetState extends State<MeusenderecosWidget> {
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () async {
-                      context.safePop();
+                      context.pushNamed('config');
                     },
                     child: Icon(
                       Icons.arrow_back_sharp,
@@ -183,7 +183,7 @@ class _MeusenderecosWidgetState extends State<MeusenderecosWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
-                                              size: 26.0,
+                                              size: 30.0,
                                             ),
                                             Expanded(
                                               child: Padding(
@@ -195,7 +195,12 @@ class _MeusenderecosWidgetState extends State<MeusenderecosWidget> {
                                                   textAlign: TextAlign.center,
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .bodyMedium,
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        fontSize: 18.0,
+                                                      ),
                                                 ),
                                               ),
                                             ),
@@ -211,11 +216,11 @@ class _MeusenderecosWidgetState extends State<MeusenderecosWidget> {
                                                     BorderRadius.circular(0.0),
                                               ),
                                               child: Icon(
-                                                FFIcons.kadd,
+                                                FFIcons.kfilter6,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primary,
-                                                size: 24.0,
+                                                size: 30.0,
                                               ),
                                             ),
                                           ],
@@ -297,11 +302,13 @@ class _MeusenderecosWidgetState extends State<MeusenderecosWidget> {
                                             },
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
-                                                          32.0, 0.0, 32.0, 0.0),
+                                                          32.0, 5.0, 32.0, 5.0),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -320,78 +327,66 @@ class _MeusenderecosWidgetState extends State<MeusenderecosWidget> {
                                                                 fontFamily:
                                                                     'Readex Pro',
                                                                 fontSize: 18.0,
+                                                                letterSpacing:
+                                                                    1.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
                                                               ),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    10.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Icon(
-                                                          Icons
-                                                              .location_on_rounded,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          size: 24.0,
                                                         ),
                                                       ),
                                                     ],
                                                   ),
                                                 ),
-                                                Expanded(
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(12.0, 0.0,
-                                                                12.0, 0.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Text(
-                                                          '${containerEnderecoRecord.rua}, ${containerEnderecoRecord.bairro}, ${containerEnderecoRecord.numero}',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                fontSize: 14.0,
-                                                              ),
-                                                        ),
-                                                      ],
-                                                    ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          12.0, 0.0, 12.0, 0.0),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Text(
+                                                        '${containerEnderecoRecord.rua}, ${containerEnderecoRecord.bairro}, ${containerEnderecoRecord.numero}',
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Readex Pro',
+                                                              fontSize: 14.0,
+                                                            ),
+                                                      ),
+                                                    ],
                                                   ),
                                                 ),
-                                                Expanded(
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(12.0, 0.0,
-                                                                12.0, 0.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Text(
-                                                          '${containerEnderecoRecord.cidade} - ${containerEnderecoRecord.estado}',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                fontSize: 14.0,
-                                                              ),
-                                                        ),
-                                                      ],
-                                                    ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          12.0, 0.0, 12.0, 0.0),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Text(
+                                                        '${containerEnderecoRecord.cidade} - ${containerEnderecoRecord.estado}',
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Readex Pro',
+                                                              fontSize: 14.0,
+                                                            ),
+                                                      ),
+                                                    ],
                                                   ),
+                                                ),
+                                                Divider(
+                                                  thickness: 1.0,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .alternate,
                                                 ),
                                               ],
                                             ),

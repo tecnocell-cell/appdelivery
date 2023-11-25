@@ -141,6 +141,12 @@ class FFAppState extends ChangeNotifier {
   void updateEnderecoUsuarioRefStruct(Function(EnderecoStruct) updateFn) {
     updateFn(_enderecoUsuarioRef);
   }
+
+  bool _opcaoEndereco = false;
+  bool get opcaoEndereco => _opcaoEndereco;
+  set opcaoEndereco(bool value) {
+    _opcaoEndereco = value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

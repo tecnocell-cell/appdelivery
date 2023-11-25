@@ -13,3 +13,5 @@ export '/usuario/meusenderecos/meusenderecos_widget.dart'
     show MeusenderecosWidget;
 export '/usuario/editar_endereco/editar_endereco_widget.dart'
     show EditarEnderecoWidget;
+export '/pages/escolha_endereco/escolha_endereco_widget.dart'
+    show EscolhaEnderecoWidget;

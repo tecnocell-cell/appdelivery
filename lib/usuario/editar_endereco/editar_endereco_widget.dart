@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -145,10 +146,19 @@ class _EditarEnderecoWidgetState extends State<EditarEnderecoWidget>
                       child: Container(
                         width: 50.0,
                         decoration: const BoxDecoration(),
-                        child: Icon(
-                          Icons.arrow_back_sharp,
-                          color: FlutterFlowTheme.of(context).primary,
-                          size: 24.0,
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed('config');
+                          },
+                          child: Icon(
+                            Icons.arrow_back_sharp,
+                            color: FlutterFlowTheme.of(context).primary,
+                            size: 24.0,
+                          ),
                         ),
                       ),
                     ),
@@ -207,11 +217,35 @@ class _EditarEnderecoWidgetState extends State<EditarEnderecoWidget>
                                               ),
                                         ),
                                       ),
-                                      Icon(
-                                        Icons.restore_from_trash,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        size: 30.0,
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          await currentUserReference!.update({
+                                            ...mapToFirestore(
+                                              {
+                                                'endereco':
+                                                    FieldValue.arrayRemove([
+                                                  editarEnderecoEnderecoRecord
+                                                      .reference
+                                                ]),
+                                              },
+                                            ),
+                                          });
+                                          await editarEnderecoEnderecoRecord
+                                              .reference
+                                              .delete();
+
+                                          context.pushNamed('enderecosUsuario');
+                                        },
+                                        child: Icon(
+                                          Icons.restore_from_trash,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          size: 30.0,
+                                        ),
                                       ),
                                     ],
                                   ),
