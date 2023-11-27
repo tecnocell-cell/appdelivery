@@ -160,8 +160,8 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
 
     context.watch<FFAppState>();
 
-    return StreamBuilder<List<RestauranteRecord>>(
-      stream: queryRestauranteRecord(
+    return StreamBuilder<List<CategoriaRecord>>(
+      stream: queryCategoriaRecord(
         singleRecord: true,
       ),
       builder: (context, snapshot) {
@@ -182,15 +182,14 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
             ),
           );
         }
-        List<RestauranteRecord> restaurantesRestauranteRecordList =
-            snapshot.data!;
+        List<CategoriaRecord> restaurantesCategoriaRecordList = snapshot.data!;
         // Return an empty Container when the item does not exist.
         if (snapshot.data!.isEmpty) {
           return Container();
         }
-        final restaurantesRestauranteRecord =
-            restaurantesRestauranteRecordList.isNotEmpty
-                ? restaurantesRestauranteRecordList.first
+        final restaurantesCategoriaRecord =
+            restaurantesCategoriaRecordList.isNotEmpty
+                ? restaurantesCategoriaRecordList.first
                 : null;
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
@@ -493,20 +492,45 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                             Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Container(
-                                  width: 90.0,
-                                  height: 90.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: Image.network(
-                                        restaurantesRestauranteRecord!.image,
-                                      ).image,
-                                    ),
-                                    borderRadius: BorderRadius.circular(16.0),
-                                  ),
+                                StreamBuilder<RestauranteRecord>(
+                                  stream: RestauranteRecord.getDocument(
+                                      widget.paramRestaurantes!),
+                                  builder: (context, snapshot) {
+                                    // Customize what your widget looks like when it's loading.
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: SizedBox(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          child: CircularProgressIndicator(
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                    final containerRestauranteRecord =
+                                        snapshot.data!;
+                                    return Container(
+                                      width: 90.0,
+                                      height: 90.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: Image.network(
+                                            containerRestauranteRecord.image,
+                                          ).image,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(16.0),
+                                      ),
+                                    );
+                                  },
                                 ),
                               ],
                             ),
@@ -1101,7 +1125,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                             ),
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 5.0, 10.0, 0.0),
+                                  10.0, 5.0, 0.0, 0.0),
                               child: SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
@@ -1113,9 +1137,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                           0.0, 13.0, 0.0, 13.0),
                                       child:
                                           StreamBuilder<List<CategoriaRecord>>(
-                                        stream: queryCategoriaRecord(
-                                          singleRecord: true,
-                                        ),
+                                        stream: queryCategoriaRecord(),
                                         builder: (context, snapshot) {
                                           // Customize what your widget looks like when it's loading.
                                           if (!snapshot.hasData) {
@@ -1138,30 +1160,14 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                           List<CategoriaRecord>
                                               filtroCategoriaCategoriaRecordList =
                                               snapshot.data!;
-                                          // Return an empty Container when the item does not exist.
-                                          if (snapshot.data!.isEmpty) {
-                                            return Container();
-                                          }
-                                          final filtroCategoriaCategoriaRecord =
-                                              filtroCategoriaCategoriaRecordList
-                                                      .isNotEmpty
-                                                  ? filtroCategoriaCategoriaRecordList
-                                                      .first
-                                                  : null;
                                           return FlutterFlowChoiceChips(
-                                            options: const [
-                                              ChipData(
-                                                  'Massas', Icons.local_pizza),
-                                              ChipData('Doces', Icons.cookie),
-                                              ChipData(
-                                                  'Carnes', Icons.food_bank),
-                                              ChipData('Fast Food',
-                                                  Icons.fastfood_sharp),
-                                              ChipData('Hamburguer',
-                                                  Icons.fastfood_sharp),
-                                              ChipData('Bebidas',
-                                                  Icons.local_drink_sharp)
-                                            ],
+                                            options:
+                                                filtroCategoriaCategoriaRecordList
+                                                    .map((e) => e.nome)
+                                                    .toList()
+                                                    .map((label) =>
+                                                        ChipData(label))
+                                                    .toList(),
                                             onChanged: (val) => setState(() =>
                                                 _model.filtroCategoriaValue =
                                                     val?.first),
@@ -1255,7 +1261,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+                        const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 0.0),
                     child: StreamBuilder<List<ProdutosRecord>>(
                       stream: queryProdutosRecord(
                         queryBuilder: (produtosRecord) => produtosRecord.where(

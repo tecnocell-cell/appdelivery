@@ -37,11 +37,6 @@ class ProdutosRecord extends FirestoreRecord {
   String get descri => _descri ?? '';
   bool hasDescri() => _descri != null;
 
-  // "categoria" field.
-  DocumentReference? _categoria;
-  DocumentReference? get categoria => _categoria;
-  bool hasCategoria() => _categoria != null;
-
   // "restaurante" field.
   DocumentReference? _restaurante;
   DocumentReference? get restaurante => _restaurante;
@@ -52,14 +47,19 @@ class ProdutosRecord extends FirestoreRecord {
   String get image => _image ?? '';
   bool hasImage() => _image != null;
 
+  // "categoria" field.
+  List<DocumentReference>? _categoria;
+  List<DocumentReference> get categoria => _categoria ?? const [];
+  bool hasCategoria() => _categoria != null;
+
   void _initializeFields() {
     _nome = snapshotData['nome'] as String?;
     _preco = castToType<double>(snapshotData['preco']);
     _sabor = snapshotData['sabor'] as String?;
     _descri = snapshotData['descri'] as String?;
-    _categoria = snapshotData['categoria'] as DocumentReference?;
     _restaurante = snapshotData['restaurante'] as DocumentReference?;
     _image = snapshotData['image'] as String?;
+    _categoria = getDataList(snapshotData['categoria']);
   }
 
   static CollectionReference get collection =>
@@ -94,17 +94,19 @@ class ProdutosRecord extends FirestoreRecord {
           ),
           'sabor': snapshot.data['sabor'],
           'descri': snapshot.data['descri'],
-          'categoria': convertAlgoliaParam(
-            snapshot.data['categoria'],
-            ParamType.DocumentReference,
-            false,
-          ),
           'restaurante': convertAlgoliaParam(
             snapshot.data['restaurante'],
             ParamType.DocumentReference,
             false,
           ),
           'image': snapshot.data['image'],
+          'categoria': safeGet(
+            () => convertAlgoliaParam<DocumentReference>(
+              snapshot.data['categoria'],
+              ParamType.DocumentReference,
+              true,
+            ).toList(),
+          ),
         },
         ProdutosRecord.collection.doc(snapshot.objectID),
       );
@@ -145,7 +147,6 @@ Map<String, dynamic> createProdutosRecordData({
   double? preco,
   String? sabor,
   String? descri,
-  DocumentReference? categoria,
   DocumentReference? restaurante,
   String? image,
 }) {
@@ -155,7 +156,6 @@ Map<String, dynamic> createProdutosRecordData({
       'preco': preco,
       'sabor': sabor,
       'descri': descri,
-      'categoria': categoria,
       'restaurante': restaurante,
       'image': image,
     }.withoutNulls,
@@ -169,13 +169,14 @@ class ProdutosRecordDocumentEquality implements Equality<ProdutosRecord> {
 
   @override
   bool equals(ProdutosRecord? e1, ProdutosRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.nome == e2?.nome &&
         e1?.preco == e2?.preco &&
         e1?.sabor == e2?.sabor &&
         e1?.descri == e2?.descri &&
-        e1?.categoria == e2?.categoria &&
         e1?.restaurante == e2?.restaurante &&
-        e1?.image == e2?.image;
+        e1?.image == e2?.image &&
+        listEquality.equals(e1?.categoria, e2?.categoria);
   }
 
   @override
@@ -184,9 +185,9 @@ class ProdutosRecordDocumentEquality implements Equality<ProdutosRecord> {
         e?.preco,
         e?.sabor,
         e?.descri,
-        e?.categoria,
         e?.restaurante,
-        e?.image
+        e?.image,
+        e?.categoria
       ]);
 
   @override
