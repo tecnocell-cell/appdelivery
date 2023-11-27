@@ -17,3 +17,4 @@ export '/pages/ordem_aceita/ordem_aceita_widget.dart' show OrdemAceitaWidget;
 export '/pages/pagamento/pagamento_widget.dart' show PagamentoWidget;
 export '/pages/endereco_entrega/endereco_entrega_widget.dart'
     show EnderecoEntregaWidget;
+export '/pages/filtro/filtro_widget.dart' show FiltroWidget;
