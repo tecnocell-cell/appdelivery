@@ -15,4 +15,5 @@ export '/usuario/editar_endereco/editar_endereco_widget.dart'
     show EditarEnderecoWidget;
 export '/pages/ordem_aceita/ordem_aceita_widget.dart' show OrdemAceitaWidget;
 export '/pages/pagamento/pagamento_widget.dart' show PagamentoWidget;
-export '/pages/entrega/entrega_widget.dart' show EntregaWidget;
+export '/pages/endereco_entrega/endereco_entrega_widget.dart'
+    show EnderecoEntregaWidget;

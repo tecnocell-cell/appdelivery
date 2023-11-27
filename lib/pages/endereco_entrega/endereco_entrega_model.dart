@@ -1,15 +1,21 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'enderecoentrega_widget.dart' show EnderecoentregaWidget;
+import 'endereco_entrega_widget.dart' show EnderecoEntregaWidget;
 import 'package:flutter/material.dart';
 
-class EnderecoentregaModel extends FlutterFlowModel<EnderecoentregaWidget> {
+class EnderecoEntregaModel extends FlutterFlowModel<EnderecoEntregaWidget> {
+  ///  State fields for stateful widgets in this page.
+
+  final unfocusNode = FocusNode();
+
   /// Initialization and disposal methods.
 
   @override
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {}
+  void dispose() {
+    unfocusNode.dispose();
+  }
 
   /// Action blocks are added here.
 

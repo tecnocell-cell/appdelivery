@@ -1,5 +1,4 @@
 import '/componentes/carrinho_vazio/carrinho_vazio_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -68,31 +67,31 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
-                  child: FlutterFlowIconButton(
-                    borderColor: FlutterFlowTheme.of(context).primary,
-                    borderRadius: 15.0,
-                    borderWidth: 2.0,
-                    buttonSize: 40.0,
-                    icon: Icon(
-                      Icons.arrow_back_ios_sharp,
-                      color: FlutterFlowTheme.of(context).primary,
-                      size: 25.0,
-                    ),
-                    onPressed: () async {
-                      context.safePop();
-                    },
+                InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.safePop();
+                  },
+                  child: Icon(
+                    Icons.arrow_back_sharp,
+                    color: FlutterFlowTheme.of(context).primary,
+                    size: 24.0,
                   ),
                 ),
-                Text(
-                  'Meu Carrinho',
-                  textAlign: TextAlign.start,
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                  child: Text(
+                    'Meu Carrinho',
+                    textAlign: TextAlign.start,
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
                 ),
               ],
             ),
@@ -607,10 +606,15 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                         ),
                                   ),
                                   Text(
-                                    functions
-                                        .somaTotal(FFAppState().taxaEntrega,
-                                            FFAppState().soma)
-                                        .toString(),
+                                    formatNumber(
+                                      functions.somaTotal(
+                                          FFAppState().taxaEntrega,
+                                          FFAppState().soma),
+                                      formatType: FormatType.custom,
+                                      currency: 'R\$ ',
+                                      format: '.00',
+                                      locale: 'pt_br',
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -750,7 +754,13 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                context.pushNamed('entrega');
+                                setState(() {
+                                  FFAppState().totalCompra =
+                                      functions.somaTotal(FFAppState().soma,
+                                          FFAppState().taxaEntrega);
+                                });
+
+                                context.pushNamed('enderecoEntrega');
                               },
                               child: Container(
                                 width: 250.0,

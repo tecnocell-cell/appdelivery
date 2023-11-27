@@ -162,9 +162,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'entrega',
-          path: '/entrega',
-          builder: (context, params) => const EntregaWidget(),
+          name: 'enderecoEntrega',
+          path: '/enderecoEntrega',
+          builder: (context, params) => const EnderecoEntregaWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

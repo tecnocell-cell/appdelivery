@@ -374,9 +374,9 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                         children: [
                           Text(
                             formatNumber(
-                              FFAppState().soma,
+                              FFAppState().totalCompra,
                               formatType: FormatType.custom,
-                              currency: 'R\$',
+                              currency: 'R\$ ',
                               format: '.00',
                               locale: 'pt_BR',
                             ),
@@ -452,13 +452,13 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Container(
-                    width: double.infinity,
-                    height: 67.0,
+                    width: 250.0,
+                    height: 40.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primary,
-                      borderRadius: BorderRadius.circular(19.0),
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: Padding(
                       padding:
