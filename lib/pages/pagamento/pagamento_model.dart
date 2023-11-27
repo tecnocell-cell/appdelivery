@@ -10,10 +10,6 @@ class PagamentoModel extends FlutterFlowModel<PagamentoWidget> {
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
 
   /// Initialization and disposal methods.
 
@@ -23,8 +19,6 @@ class PagamentoModel extends FlutterFlowModel<PagamentoWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
   }
 
   /// Action blocks are added here.

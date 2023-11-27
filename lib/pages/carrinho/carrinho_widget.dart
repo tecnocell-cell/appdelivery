@@ -542,13 +542,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                         ),
                                   ),
                                   Text(
-                                    formatNumber(
-                                      FFAppState().taxaEntrega,
-                                      formatType: FormatType.custom,
-                                      currency: 'R\$',
-                                      format: '.00',
-                                      locale: 'pt_BR',
-                                    ),
+                                    'R\$ 0,00',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
