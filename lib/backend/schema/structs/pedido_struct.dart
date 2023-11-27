@@ -1,5 +1,5 @@
 // ignore_for_file: unnecessary_getters_setters
-
+import '/backend/algolia/serialization_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '/backend/schema/util/firestore_util.dart';
@@ -143,6 +143,44 @@ class PedidoStruct extends FFFirebaseStruct {
           data['categoaria'],
           ParamType.String,
           false,
+        ),
+      );
+
+  static PedidoStruct fromAlgoliaData(Map<String, dynamic> data) =>
+      PedidoStruct(
+        nomePedido: convertAlgoliaParam(
+          data['nome_pedido'],
+          ParamType.String,
+          false,
+        ),
+        preco: convertAlgoliaParam(
+          data['preco'],
+          ParamType.double,
+          false,
+        ),
+        quantidade: convertAlgoliaParam(
+          data['quantidade'],
+          ParamType.int,
+          false,
+        ),
+        img: convertAlgoliaParam(
+          data['img'],
+          ParamType.String,
+          false,
+        ),
+        id: convertAlgoliaParam(
+          data['id'],
+          ParamType.String,
+          false,
+        ),
+        categoaria: convertAlgoliaParam(
+          data['categoaria'],
+          ParamType.String,
+          false,
+        ),
+        firestoreUtilData: const FirestoreUtilData(
+          clearUnsetFields: false,
+          create: true,
         ),
       );
 

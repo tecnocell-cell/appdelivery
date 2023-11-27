@@ -1,5 +1,5 @@
 // ignore_for_file: unnecessary_getters_setters
-
+import '/backend/algolia/serialization_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '/backend/schema/util/firestore_util.dart';
@@ -180,6 +180,54 @@ class EnderecoStruct extends FFFirebaseStruct {
           data['tipoEndereco'],
           ParamType.String,
           false,
+        ),
+      );
+
+  static EnderecoStruct fromAlgoliaData(Map<String, dynamic> data) =>
+      EnderecoStruct(
+        cep: convertAlgoliaParam(
+          data['cep'],
+          ParamType.String,
+          false,
+        ),
+        rua: convertAlgoliaParam(
+          data['rua'],
+          ParamType.String,
+          false,
+        ),
+        bairro: convertAlgoliaParam(
+          data['bairro'],
+          ParamType.String,
+          false,
+        ),
+        cidade: convertAlgoliaParam(
+          data['cidade'],
+          ParamType.String,
+          false,
+        ),
+        estado: convertAlgoliaParam(
+          data['estado'],
+          ParamType.String,
+          false,
+        ),
+        complemento: convertAlgoliaParam(
+          data['complemento'],
+          ParamType.String,
+          false,
+        ),
+        numero: convertAlgoliaParam(
+          data['numero'],
+          ParamType.int,
+          false,
+        ),
+        tipoEndereco: convertAlgoliaParam(
+          data['tipoEndereco'],
+          ParamType.String,
+          false,
+        ),
+        firestoreUtilData: const FirestoreUtilData(
+          clearUnsetFields: false,
+          create: true,
         ),
       );
 

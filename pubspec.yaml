@@ -25,12 +25,14 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  algolia: 1.1.1
   auto_size_text: 3.0.0
   badges: 2.0.2
   cached_network_image: 3.2.1
   cloud_firestore: 4.8.0
   cloud_firestore_platform_interface: 5.15.0
   cloud_firestore_web: 3.6.0
+  dropdown_button2: 2.0.0
   easy_debounce: 2.0.1
   equatable: 2.0.5
   firebase_auth: 4.6.2
@@ -80,6 +82,7 @@ dependencies:
   sqflite: 2.2.6
   stream_transform: 2.1.0
   timeago: 3.2.2
+  universal_io: 2.2.2
   url_launcher: 6.1.10
   url_launcher_android: 6.0.27
   url_launcher_ios: 6.1.4

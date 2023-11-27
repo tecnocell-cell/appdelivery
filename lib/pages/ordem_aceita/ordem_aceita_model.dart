@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'escolha_endereco_widget.dart' show EscolhaEnderecoWidget;
+import 'ordem_aceita_widget.dart' show OrdemAceitaWidget;
 import 'package:flutter/material.dart';
 
-class EscolhaEnderecoModel extends FlutterFlowModel<EscolhaEnderecoWidget> {
+class OrdemAceitaModel extends FlutterFlowModel<OrdemAceitaWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

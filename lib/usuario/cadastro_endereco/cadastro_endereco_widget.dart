@@ -11,19 +11,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
-import 'enderecos_usuario_model.dart';
-export 'enderecos_usuario_model.dart';
+import 'cadastro_endereco_model.dart';
+export 'cadastro_endereco_model.dart';
 
-class EnderecosUsuarioWidget extends StatefulWidget {
-  const EnderecosUsuarioWidget({super.key});
+class CadastroEnderecoWidget extends StatefulWidget {
+  const CadastroEnderecoWidget({super.key});
 
   @override
-  _EnderecosUsuarioWidgetState createState() => _EnderecosUsuarioWidgetState();
+  _CadastroEnderecoWidgetState createState() => _CadastroEnderecoWidgetState();
 }
 
-class _EnderecosUsuarioWidgetState extends State<EnderecosUsuarioWidget>
+class _CadastroEnderecoWidgetState extends State<CadastroEnderecoWidget>
     with TickerProviderStateMixin {
-  late EnderecosUsuarioModel _model;
+  late CadastroEnderecoModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -53,7 +53,7 @@ class _EnderecosUsuarioWidgetState extends State<EnderecosUsuarioWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => EnderecosUsuarioModel());
+    _model = createModel(context, () => CadastroEnderecoModel());
 
     _model.textCepController ??=
         TextEditingController(text: FFAppState().enderecoUsuarioRef.cep);
@@ -141,7 +141,7 @@ class _EnderecosUsuarioWidgetState extends State<EnderecosUsuarioWidget>
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        context.pushNamed('config');
+                        context.safePop();
                       },
                       child: Icon(
                         Icons.arrow_back_sharp,
@@ -376,7 +376,7 @@ class _EnderecosUsuarioWidgetState extends State<EnderecosUsuarioWidget>
                                             });
 
                                             context
-                                                .pushNamed('enderecosUsuario');
+                                                .pushNamed('cadastroEndereco');
                                           }
 
                                           setState(() {});

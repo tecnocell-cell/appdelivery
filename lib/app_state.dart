@@ -43,10 +43,13 @@ class FFAppState extends ChangeNotifier {
       _soma = prefs.getDouble('ff_soma') ?? _soma;
     });
     _safeInit(() {
-      _soma2 = prefs.getDouble('ff_soma2') ?? _soma2;
+      _localRefer = prefs.getInt('ff_localRefer') ?? _localRefer;
     });
     _safeInit(() {
-      _localRefer = prefs.getInt('ff_localRefer') ?? _localRefer;
+      _taxaEntrega = prefs.getDouble('ff_taxaEntrega') ?? _taxaEntrega;
+    });
+    _safeInit(() {
+      _totalCompra = prefs.getDouble('ff_totalCompra') ?? _totalCompra;
     });
   }
 
@@ -118,13 +121,6 @@ class FFAppState extends ChangeNotifier {
     prefs.setDouble('ff_soma', value);
   }
 
-  double _soma2 = 0.0;
-  double get soma2 => _soma2;
-  set soma2(double value) {
-    _soma2 = value;
-    prefs.setDouble('ff_soma2', value);
-  }
-
   int _localRefer = 0;
   int get localRefer => _localRefer;
   set localRefer(int value) {
@@ -146,6 +142,20 @@ class FFAppState extends ChangeNotifier {
   bool get opcaoEndereco => _opcaoEndereco;
   set opcaoEndereco(bool value) {
     _opcaoEndereco = value;
+  }
+
+  double _taxaEntrega = 3;
+  double get taxaEntrega => _taxaEntrega;
+  set taxaEntrega(double value) {
+    _taxaEntrega = value;
+    prefs.setDouble('ff_taxaEntrega', value);
+  }
+
+  double _totalCompra = 0.0;
+  double get totalCompra => _totalCompra;
+  set totalCompra(double value) {
+    _totalCompra = value;
+    prefs.setDouble('ff_totalCompra', value);
   }
 }
 

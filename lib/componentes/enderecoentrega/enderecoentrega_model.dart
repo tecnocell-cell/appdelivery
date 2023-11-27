@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'seleciona_endereco_widget.dart' show SelecionaEnderecoWidget;
+import 'enderecoentrega_widget.dart' show EnderecoentregaWidget;
 import 'package:flutter/material.dart';
 
-class SelecionaEnderecoModel extends FlutterFlowModel<SelecionaEnderecoWidget> {
+class EnderecoentregaModel extends FlutterFlowModel<EnderecoentregaWidget> {
   /// Initialization and disposal methods.
 
   @override

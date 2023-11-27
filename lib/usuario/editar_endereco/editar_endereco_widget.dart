@@ -238,7 +238,7 @@ class _EditarEnderecoWidgetState extends State<EditarEnderecoWidget>
                                               .reference
                                               .delete();
 
-                                          context.pushNamed('enderecosUsuario');
+                                          context.pushNamed('cadastroEndereco');
                                         },
                                         child: Icon(
                                           Icons.restore_from_trash,

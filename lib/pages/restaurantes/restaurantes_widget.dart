@@ -1111,65 +1111,108 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                     Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 13.0, 0.0, 13.0),
-                                      child: FlutterFlowChoiceChips(
-                                        options: const [
-                                          ChipData('Massas', Icons.local_pizza),
-                                          ChipData('Doces', Icons.cookie),
-                                          ChipData('Carnes', Icons.food_bank),
-                                          ChipData('Fast Food',
-                                              Icons.fastfood_sharp),
-                                          ChipData('Hamburguer',
-                                              Icons.fastfood_sharp),
-                                          ChipData('Bebidas',
-                                              Icons.local_drink_sharp)
-                                        ],
-                                        onChanged: (val) => setState(() =>
-                                            _model.filtroCategoriaValue =
-                                                val?.first),
-                                        selectedChipStyle: ChipStyle(
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primary,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
+                                      child:
+                                          StreamBuilder<List<CategoriaRecord>>(
+                                        stream: queryCategoriaRecord(
+                                          singleRecord: true,
+                                        ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                          Color>(
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          List<CategoriaRecord>
+                                              filtroCategoriaCategoriaRecordList =
+                                              snapshot.data!;
+                                          // Return an empty Container when the item does not exist.
+                                          if (snapshot.data!.isEmpty) {
+                                            return Container();
+                                          }
+                                          final filtroCategoriaCategoriaRecord =
+                                              filtroCategoriaCategoriaRecordList
+                                                      .isNotEmpty
+                                                  ? filtroCategoriaCategoriaRecordList
+                                                      .first
+                                                  : null;
+                                          return FlutterFlowChoiceChips(
+                                            options: const [
+                                              ChipData(
+                                                  'Massas', Icons.local_pizza),
+                                              ChipData('Doces', Icons.cookie),
+                                              ChipData(
+                                                  'Carnes', Icons.food_bank),
+                                              ChipData('Fast Food',
+                                                  Icons.fastfood_sharp),
+                                              ChipData('Hamburguer',
+                                                  Icons.fastfood_sharp),
+                                              ChipData('Bebidas',
+                                                  Icons.local_drink_sharp)
+                                            ],
+                                            onChanged: (val) => setState(() =>
+                                                _model.filtroCategoriaValue =
+                                                    val?.first),
+                                            selectedChipStyle: ChipStyle(
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              textStyle: FlutterFlowTheme.of(
+                                                      context)
                                                   .bodyMedium
                                                   .override(
                                                     fontFamily: 'Readex Pro',
                                                     color: Colors.white,
                                                     fontWeight: FontWeight.w500,
                                                   ),
-                                          iconColor: Colors.white,
-                                          iconSize: 15.0,
-                                          elevation: 2.0,
-                                        ),
-                                        unselectedChipStyle: ChipStyle(
-                                          backgroundColor: Colors.white,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
+                                              iconColor: Colors.white,
+                                              iconSize: 15.0,
+                                              elevation: 2.0,
+                                            ),
+                                            unselectedChipStyle: ChipStyle(
+                                              backgroundColor: Colors.white,
+                                              textStyle: FlutterFlowTheme.of(
+                                                      context)
                                                   .bodySmall
                                                   .override(
                                                     fontFamily: 'Readex Pro',
                                                     color: Colors.black,
                                                     fontWeight: FontWeight.w600,
                                                   ),
-                                          iconColor: Colors.black,
-                                          iconSize: 18.0,
-                                          elevation: 0.0,
-                                        ),
-                                        chipSpacing: 10.0,
-                                        rowSpacing: 12.0,
-                                        multiselect: false,
-                                        initialized:
-                                            _model.filtroCategoriaValue != null,
-                                        alignment: WrapAlignment.start,
-                                        controller: _model
-                                                .filtroCategoriaValueController ??=
-                                            FormFieldController<List<String>>(
-                                          ['Massas'],
-                                        ),
-                                        wrapped: true,
-                                      ).animateOnPageLoad(animationsMap[
-                                          'choiceChipsOnPageLoadAnimation']!),
+                                              iconColor: Colors.black,
+                                              iconSize: 18.0,
+                                              elevation: 0.0,
+                                            ),
+                                            chipSpacing: 10.0,
+                                            rowSpacing: 12.0,
+                                            multiselect: false,
+                                            initialized:
+                                                _model.filtroCategoriaValue !=
+                                                    null,
+                                            alignment: WrapAlignment.start,
+                                            controller: _model
+                                                    .filtroCategoriaValueController ??=
+                                                FormFieldController<
+                                                    List<String>>(
+                                              ['Massas'],
+                                            ),
+                                            wrapped: true,
+                                          ).animateOnPageLoad(animationsMap[
+                                              'choiceChipsOnPageLoadAnimation']!);
+                                        },
+                                      ),
                                     ),
                                   ],
                                 ),

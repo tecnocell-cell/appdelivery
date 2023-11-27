@@ -129,10 +129,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : const ConfigWidget(),
         ),
         FFRoute(
-          name: 'enderecosUsuario',
+          name: 'cadastroEndereco',
           path: '/perfil',
           requireAuth: true,
-          builder: (context, params) => const EnderecosUsuarioWidget(),
+          builder: (context, params) => const CadastroEnderecoWidget(),
         ),
         FFRoute(
           name: 'meusenderecos',
@@ -149,9 +149,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'escolhaEndereco',
-          path: '/escolhaEndereco',
-          builder: (context, params) => const EscolhaEnderecoWidget(),
+          name: 'ordemAceita',
+          path: '/ordemAceita',
+          builder: (context, params) => const OrdemAceitaWidget(),
+        ),
+        FFRoute(
+          name: 'pagamento',
+          path: '/pagamento',
+          builder: (context, params) => PagamentoWidget(
+            paramEnderecoEntrega: params.getParam('paramEnderecoEntrega',
+                ParamType.DocumentReference, false, ['endereco']),
+          ),
+        ),
+        FFRoute(
+          name: 'entrega',
+          path: '/entrega',
+          builder: (context, params) => const EntregaWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

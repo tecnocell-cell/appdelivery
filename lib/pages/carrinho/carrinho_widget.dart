@@ -110,13 +110,14 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                 if (FFAppState().localRefer.toDouble() > 0)
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 16.0, 0.0, 16.0),
+                              16.0, 16.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -132,50 +133,6 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                     ),
                               ),
                             ],
-                          ),
-                        ),
-                        Container(
-                          width: double.infinity,
-                          height: 40.0,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFFEF0EF),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                8.0, 0.0, 0.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed('escolhaEndereco');
-                              },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.location_on_rounded,
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    size: 24.0,
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          10.0, 0.0, 0.0, 0.0),
-                                      child: Text(
-                                        'Definir Endereço',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyLarge,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
                           ),
                         ),
                         const Divider(
@@ -586,7 +543,13 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                         ),
                                   ),
                                   Text(
-                                    'R\$ 0,00',
+                                    formatNumber(
+                                      FFAppState().taxaEntrega,
+                                      formatType: FormatType.custom,
+                                      currency: 'R\$',
+                                      format: '.00',
+                                      locale: 'pt_BR',
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -608,7 +571,13 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                       FlutterFlowTheme.of(context).bodyMedium,
                                 ),
                                 Text(
-                                  'R\$ 3,00',
+                                  formatNumber(
+                                    FFAppState().taxaEntrega,
+                                    formatType: FormatType.custom,
+                                    currency: 'R\$',
+                                    format: '.00',
+                                    locale: 'pt_BR',
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -638,7 +607,10 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                         ),
                                   ),
                                   Text(
-                                    'R\$ 12345',
+                                    functions
+                                        .somaTotal(FFAppState().taxaEntrega,
+                                            FFAppState().soma)
+                                        .toString(),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -657,51 +629,6 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                               color: Color(0xFFFEF0EF),
                             ),
                           ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 16.0, 16.0, 0.0),
-                        child: Container(
-                          width: double.infinity,
-                          height: 40.0,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFFEF0EF),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                8.0, 0.0, 8.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        10.0, 0.0, 0.0, 0.0),
-                                    child: Text(
-                                      'Definir Forma de Pagamento',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyLarge,
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  'DEFINIR',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyLarge
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ),
                         ),
                       ),
                       Padding(
@@ -743,10 +670,6 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                       ),
                                     ),
                                   ],
-                                ),
-                                Divider(
-                                  thickness: 1.0,
-                                  color: FlutterFlowTheme.of(context).alternate,
                                 ),
                                 TextFormField(
                                   controller: _model.textController,
@@ -817,60 +740,49 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                       ),
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 16.0, 16.0, 16.0),
+                            32.0, 16.0, 32.0, 16.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        34.0, 0.0, 34.0, 0.0),
-                                    child: Container(
-                                      height: 40.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            12.0, 0.0, 12.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                'Finalizar Compra',
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryBackground,
-                                                          fontSize: 20.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                              ),
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed('entrega');
+                              },
+                              child: Container(
+                                width: 250.0,
+                                height: 40.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Continuar',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.w600,
                                             ),
-                                          ],
-                                        ),
                                       ),
-                                    ),
+                                    ],
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
                           ],
                         ),

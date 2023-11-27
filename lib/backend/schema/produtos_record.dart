@@ -1,10 +1,13 @@
 import 'dart:async';
 
+import '/backend/algolia/serialization_util.dart';
+import '/backend/algolia/algolia_manager.dart';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
 
 import 'index.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
 class ProdutosRecord extends FirestoreRecord {
   ProdutosRecord._(
@@ -79,6 +82,50 @@ class ProdutosRecord extends FirestoreRecord {
     DocumentReference reference,
   ) =>
       ProdutosRecord._(reference, mapFromFirestore(data));
+
+  static ProdutosRecord fromAlgolia(AlgoliaObjectSnapshot snapshot) =>
+      ProdutosRecord.getDocumentFromData(
+        {
+          'nome': snapshot.data['nome'],
+          'preco': convertAlgoliaParam(
+            snapshot.data['preco'],
+            ParamType.double,
+            false,
+          ),
+          'sabor': snapshot.data['sabor'],
+          'descri': snapshot.data['descri'],
+          'categoria': convertAlgoliaParam(
+            snapshot.data['categoria'],
+            ParamType.DocumentReference,
+            false,
+          ),
+          'restaurante': convertAlgoliaParam(
+            snapshot.data['restaurante'],
+            ParamType.DocumentReference,
+            false,
+          ),
+          'image': snapshot.data['image'],
+        },
+        ProdutosRecord.collection.doc(snapshot.objectID),
+      );
+
+  static Future<List<ProdutosRecord>> search({
+    String? term,
+    FutureOr<LatLng>? location,
+    int? maxResults,
+    double? searchRadiusMeters,
+    bool useCache = false,
+  }) =>
+      FFAlgoliaManager.instance
+          .algoliaQuery(
+            index: 'produtos',
+            term: term,
+            maxResults: maxResults,
+            location: location,
+            searchRadiusMeters: searchRadiusMeters,
+            useCache: useCache,
+          )
+          .then((r) => r.map(fromAlgolia).toList());
 
   @override
   String toString() =>

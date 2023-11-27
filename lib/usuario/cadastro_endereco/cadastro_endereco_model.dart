@@ -1,11 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'enderecos_usuario_widget.dart' show EnderecosUsuarioWidget;
+import 'cadastro_endereco_widget.dart' show CadastroEnderecoWidget;
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class EnderecosUsuarioModel extends FlutterFlowModel<EnderecosUsuarioWidget> {
+class CadastroEnderecoModel extends FlutterFlowModel<CadastroEnderecoWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

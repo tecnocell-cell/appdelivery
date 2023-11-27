@@ -23,3 +23,10 @@ double? subtotalProdutos(
 double subtrair(double valor1) {
   return valor1 * -1;
 }
+
+double somaTotal(
+  double subTotal,
+  double taxaEntrega,
+) {
+  return subTotal + taxaEntrega;
+}

@@ -164,7 +164,7 @@ class _MeusenderecosWidgetState extends State<MeusenderecosWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    context.pushNamed('enderecosUsuario');
+                                    context.pushNamed('cadastroEndereco');
                                   },
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,

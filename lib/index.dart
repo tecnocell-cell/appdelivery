@@ -7,11 +7,12 @@ export '/pages/detalhe_pedidos/detalhe_pedidos_widget.dart'
     show DetalhePedidosWidget;
 export '/pages/carrinho/carrinho_widget.dart' show CarrinhoWidget;
 export '/usuario/config/config_widget.dart' show ConfigWidget;
-export '/usuario/enderecos_usuario/enderecos_usuario_widget.dart'
-    show EnderecosUsuarioWidget;
+export '/usuario/cadastro_endereco/cadastro_endereco_widget.dart'
+    show CadastroEnderecoWidget;
 export '/usuario/meusenderecos/meusenderecos_widget.dart'
     show MeusenderecosWidget;
 export '/usuario/editar_endereco/editar_endereco_widget.dart'
     show EditarEnderecoWidget;
-export '/pages/escolha_endereco/escolha_endereco_widget.dart'
-    show EscolhaEnderecoWidget;
+export '/pages/ordem_aceita/ordem_aceita_widget.dart' show OrdemAceitaWidget;
+export '/pages/pagamento/pagamento_widget.dart' show PagamentoWidget;
+export '/pages/entrega/entrega_widget.dart' show EntregaWidget;
