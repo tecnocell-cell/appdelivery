@@ -51,21 +51,6 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _totalCompra = prefs.getDouble('ff_totalCompra') ?? _totalCompra;
     });
-    _safeInit(() {
-      _categoriasChoice = prefs
-              .getStringList('ff_categoriasChoice')
-              ?.map((x) {
-                try {
-                  return ChoiceChipsStruct.fromSerializableMap(jsonDecode(x));
-                } catch (e) {
-                  print("Can't decode persisted data type. Error: $e.");
-                  return null;
-                }
-              })
-              .withoutNulls
-              .toList() ??
-          _categoriasChoice;
-    });
   }
 
   void update(VoidCallback callback) {
@@ -171,47 +156,6 @@ class FFAppState extends ChangeNotifier {
   set totalCompra(double value) {
     _totalCompra = value;
     prefs.setDouble('ff_totalCompra', value);
-  }
-
-  List<ChoiceChipsStruct> _categoriasChoice = [];
-  List<ChoiceChipsStruct> get categoriasChoice => _categoriasChoice;
-  set categoriasChoice(List<ChoiceChipsStruct> value) {
-    _categoriasChoice = value;
-    prefs.setStringList(
-        'ff_categoriasChoice', value.map((x) => x.serialize()).toList());
-  }
-
-  void addToCategoriasChoice(ChoiceChipsStruct value) {
-    _categoriasChoice.add(value);
-    prefs.setStringList('ff_categoriasChoice',
-        _categoriasChoice.map((x) => x.serialize()).toList());
-  }
-
-  void removeFromCategoriasChoice(ChoiceChipsStruct value) {
-    _categoriasChoice.remove(value);
-    prefs.setStringList('ff_categoriasChoice',
-        _categoriasChoice.map((x) => x.serialize()).toList());
-  }
-
-  void removeAtIndexFromCategoriasChoice(int index) {
-    _categoriasChoice.removeAt(index);
-    prefs.setStringList('ff_categoriasChoice',
-        _categoriasChoice.map((x) => x.serialize()).toList());
-  }
-
-  void updateCategoriasChoiceAtIndex(
-    int index,
-    ChoiceChipsStruct Function(ChoiceChipsStruct) updateFn,
-  ) {
-    _categoriasChoice[index] = updateFn(_categoriasChoice[index]);
-    prefs.setStringList('ff_categoriasChoice',
-        _categoriasChoice.map((x) => x.serialize()).toList());
-  }
-
-  void insertAtIndexInCategoriasChoice(int index, ChoiceChipsStruct value) {
-    _categoriasChoice.insert(index, value);
-    prefs.setStringList('ff_categoriasChoice',
-        _categoriasChoice.map((x) => x.serialize()).toList());
   }
 }
 

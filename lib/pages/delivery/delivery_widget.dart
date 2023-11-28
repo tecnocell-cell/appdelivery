@@ -267,10 +267,25 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                       position: badges.BadgePosition.topEnd(),
                       animationType: badges.BadgeAnimationType.scale,
                       toAnimate: true,
-                      child: Icon(
-                        FFIcons.knotification4,
-                        color: FlutterFlowTheme.of(context).primary,
-                        size: 24.0,
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          setState(() {
+                            FFAppState().pedido = [];
+                            FFAppState().subTotalItem = 0;
+                            FFAppState().addCarrinho = 0.0;
+                            FFAppState().soma = 0.0;
+                            FFAppState().localRefer = 0;
+                          });
+                        },
+                        child: Icon(
+                          FFIcons.knotification4,
+                          color: FlutterFlowTheme.of(context).primary,
+                          size: 24.0,
+                        ),
                       ),
                     ),
                   ],

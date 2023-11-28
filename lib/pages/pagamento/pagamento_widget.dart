@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -422,33 +423,69 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
-                  child: Container(
-                    width: 250.0,
-                    height: 40.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primary,
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Finalizar Compra',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                  child: InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      var vendasRecordReference = VendasRecord.collection.doc();
+                      await vendasRecordReference.set(createVendasRecordData(
+                        valortotal: FFAppState().totalCompra,
+                        dataVenda: getCurrentTimestamp,
+                        usuarioVenda: currentUserReference,
+                        endereco: widget.paramEnderecoEntrega,
+                        pedidoSendoPrepatado: false,
+                        pedidoEnviadoEntrega: false,
+                        pagamentoSucesso: true,
+                        entregaRealizada: false,
+                      ));
+                      _model.finalizaCompra = VendasRecord.getDocumentFromData(
+                          createVendasRecordData(
+                            valortotal: FFAppState().totalCompra,
+                            dataVenda: getCurrentTimestamp,
+                            usuarioVenda: currentUserReference,
+                            endereco: widget.paramEnderecoEntrega,
+                            pedidoSendoPrepatado: false,
+                            pedidoEnviadoEntrega: false,
+                            pagamentoSucesso: true,
+                            entregaRealizada: false,
                           ),
-                        ],
+                          vendasRecordReference);
+
+                      await _model.finalizaCompra!.reference
+                          .update(createVendasRecordData());
+
+                      setState(() {});
+                    },
+                    child: Container(
+                      width: 250.0,
+                      height: 40.0,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).primary,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            24.0, 0.0, 24.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Finalizar Compra',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
