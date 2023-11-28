@@ -10,33 +10,18 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class PedidoStruct extends FFFirebaseStruct {
   PedidoStruct({
-    String? nomePedido,
-    double? preco,
     int? quantidade,
     String? img,
-    String? id,
-    String? categoaria,
+    double? subTotal,
+    DocumentReference? produto,
+    DocumentReference? usuario,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
-  })  : _nomePedido = nomePedido,
-        _preco = preco,
-        _quantidade = quantidade,
+  })  : _quantidade = quantidade,
         _img = img,
-        _id = id,
-        _categoaria = categoaria,
+        _subTotal = subTotal,
+        _produto = produto,
+        _usuario = usuario,
         super(firestoreUtilData);
-
-  // "nome_pedido" field.
-  String? _nomePedido;
-  String get nomePedido => _nomePedido ?? '';
-  set nomePedido(String? val) => _nomePedido = val;
-  bool hasNomePedido() => _nomePedido != null;
-
-  // "preco" field.
-  double? _preco;
-  double get preco => _preco ?? 0.0;
-  set preco(double? val) => _preco = val;
-  void incrementPreco(double amount) => _preco = preco + amount;
-  bool hasPreco() => _preco != null;
 
   // "quantidade" field.
   int? _quantidade;
@@ -51,49 +36,46 @@ class PedidoStruct extends FFFirebaseStruct {
   set img(String? val) => _img = val;
   bool hasImg() => _img != null;
 
-  // "id" field.
-  String? _id;
-  String get id => _id ?? '';
-  set id(String? val) => _id = val;
-  bool hasId() => _id != null;
+  // "subTotal" field.
+  double? _subTotal;
+  double get subTotal => _subTotal ?? 0.0;
+  set subTotal(double? val) => _subTotal = val;
+  void incrementSubTotal(double amount) => _subTotal = subTotal + amount;
+  bool hasSubTotal() => _subTotal != null;
 
-  // "categoaria" field.
-  String? _categoaria;
-  String get categoaria => _categoaria ?? '';
-  set categoaria(String? val) => _categoaria = val;
-  bool hasCategoaria() => _categoaria != null;
+  // "produto" field.
+  DocumentReference? _produto;
+  DocumentReference? get produto => _produto;
+  set produto(DocumentReference? val) => _produto = val;
+  bool hasProduto() => _produto != null;
+
+  // "usuario" field.
+  DocumentReference? _usuario;
+  DocumentReference? get usuario => _usuario;
+  set usuario(DocumentReference? val) => _usuario = val;
+  bool hasUsuario() => _usuario != null;
 
   static PedidoStruct fromMap(Map<String, dynamic> data) => PedidoStruct(
-        nomePedido: data['nome_pedido'] as String?,
-        preco: castToType<double>(data['preco']),
         quantidade: castToType<int>(data['quantidade']),
         img: data['img'] as String?,
-        id: data['id'] as String?,
-        categoaria: data['categoaria'] as String?,
+        subTotal: castToType<double>(data['subTotal']),
+        produto: data['produto'] as DocumentReference?,
+        usuario: data['usuario'] as DocumentReference?,
       );
 
   static PedidoStruct? maybeFromMap(dynamic data) =>
       data is Map<String, dynamic> ? PedidoStruct.fromMap(data) : null;
 
   Map<String, dynamic> toMap() => {
-        'nome_pedido': _nomePedido,
-        'preco': _preco,
         'quantidade': _quantidade,
         'img': _img,
-        'id': _id,
-        'categoaria': _categoaria,
+        'subTotal': _subTotal,
+        'produto': _produto,
+        'usuario': _usuario,
       }.withoutNulls;
 
   @override
   Map<String, dynamic> toSerializableMap() => {
-        'nome_pedido': serializeParam(
-          _nomePedido,
-          ParamType.String,
-        ),
-        'preco': serializeParam(
-          _preco,
-          ParamType.double,
-        ),
         'quantidade': serializeParam(
           _quantidade,
           ParamType.int,
@@ -102,28 +84,22 @@ class PedidoStruct extends FFFirebaseStruct {
           _img,
           ParamType.String,
         ),
-        'id': serializeParam(
-          _id,
-          ParamType.String,
+        'subTotal': serializeParam(
+          _subTotal,
+          ParamType.double,
         ),
-        'categoaria': serializeParam(
-          _categoaria,
-          ParamType.String,
+        'produto': serializeParam(
+          _produto,
+          ParamType.DocumentReference,
+        ),
+        'usuario': serializeParam(
+          _usuario,
+          ParamType.DocumentReference,
         ),
       }.withoutNulls;
 
   static PedidoStruct fromSerializableMap(Map<String, dynamic> data) =>
       PedidoStruct(
-        nomePedido: deserializeParam(
-          data['nome_pedido'],
-          ParamType.String,
-          false,
-        ),
-        preco: deserializeParam(
-          data['preco'],
-          ParamType.double,
-          false,
-        ),
         quantidade: deserializeParam(
           data['quantidade'],
           ParamType.int,
@@ -134,30 +110,27 @@ class PedidoStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
-        id: deserializeParam(
-          data['id'],
-          ParamType.String,
+        subTotal: deserializeParam(
+          data['subTotal'],
+          ParamType.double,
           false,
         ),
-        categoaria: deserializeParam(
-          data['categoaria'],
-          ParamType.String,
+        produto: deserializeParam(
+          data['produto'],
+          ParamType.DocumentReference,
           false,
+          collectionNamePath: ['produtos'],
+        ),
+        usuario: deserializeParam(
+          data['usuario'],
+          ParamType.DocumentReference,
+          false,
+          collectionNamePath: ['users'],
         ),
       );
 
   static PedidoStruct fromAlgoliaData(Map<String, dynamic> data) =>
       PedidoStruct(
-        nomePedido: convertAlgoliaParam(
-          data['nome_pedido'],
-          ParamType.String,
-          false,
-        ),
-        preco: convertAlgoliaParam(
-          data['preco'],
-          ParamType.double,
-          false,
-        ),
         quantidade: convertAlgoliaParam(
           data['quantidade'],
           ParamType.int,
@@ -168,14 +141,19 @@ class PedidoStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
-        id: convertAlgoliaParam(
-          data['id'],
-          ParamType.String,
+        subTotal: convertAlgoliaParam(
+          data['subTotal'],
+          ParamType.double,
           false,
         ),
-        categoaria: convertAlgoliaParam(
-          data['categoaria'],
-          ParamType.String,
+        produto: convertAlgoliaParam(
+          data['produto'],
+          ParamType.DocumentReference,
+          false,
+        ),
+        usuario: convertAlgoliaParam(
+          data['usuario'],
+          ParamType.DocumentReference,
           false,
         ),
         firestoreUtilData: const FirestoreUtilData(
@@ -190,38 +168,35 @@ class PedidoStruct extends FFFirebaseStruct {
   @override
   bool operator ==(Object other) {
     return other is PedidoStruct &&
-        nomePedido == other.nomePedido &&
-        preco == other.preco &&
         quantidade == other.quantidade &&
         img == other.img &&
-        id == other.id &&
-        categoaria == other.categoaria;
+        subTotal == other.subTotal &&
+        produto == other.produto &&
+        usuario == other.usuario;
   }
 
   @override
-  int get hashCode => const ListEquality()
-      .hash([nomePedido, preco, quantidade, img, id, categoaria]);
+  int get hashCode =>
+      const ListEquality().hash([quantidade, img, subTotal, produto, usuario]);
 }
 
 PedidoStruct createPedidoStruct({
-  String? nomePedido,
-  double? preco,
   int? quantidade,
   String? img,
-  String? id,
-  String? categoaria,
+  double? subTotal,
+  DocumentReference? produto,
+  DocumentReference? usuario,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
   bool delete = false,
 }) =>
     PedidoStruct(
-      nomePedido: nomePedido,
-      preco: preco,
       quantidade: quantidade,
       img: img,
-      id: id,
-      categoaria: categoaria,
+      subTotal: subTotal,
+      produto: produto,
+      usuario: usuario,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

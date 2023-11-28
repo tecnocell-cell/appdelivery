@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/componentes/carrinho_vazio/carrinho_vazio_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -217,17 +218,50 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                                     0.0,
                                                                     0.0,
                                                                     0.0),
-                                                        child: Text(
-                                                          carrinhoItem
-                                                              .nomePedido,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyLarge
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                fontSize: 14.0,
-                                                              ),
+                                                        child: StreamBuilder<
+                                                            ProdutosRecord>(
+                                                          stream: ProdutosRecord
+                                                              .getDocument(
+                                                                  carrinhoItem
+                                                                      .produto!),
+                                                          builder: (context,
+                                                              snapshot) {
+                                                            // Customize what your widget looks like when it's loading.
+                                                            if (!snapshot
+                                                                .hasData) {
+                                                              return Center(
+                                                                child: SizedBox(
+                                                                  width: 50.0,
+                                                                  height: 50.0,
+                                                                  child:
+                                                                      CircularProgressIndicator(
+                                                                    valueColor:
+                                                                        AlwaysStoppedAnimation<
+                                                                            Color>(
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            }
+                                                            final textProdutosRecord =
+                                                                snapshot.data!;
+                                                            return Text(
+                                                              textProdutosRecord
+                                                                  .nome,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyLarge
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    fontSize:
+                                                                        14.0,
+                                                                  ),
+                                                            );
+                                                          },
                                                         ),
                                                       ),
                                                     ),
@@ -250,7 +284,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                           functions
                                                               .subtotalProdutos(
                                                                   carrinhoItem
-                                                                      .preco,
+                                                                      .subTotal,
                                                                   carrinhoItem
                                                                       .quantidade),
                                                           formatType:
@@ -332,16 +366,16 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                                     -1),
                                                             );
                                                             FFAppState()
-                                                                .soma = FFAppState()
-                                                                    .soma +
-                                                                functions.subtrair(
-                                                                    carrinhoItem
-                                                                        .preco);
-                                                            FFAppState()
                                                                     .localRefer =
                                                                 FFAppState()
                                                                         .localRefer +
                                                                     -1;
+                                                            FFAppState()
+                                                                .soma = FFAppState()
+                                                                    .soma +
+                                                                functions.subtrair(
+                                                                    carrinhoItem
+                                                                        .subTotal);
                                                           });
                                                           if (carrinhoItem
                                                                   .quantidade <=
@@ -416,7 +450,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                               FFAppState()
                                                                       .soma +
                                                                   carrinhoItem
-                                                                      .preco;
+                                                                      .subTotal;
                                                           FFAppState()
                                                                   .localRefer =
                                                               FFAppState()
