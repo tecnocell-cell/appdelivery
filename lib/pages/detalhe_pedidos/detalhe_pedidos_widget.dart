@@ -870,11 +870,23 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            await ProdutoVendaRecord.collection
+                                .doc()
+                                .set(createProdutoVendaRecordData(
+                                  valorSubtotal: functions.subtotalProdutos(
+                                      detalhePedidosProdutosRecord.preco,
+                                      _model.countControllerValue!),
+                                  produto: widget.detalheProduto,
+                                  quantidade: _model.countControllerValue,
+                                  usuario: currentUserReference,
+                                ));
                             setState(() {
                               FFAppState().addToPedido(PedidoStruct(
                                 quantidade: _model.countControllerValue,
                                 img: detalhePedidosProdutosRecord.image,
-                                subTotal: detalhePedidosProdutosRecord.preco,
+                                subTotal: functions.subtotalProdutos(
+                                    detalhePedidosProdutosRecord.preco,
+                                    _model.countControllerValue!),
                                 produto: detalhePedidosProdutosRecord.reference,
                                 usuario: currentUserReference,
                               ));

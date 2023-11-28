@@ -281,12 +281,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                                   0.0),
                                                       child: Text(
                                                         formatNumber(
-                                                          functions
-                                                              .subtotalProdutos(
-                                                                  carrinhoItem
-                                                                      .subTotal,
-                                                                  carrinhoItem
-                                                                      .quantidade),
+                                                          carrinhoItem.subTotal,
                                                           formatType:
                                                               FormatType.custom,
                                                           currency: 'R\$ ',
@@ -366,16 +361,17 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                                     -1),
                                                             );
                                                             FFAppState()
-                                                                    .localRefer =
-                                                                FFAppState()
-                                                                        .localRefer +
-                                                                    -1;
-                                                            FFAppState()
                                                                 .soma = FFAppState()
                                                                     .soma +
                                                                 functions.subtrair(
                                                                     carrinhoItem
-                                                                        .subTotal);
+                                                                        .quantidade
+                                                                        .toDouble());
+                                                            FFAppState()
+                                                                    .localRefer =
+                                                                FFAppState()
+                                                                        .localRefer +
+                                                                    -1;
                                                           });
                                                           if (carrinhoItem
                                                                   .quantidade <=
@@ -446,11 +442,12 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                               ..incrementQuantidade(
                                                                   1),
                                                           );
-                                                          FFAppState().soma =
-                                                              FFAppState()
-                                                                      .soma +
-                                                                  carrinhoItem
-                                                                      .subTotal;
+                                                          FFAppState()
+                                                              .soma = FFAppState()
+                                                                  .soma +
+                                                              carrinhoItem
+                                                                  .quantidade
+                                                                  .toDouble();
                                                           FFAppState()
                                                                   .localRefer =
                                                               FFAppState()
