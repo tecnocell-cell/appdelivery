@@ -10,7 +10,6 @@ import 'schema/produtos_record.dart';
 import 'schema/categoria_record.dart';
 import 'schema/restaurante_record.dart';
 import 'schema/tipo_comercio_record.dart';
-import 'schema/produto_venda_record.dart';
 import 'schema/vendas_record.dart';
 import 'schema/endereco_record.dart';
 
@@ -25,7 +24,6 @@ export 'schema/produtos_record.dart';
 export 'schema/categoria_record.dart';
 export 'schema/restaurante_record.dart';
 export 'schema/tipo_comercio_record.dart';
-export 'schema/produto_venda_record.dart';
 export 'schema/vendas_record.dart';
 export 'schema/endereco_record.dart';
 
@@ -209,43 +207,6 @@ Future<List<TipoComercioRecord>> queryTipoComercioRecordOnce({
     queryCollectionOnce(
       TipoComercioRecord.collection,
       TipoComercioRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-/// Functions to query ProdutoVendaRecords (as a Stream and as a Future).
-Future<int> queryProdutoVendaRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      ProdutoVendaRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<ProdutoVendaRecord>> queryProdutoVendaRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      ProdutoVendaRecord.collection,
-      ProdutoVendaRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<ProdutoVendaRecord>> queryProdutoVendaRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      ProdutoVendaRecord.collection,
-      ProdutoVendaRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

@@ -453,9 +453,6 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                           ),
                           vendasRecordReference);
 
-                      await _model.finalizaCompra!.reference
-                          .update(createVendasRecordData());
-
                       setState(() {});
                     },
                     child: Container(

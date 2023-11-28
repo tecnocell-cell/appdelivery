@@ -29,11 +29,6 @@ class VendasRecord extends FirestoreRecord {
   DocumentReference? get usuarioVenda => _usuarioVenda;
   bool hasUsuarioVenda() => _usuarioVenda != null;
 
-  // "produtoVenda" field.
-  List<DocumentReference>? _produtoVenda;
-  List<DocumentReference> get produtoVenda => _produtoVenda ?? const [];
-  bool hasProdutoVenda() => _produtoVenda != null;
-
   // "endereco" field.
   DocumentReference? _endereco;
   DocumentReference? get endereco => _endereco;
@@ -63,7 +58,6 @@ class VendasRecord extends FirestoreRecord {
     _valortotal = castToType<double>(snapshotData['valortotal']);
     _dataVenda = snapshotData['dataVenda'] as DateTime?;
     _usuarioVenda = snapshotData['usuarioVenda'] as DocumentReference?;
-    _produtoVenda = getDataList(snapshotData['produtoVenda']);
     _endereco = snapshotData['endereco'] as DocumentReference?;
     _pedidoSendoPrepatado = snapshotData['pedidoSendoPrepatado'] as bool?;
     _pedidoEnviadoEntrega = snapshotData['pedidoEnviadoEntrega'] as bool?;
@@ -135,11 +129,9 @@ class VendasRecordDocumentEquality implements Equality<VendasRecord> {
 
   @override
   bool equals(VendasRecord? e1, VendasRecord? e2) {
-    const listEquality = ListEquality();
     return e1?.valortotal == e2?.valortotal &&
         e1?.dataVenda == e2?.dataVenda &&
         e1?.usuarioVenda == e2?.usuarioVenda &&
-        listEquality.equals(e1?.produtoVenda, e2?.produtoVenda) &&
         e1?.endereco == e2?.endereco &&
         e1?.pedidoSendoPrepatado == e2?.pedidoSendoPrepatado &&
         e1?.pedidoEnviadoEntrega == e2?.pedidoEnviadoEntrega &&
@@ -152,7 +144,6 @@ class VendasRecordDocumentEquality implements Equality<VendasRecord> {
         e?.valortotal,
         e?.dataVenda,
         e?.usuarioVenda,
-        e?.produtoVenda,
         e?.endereco,
         e?.pedidoSendoPrepatado,
         e?.pedidoEnviadoEntrega,
