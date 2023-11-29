@@ -64,6 +64,21 @@ class EnderecoRecord extends FirestoreRecord {
   String get status => _status ?? '';
   bool hasStatus() => _status != null;
 
+  // "quanidade" field.
+  int? _quanidade;
+  int get quanidade => _quanidade ?? 0;
+  bool hasQuanidade() => _quanidade != null;
+
+  // "cliente" field.
+  DocumentReference? _cliente;
+  DocumentReference? get cliente => _cliente;
+  bool hasCliente() => _cliente != null;
+
+  // "img" field.
+  String? _img;
+  String get img => _img ?? '';
+  bool hasImg() => _img != null;
+
   void _initializeFields() {
     _rua = snapshotData['rua'] as String?;
     _bairro = snapshotData['bairro'] as String?;
@@ -75,6 +90,9 @@ class EnderecoRecord extends FirestoreRecord {
     _identificador = snapshotData['identificador'] as String?;
     _usuario = snapshotData['usuario'] as DocumentReference?;
     _status = snapshotData['status'] as String?;
+    _quanidade = castToType<int>(snapshotData['quanidade']);
+    _cliente = snapshotData['cliente'] as DocumentReference?;
+    _img = snapshotData['img'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -122,6 +140,9 @@ Map<String, dynamic> createEnderecoRecordData({
   String? identificador,
   DocumentReference? usuario,
   String? status,
+  int? quanidade,
+  DocumentReference? cliente,
+  String? img,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -135,6 +156,9 @@ Map<String, dynamic> createEnderecoRecordData({
       'identificador': identificador,
       'usuario': usuario,
       'status': status,
+      'quanidade': quanidade,
+      'cliente': cliente,
+      'img': img,
     }.withoutNulls,
   );
 
@@ -155,7 +179,10 @@ class EnderecoRecordDocumentEquality implements Equality<EnderecoRecord> {
         e1?.numero == e2?.numero &&
         e1?.identificador == e2?.identificador &&
         e1?.usuario == e2?.usuario &&
-        e1?.status == e2?.status;
+        e1?.status == e2?.status &&
+        e1?.quanidade == e2?.quanidade &&
+        e1?.cliente == e2?.cliente &&
+        e1?.img == e2?.img;
   }
 
   @override
@@ -169,7 +196,10 @@ class EnderecoRecordDocumentEquality implements Equality<EnderecoRecord> {
         e?.numero,
         e?.identificador,
         e?.usuario,
-        e?.status
+        e?.status,
+        e?.quanidade,
+        e?.cliente,
+        e?.img
       ]);
 
   @override

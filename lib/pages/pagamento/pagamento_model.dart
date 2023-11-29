@@ -1,4 +1,3 @@
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'pagamento_widget.dart' show PagamentoWidget;
@@ -11,8 +10,6 @@ class PagamentoModel extends FlutterFlowModel<PagamentoWidget> {
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
-  // Stores action output result for [Backend Call - Create Document] action in Container widget.
-  VendasRecord? finalizaCompra;
 
   /// Initialization and disposal methods.
 

@@ -429,31 +429,44 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () async {
-                      var vendasRecordReference = VendasRecord.collection.doc();
-                      await vendasRecordReference.set(createVendasRecordData(
-                        valortotal: FFAppState().totalCompra,
-                        dataVenda: getCurrentTimestamp,
-                        usuarioVenda: currentUserReference,
-                        endereco: widget.paramEnderecoEntrega,
-                        pedidoSendoPrepatado: false,
-                        pedidoEnviadoEntrega: false,
-                        pagamentoSucesso: true,
-                        entregaRealizada: false,
-                      ));
-                      _model.finalizaCompra = VendasRecord.getDocumentFromData(
-                          createVendasRecordData(
-                            valortotal: FFAppState().totalCompra,
-                            dataVenda: getCurrentTimestamp,
-                            usuarioVenda: currentUserReference,
-                            endereco: widget.paramEnderecoEntrega,
-                            pedidoSendoPrepatado: false,
-                            pedidoEnviadoEntrega: false,
-                            pagamentoSucesso: true,
-                            entregaRealizada: false,
-                          ),
-                          vendasRecordReference);
+                      if (FFAppState().pedido.isNotEmpty) {
+                        setState(() {
+                          FFAppState().contador = -1;
+                        });
+                        while (FFAppState().contador <=
+                            FFAppState().pedido.length) {
+                          setState(() {
+                            FFAppState().contador = FFAppState().contador + 1;
+                          });
 
-                      setState(() {});
+                          await VendasRecord.collection
+                              .doc()
+                              .set(createVendasRecordData(
+                                valortotal: FFAppState().totalCompra,
+                                dataVenda: getCurrentTimestamp,
+                                usuarioVenda: currentUserReference,
+                                endereco: widget.paramEnderecoEntrega,
+                                pedidoSendoPrepatado: false,
+                                pedidoEnviadoEntrega: false,
+                                pagamentoSucesso: true,
+                                entregaRealizada: false,
+                                preco: FFAppState()
+                                    .pedido[FFAppState().contador]
+                                    .subTotal,
+                                produto: FFAppState()
+                                    .pedido[FFAppState().contador]
+                                    .produto
+                                    ?.id,
+                                quantidade: FFAppState()
+                                    .pedido[FFAppState().contador]
+                                    .quantidade,
+                              ));
+
+                          context.pushNamed('ordemAceita');
+                        }
+                      } else {
+                        return;
+                      }
                     },
                     child: Container(
                       width: 250.0,

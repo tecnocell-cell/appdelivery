@@ -157,6 +157,12 @@ class FFAppState extends ChangeNotifier {
     _totalCompra = value;
     prefs.setDouble('ff_totalCompra', value);
   }
+
+  int _contador = -1;
+  int get contador => _contador;
+  set contador(int value) {
+    _contador = value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

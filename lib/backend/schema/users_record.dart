@@ -54,6 +54,11 @@ class UsersRecord extends FirestoreRecord {
   List<DocumentReference> get vendas => _vendas ?? const [];
   bool hasVendas() => _vendas != null;
 
+  // "pedido" field.
+  List<String>? _pedido;
+  List<String> get pedido => _pedido ?? const [];
+  bool hasPedido() => _pedido != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -63,6 +68,7 @@ class UsersRecord extends FirestoreRecord {
     _phoneNumber = snapshotData['phone_number'] as String?;
     _endereco = getDataList(snapshotData['endereco']);
     _vendas = getDataList(snapshotData['vendas']);
+    _pedido = getDataList(snapshotData['pedido']);
   }
 
   static CollectionReference get collection =>
@@ -133,7 +139,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.createdTime == e2?.createdTime &&
         e1?.phoneNumber == e2?.phoneNumber &&
         listEquality.equals(e1?.endereco, e2?.endereco) &&
-        listEquality.equals(e1?.vendas, e2?.vendas);
+        listEquality.equals(e1?.vendas, e2?.vendas) &&
+        listEquality.equals(e1?.pedido, e2?.pedido);
   }
 
   @override
@@ -145,7 +152,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.createdTime,
         e?.phoneNumber,
         e?.endereco,
-        e?.vendas
+        e?.vendas,
+        e?.pedido
       ]);
 
   @override

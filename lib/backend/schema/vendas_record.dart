@@ -54,6 +54,36 @@ class VendasRecord extends FirestoreRecord {
   bool get entregaRealizada => _entregaRealizada ?? false;
   bool hasEntregaRealizada() => _entregaRealizada != null;
 
+  // "nPedido" field.
+  String? _nPedido;
+  String get nPedido => _nPedido ?? '';
+  bool hasNPedido() => _nPedido != null;
+
+  // "idPedido" field.
+  String? _idPedido;
+  String get idPedido => _idPedido ?? '';
+  bool hasIdPedido() => _idPedido != null;
+
+  // "preco" field.
+  double? _preco;
+  double get preco => _preco ?? 0.0;
+  bool hasPreco() => _preco != null;
+
+  // "produto" field.
+  String? _produto;
+  String get produto => _produto ?? '';
+  bool hasProduto() => _produto != null;
+
+  // "quantidade" field.
+  int? _quantidade;
+  int get quantidade => _quantidade ?? 0;
+  bool hasQuantidade() => _quantidade != null;
+
+  // "img" field.
+  String? _img;
+  String get img => _img ?? '';
+  bool hasImg() => _img != null;
+
   void _initializeFields() {
     _valortotal = castToType<double>(snapshotData['valortotal']);
     _dataVenda = snapshotData['dataVenda'] as DateTime?;
@@ -63,6 +93,12 @@ class VendasRecord extends FirestoreRecord {
     _pedidoEnviadoEntrega = snapshotData['pedidoEnviadoEntrega'] as bool?;
     _pagamentoSucesso = snapshotData['pagamentoSucesso'] as bool?;
     _entregaRealizada = snapshotData['entregaRealizada'] as bool?;
+    _nPedido = snapshotData['nPedido'] as String?;
+    _idPedido = snapshotData['idPedido'] as String?;
+    _preco = castToType<double>(snapshotData['preco']);
+    _produto = snapshotData['produto'] as String?;
+    _quantidade = castToType<int>(snapshotData['quantidade']);
+    _img = snapshotData['img'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -107,6 +143,12 @@ Map<String, dynamic> createVendasRecordData({
   bool? pedidoEnviadoEntrega,
   bool? pagamentoSucesso,
   bool? entregaRealizada,
+  String? nPedido,
+  String? idPedido,
+  double? preco,
+  String? produto,
+  int? quantidade,
+  String? img,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -118,6 +160,12 @@ Map<String, dynamic> createVendasRecordData({
       'pedidoEnviadoEntrega': pedidoEnviadoEntrega,
       'pagamentoSucesso': pagamentoSucesso,
       'entregaRealizada': entregaRealizada,
+      'nPedido': nPedido,
+      'idPedido': idPedido,
+      'preco': preco,
+      'produto': produto,
+      'quantidade': quantidade,
+      'img': img,
     }.withoutNulls,
   );
 
@@ -136,7 +184,13 @@ class VendasRecordDocumentEquality implements Equality<VendasRecord> {
         e1?.pedidoSendoPrepatado == e2?.pedidoSendoPrepatado &&
         e1?.pedidoEnviadoEntrega == e2?.pedidoEnviadoEntrega &&
         e1?.pagamentoSucesso == e2?.pagamentoSucesso &&
-        e1?.entregaRealizada == e2?.entregaRealizada;
+        e1?.entregaRealizada == e2?.entregaRealizada &&
+        e1?.nPedido == e2?.nPedido &&
+        e1?.idPedido == e2?.idPedido &&
+        e1?.preco == e2?.preco &&
+        e1?.produto == e2?.produto &&
+        e1?.quantidade == e2?.quantidade &&
+        e1?.img == e2?.img;
   }
 
   @override
@@ -148,7 +202,13 @@ class VendasRecordDocumentEquality implements Equality<VendasRecord> {
         e?.pedidoSendoPrepatado,
         e?.pedidoEnviadoEntrega,
         e?.pagamentoSucesso,
-        e?.entregaRealizada
+        e?.entregaRealizada,
+        e?.nPedido,
+        e?.idPedido,
+        e?.preco,
+        e?.produto,
+        e?.quantidade,
+        e?.img
       ]);
 
   @override
