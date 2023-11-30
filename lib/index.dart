@@ -18,3 +18,5 @@ export '/pages/pagamento/pagamento_widget.dart' show PagamentoWidget;
 export '/pages/endereco_entrega/endereco_entrega_widget.dart'
     show EnderecoEntregaWidget;
 export '/pages/filtro/filtro_widget.dart' show FiltroWidget;
+export '/pages/pizza_dois_sabores/pizza_dois_sabores_widget.dart'
+    show PizzaDoisSaboresWidget;

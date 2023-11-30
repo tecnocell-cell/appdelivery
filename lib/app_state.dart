@@ -51,6 +51,9 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _totalCompra = prefs.getDouble('ff_totalCompra') ?? _totalCompra;
     });
+    _safeInit(() {
+      _PizzaIndex = prefs.getInt('ff_PizzaIndex') ?? _PizzaIndex;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -168,6 +171,31 @@ class FFAppState extends ChangeNotifier {
   String get statusPag => _statusPag;
   set statusPag(String value) {
     _statusPag = value;
+  }
+
+  bool _addFavorito = false;
+  bool get addFavorito => _addFavorito;
+  set addFavorito(bool value) {
+    _addFavorito = value;
+  }
+
+  bool _addToCarrinho = false;
+  bool get addToCarrinho => _addToCarrinho;
+  set addToCarrinho(bool value) {
+    _addToCarrinho = value;
+  }
+
+  int _PizzaIndex = 0;
+  int get PizzaIndex => _PizzaIndex;
+  set PizzaIndex(int value) {
+    _PizzaIndex = value;
+    prefs.setInt('ff_PizzaIndex', value);
+  }
+
+  bool _OptionSedid = false;
+  bool get OptionSedid => _OptionSedid;
+  set OptionSedid(bool value) {
+    _OptionSedid = value;
   }
 }
 
