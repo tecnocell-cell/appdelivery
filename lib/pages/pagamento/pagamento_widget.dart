@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'pagamento_model.dart';
@@ -35,7 +34,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
     _model = createModel(context, () => PagamentoModel());
 
     _model.textController1 ??= TextEditingController();
-    _model.textFieldFocusNode1 ??= FocusNode();
+    _model.textFieldFocusNode ??= FocusNode();
 
     _model.nomeController ??= TextEditingController();
     _model.nomeFocusNode ??= FocusNode();
@@ -60,9 +59,6 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
 
     _model.celularController ??= TextEditingController();
     _model.celularFocusNode ??= FocusNode();
-
-    _model.textController10 ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -325,7 +321,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                       8.0, 0.0, 8.0, 0.0),
                                   child: TextFormField(
                                     controller: _model.textController1,
-                                    focusNode: _model.textFieldFocusNode1,
+                                    focusNode: _model.textFieldFocusNode,
                                     autofocus: true,
                                     readOnly: true,
                                     obscureText: false,
@@ -1810,90 +1806,6 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                 ),
                           ),
                         ],
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 0.0),
-                      child: Container(
-                        width: 427.0,
-                        height: 53.0,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 10.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      8.0, 0.0, 8.0, 0.0),
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    child: TextFormField(
-                                      controller: _model.textController10,
-                                      focusNode: _model.textFieldFocusNode2,
-                                      autofocus: true,
-                                      obscureText: false,
-                                      decoration: InputDecoration(
-                                        labelStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium,
-                                        hintText: 'AICRUS-20OFF',
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium,
-                                        enabledBorder: InputBorder.none,
-                                        focusedBorder: InputBorder.none,
-                                        errorBorder: InputBorder.none,
-                                        focusedErrorBorder: InputBorder.none,
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
-                                      validator: _model
-                                          .textController10Validator
-                                          .asValidator(context),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Material(
-                                color: Colors.transparent,
-                                elevation: 3.0,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                child: Container(
-                                  width: 70.0,
-                                  height: 30.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Aplicar',
-                                        style: GoogleFonts.getFont(
-                                          'Open Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 15.0,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
                       ),
                     ),
                     Padding(

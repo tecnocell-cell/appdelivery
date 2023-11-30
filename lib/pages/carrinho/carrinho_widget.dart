@@ -1,10 +1,14 @@
 import '/backend/backend.dart';
 import '/componentes/carrinho_vazio/carrinho_vazio_widget.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'carrinho_model.dart';
 export 'carrinho_model.dart';
@@ -16,18 +20,57 @@ class CarrinhoWidget extends StatefulWidget {
   _CarrinhoWidgetState createState() => _CarrinhoWidgetState();
 }
 
-class _CarrinhoWidgetState extends State<CarrinhoWidget> {
+class _CarrinhoWidgetState extends State<CarrinhoWidget>
+    with TickerProviderStateMixin {
   late CarrinhoModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = {
+    'rowOnPageLoadAnimation1': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 380.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+      ],
+    ),
+    'rowOnPageLoadAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        ShakeEffect(
+          curve: Curves.easeInOut,
+          delay: 150.ms,
+          duration: 1000.ms,
+          hz: 10,
+          offset: const Offset(0.0, 0.0),
+          rotation: 0.087,
+        ),
+      ],
+    ),
+  };
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => CarrinhoModel());
 
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+    _model.textController1 ??= TextEditingController();
+    _model.textFieldFocusNode1 ??= FocusNode();
+
+    _model.textController2 ??= TextEditingController();
+    _model.textFieldFocusNode2 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -88,7 +131,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                     'Meu Carrinho',
                     textAlign: TextAlign.start,
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Open Sans',
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                         ),
@@ -117,27 +160,115 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                       children: [
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 16.0, 0.0, 0.0),
+                              10.0, 0.0, 10.0, 10.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Finalizer Pedido',
+                                'Finalizar Pedido!',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
-                                      fontSize: 20.0,
-                                      letterSpacing: 1.0,
-                                      fontWeight: FontWeight.w500,
+                                      fontFamily: 'Open Sans',
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                              Text(
+                                'Carrinho Vazio!',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold,
                                     ),
                               ),
                             ],
-                          ),
+                          ).animateOnPageLoad(
+                              animationsMap['rowOnPageLoadAnimation1']!),
                         ),
                         const Divider(
                           thickness: 1.0,
                           color: Color(0xFFFEF0EF),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          height: 70.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            borderRadius: BorderRadius.circular(8.0),
+                            border: Border.all(
+                              color: FlutterFlowTheme.of(context).primary,
+                              width: 1.0,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 8.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.location_on_rounded,
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  size: 24.0,
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        5.0, 0.0, 0.0, 0.0),
+                                    child: Text(
+                                      'Escolha o Endereço de Entrega',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            fontSize: 16.0,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      6.0, 0.0, 0.0, 0.0),
+                                  child: FFButtonWidget(
+                                    onPressed: () {
+                                      print('Button pressed ...');
+                                    },
+                                    text: 'Definir',
+                                    options: FFButtonOptions(
+                                      width: 80.0,
+                                      height: 30.0,
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          10.0, 0.0, 10.0, 0.0),
+                                      iconPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: Colors.white,
+                                          ),
+                                      elevation: 3.0,
+                                      borderSide: const BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -256,7 +387,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                                   .bodyLarge
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Open Sans',
                                                                     fontSize:
                                                                         14.0,
                                                                   ),
@@ -299,7 +430,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Open Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
@@ -422,7 +553,11 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyMedium,
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Open Sans',
+                                                                ),
                                                       ),
                                                     ),
                                                     InkWell(
@@ -501,6 +636,149 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                           children: [
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 16.0, 0.0, 0.0),
+                              child: Container(
+                                width: double.infinity,
+                                height: 120.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                ),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Text(
+                                          'Cupom de Desconto',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Open Sans',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                fontSize: 14.0,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 12.0, 0.0, 0.0),
+                                      child: Container(
+                                        width: 427.0,
+                                        height: 53.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            width: 1.0,
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 10.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Expanded(
+                                                child: Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          8.0, 0.0, 8.0, 0.0),
+                                                  child: SizedBox(
+                                                    width: 50.0,
+                                                    child: TextFormField(
+                                                      controller: _model
+                                                          .textController1,
+                                                      focusNode: _model
+                                                          .textFieldFocusNode1,
+                                                      autofocus: true,
+                                                      obscureText: false,
+                                                      decoration:
+                                                          InputDecoration(
+                                                        labelStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium,
+                                                        hintText:
+                                                            'AICRUS-20OFF',
+                                                        hintStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium,
+                                                        enabledBorder:
+                                                            InputBorder.none,
+                                                        focusedBorder:
+                                                            InputBorder.none,
+                                                        errorBorder:
+                                                            InputBorder.none,
+                                                        focusedErrorBorder:
+                                                            InputBorder.none,
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                              ),
+                                                      validator: _model
+                                                          .textController1Validator
+                                                          .asValidator(context),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Icon(
+                                                    Icons.confirmation_num,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    size: 24.0,
+                                                  ),
+                                                  Text(
+                                                    'Aplicar',
+                                                    style: GoogleFonts.getFont(
+                                                      'Open Sans',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 15.0,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 12.0, 0.0, 8.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -512,9 +790,9 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Open Sans',
                                           fontSize: 18.0,
-                                          fontWeight: FontWeight.normal,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                   ),
                                 ],
@@ -533,7 +811,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Open Sans',
                                           fontSize: 14.0,
                                           fontWeight: FontWeight.normal,
                                         ),
@@ -570,7 +848,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Open Sans',
                                           fontSize: 14.0,
                                           fontWeight: FontWeight.normal,
                                         ),
@@ -594,8 +872,11 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                               children: [
                                 Text(
                                   'Taxa de Entrega:',
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                      ),
                                 ),
                                 Text(
                                   formatNumber(
@@ -628,7 +909,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Open Sans',
                                           fontSize: 14.0,
                                           fontWeight: FontWeight.normal,
                                         ),
@@ -696,7 +977,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Open Sans',
                                               fontSize: 14.0,
                                             ),
                                       ),
@@ -704,8 +985,8 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                   ],
                                 ),
                                 TextFormField(
-                                  controller: _model.textController,
-                                  focusNode: _model.textFieldFocusNode,
+                                  controller: _model.textController2,
+                                  focusNode: _model.textFieldFocusNode2,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText:
@@ -713,7 +994,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                         ),
@@ -757,17 +1038,96 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Open Sans',
                                         fontSize: 14.0,
                                       ),
                                   textAlign: TextAlign.start,
                                   maxLines: 2,
-                                  validator: _model.textControllerValidator
+                                  validator: _model.textController2Validator
                                       .asValidator(context),
                                 ),
                               ],
                             ),
                           ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 12.0, 16.0, 0.0),
+                        child: Container(
+                          width: double.infinity,
+                          height: 70.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            borderRadius: BorderRadius.circular(8.0),
+                            border: Border.all(
+                              color: FlutterFlowTheme.of(context).primary,
+                              width: 1.0,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Escolher Forma de Pagamento',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          fontSize: 16.0,
+                                        ),
+                                  ),
+                                  Text(
+                                    '',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          fontSize: 14.0,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    6.0, 0.0, 0.0, 0.0),
+                                child: FFButtonWidget(
+                                  onPressed: () {
+                                    print('Button pressed ...');
+                                  },
+                                  text: 'Definir',
+                                  options: FFButtonOptions(
+                                    width: 80.0,
+                                    height: 30.0,
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 0.0, 10.0, 0.0),
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: Colors.white,
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: const BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ).animateOnPageLoad(
+                              animationsMap['rowOnPageLoadAnimation2']!),
                         ),
                       ),
                       Padding(
@@ -811,7 +1171,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Open Sans',
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryBackground,

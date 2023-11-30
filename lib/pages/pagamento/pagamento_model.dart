@@ -16,7 +16,7 @@ class PagamentoModel extends FlutterFlowModel<PagamentoWidget> {
   final formKey4 = GlobalKey<FormState>();
   final formKey6 = GlobalKey<FormState>();
   // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
+  FocusNode? textFieldFocusNode;
   TextEditingController? textController1;
   String? Function(BuildContext, String?)? textController1Validator;
   // State field(s) for nome widget.
@@ -54,10 +54,6 @@ class PagamentoModel extends FlutterFlowModel<PagamentoWidget> {
   FocusNode? celularFocusNode;
   TextEditingController? celularController;
   String? Function(BuildContext, String?)? celularControllerValidator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController10;
-  String? Function(BuildContext, String?)? textController10Validator;
 
   /// Initialization and disposal methods.
 
@@ -67,7 +63,7 @@ class PagamentoModel extends FlutterFlowModel<PagamentoWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    textFieldFocusNode1?.dispose();
+    textFieldFocusNode?.dispose();
     textController1?.dispose();
 
     nomeFocusNode?.dispose();
@@ -93,9 +89,6 @@ class PagamentoModel extends FlutterFlowModel<PagamentoWidget> {
 
     celularFocusNode?.dispose();
     celularController?.dispose();
-
-    textFieldFocusNode2?.dispose();
-    textController10?.dispose();
   }
 
   /// Action blocks are added here.
