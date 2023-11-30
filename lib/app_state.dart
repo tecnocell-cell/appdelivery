@@ -163,6 +163,12 @@ class FFAppState extends ChangeNotifier {
   set contador(int value) {
     _contador = value;
   }
+
+  String _statusPag = 'Nenhum';
+  String get statusPag => _statusPag;
+  set statusPag(String value) {
+    _statusPag = value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {
