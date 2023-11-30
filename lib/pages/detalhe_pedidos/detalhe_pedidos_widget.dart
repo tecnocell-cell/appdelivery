@@ -522,7 +522,7 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                                                         .titleSmall
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Open Sans',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryBackground,
@@ -582,7 +582,7 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Open Sans',
                                         fontSize: 18.0,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -592,7 +592,7 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Open Sans',
                                         color: const Color(0xFF7C7C7C),
                                         fontSize: 16.0,
                                         fontWeight: FontWeight.w600,
@@ -621,7 +621,7 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Open Sans',
                                     color: FlutterFlowTheme.of(context).primary,
                                     fontSize: 24.0,
                                     fontWeight: FontWeight.bold,
@@ -666,7 +666,7 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Open Sans',
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -679,7 +679,7 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Open Sans',
                                     color: const Color(0xFF7C7C7C),
                                     fontSize: 13.0,
                                     fontWeight: FontWeight.w300,
@@ -714,7 +714,7 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                           'Nutritions',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Open Sans',
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -738,7 +738,7 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Open Sans',
                                           fontSize: 9.0,
                                           fontWeight: FontWeight.w300,
                                         ),
@@ -780,7 +780,7 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                           'Review',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Open Sans',
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -912,7 +912,7 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                           fontSize: 16.0,
@@ -933,7 +933,7 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                         ),

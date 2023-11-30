@@ -236,7 +236,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                           style: FlutterFlowTheme.of(context)
                               .titleSmall
                               .override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Open Sans',
                                 color: FlutterFlowTheme.of(context).secondary,
                                 fontSize: 19.0,
                               ),
@@ -316,7 +316,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Open Sans',
                                                 fontSize: 30.0,
                                                 letterSpacing: 2.0,
                                                 fontWeight: FontWeight.bold,
@@ -407,7 +407,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Open Sans',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryBackground,
@@ -531,7 +531,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .accent4,
                                       ),
@@ -540,7 +540,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
                                         fontWeight: FontWeight.normal,
@@ -584,7 +584,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Open Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
                                       fontWeight: FontWeight.normal,
@@ -650,7 +650,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Open Sans',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       fontSize: 14.0,
@@ -664,7 +664,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Open Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   fontSize: 12.0,
@@ -1053,7 +1053,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Open Sans',
                                         fontSize: 14.0,
                                         letterSpacing: 1.0,
                                       ),
@@ -1094,7 +1094,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                       textStyle: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Open Sans',
                                             color: Colors.white,
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -1107,7 +1107,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                       textStyle: FlutterFlowTheme.of(context)
                                           .bodySmall
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Open Sans',
                                             color: Colors.black,
                                             fontWeight: FontWeight.w600,
                                           ),
@@ -1151,26 +1151,17 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               10.0, 0.0, 0.0, 0.0),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              context.pushNamed('pizzaDoisSabores');
-                            },
-                            child: Text(
-                              'PRODUTOS',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    fontSize: 14.0,
-                                    letterSpacing: 1.0,
-                                  ),
-                            ),
+                          child: Text(
+                            'PRODUTOS',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Open Sans',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 14.0,
+                                  letterSpacing: 1.0,
+                                ),
                           ),
                         ),
                       ],
@@ -1260,8 +1251,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Open Sans',
                                                         fontSize: 18.0,
                                                       ),
                                                 ),
@@ -1288,8 +1278,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Open Sans',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -1317,8 +1306,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Open Sans',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -1391,7 +1379,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                                 FlutterFlowTheme.of(context)
                                                     .titleSmall
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Open Sans',
                                                       color: FlutterFlowTheme
                                                               .of(context)
                                                           .secondaryBackground,

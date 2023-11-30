@@ -553,11 +553,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Open Sans',
-                                                                ),
+                                                                .bodyMedium,
                                                       ),
                                                     ),
                                                     InkWell(
@@ -827,7 +823,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                         ),
@@ -858,7 +854,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                         ),
@@ -872,11 +868,8 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                               children: [
                                 Text(
                                   'Taxa de Entrega:',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                      ),
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
                                 ),
                                 Text(
                                   formatNumber(
@@ -889,7 +882,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
                                       ),
@@ -927,7 +920,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
                                           fontSize: 14.0,

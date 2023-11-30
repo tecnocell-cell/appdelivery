@@ -58,7 +58,7 @@ class _TopMenuWidgetState extends State<TopMenuWidget> {
                     builder: (context) => Text(
                       currentUserDisplayName,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Readex Pro',
+                            fontFamily: 'Open Sans',
                             color: FlutterFlowTheme.of(context).primaryText,
                             fontSize: 12.0,
                           ),
@@ -77,7 +77,7 @@ class _TopMenuWidgetState extends State<TopMenuWidget> {
                   Text(
                     'Rua Ayrton Senna, 04',
                     style: FlutterFlowTheme.of(context).bodySmall.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Open Sans',
                           color: FlutterFlowTheme.of(context).primaryText,
                         ),
                   ),
@@ -101,7 +101,7 @@ class _TopMenuWidgetState extends State<TopMenuWidget> {
               badgeContent: Text(
                 '1',
                 style: FlutterFlowTheme.of(context).titleSmall.override(
-                      fontFamily: 'Readex Pro',
+                      fontFamily: 'Open Sans',
                       color: Colors.white,
                       fontSize: 14.0,
                     ),

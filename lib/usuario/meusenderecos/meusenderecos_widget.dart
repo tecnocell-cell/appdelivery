@@ -132,7 +132,7 @@ class _MeusenderecosWidgetState extends State<MeusenderecosWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .displayMedium
                                           .override(
-                                            fontFamily: 'Outfit',
+                                            fontFamily: 'Bebas Neue',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
                                             fontSize: 15.0,
@@ -197,8 +197,7 @@ class _MeusenderecosWidgetState extends State<MeusenderecosWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Open Sans',
                                                         fontSize: 18.0,
                                                       ),
                                                 ),
@@ -325,7 +324,7 @@ class _MeusenderecosWidgetState extends State<MeusenderecosWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Open Sans',
                                                                 fontSize: 18.0,
                                                                 letterSpacing:
                                                                     1.0,
@@ -353,7 +352,7 @@ class _MeusenderecosWidgetState extends State<MeusenderecosWidget> {
                                                             .bodyMedium
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Open Sans',
                                                               fontSize: 14.0,
                                                             ),
                                                       ),
@@ -375,7 +374,7 @@ class _MeusenderecosWidgetState extends State<MeusenderecosWidget> {
                                                             .bodyMedium
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Open Sans',
                                                               fontSize: 14.0,
                                                             ),
                                                       ),

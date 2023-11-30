@@ -11,6 +11,7 @@ import 'schema/restaurante_record.dart';
 import 'schema/tipo_comercio_record.dart';
 import 'schema/vendas_record.dart';
 import 'schema/endereco_record.dart';
+import 'schema/adicionais_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -24,6 +25,7 @@ export 'schema/restaurante_record.dart';
 export 'schema/tipo_comercio_record.dart';
 export 'schema/vendas_record.dart';
 export 'schema/endereco_record.dart';
+export 'schema/adicionais_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -242,6 +244,43 @@ Future<List<EnderecoRecord>> queryEnderecoRecordOnce({
     queryCollectionOnce(
       EnderecoRecord.collection,
       EnderecoRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query AdicionaisRecords (as a Stream and as a Future).
+Future<int> queryAdicionaisRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      AdicionaisRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<AdicionaisRecord>> queryAdicionaisRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      AdicionaisRecord.collection,
+      AdicionaisRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<AdicionaisRecord>> queryAdicionaisRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      AdicionaisRecord.collection,
+      AdicionaisRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

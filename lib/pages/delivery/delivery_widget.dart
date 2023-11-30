@@ -224,7 +224,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                         '1',
                         textAlign: TextAlign.justify,
                         style: FlutterFlowTheme.of(context).titleSmall.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Open Sans',
                               color: FlutterFlowTheme.of(context).primary,
                               fontSize: 19.0,
                             ),
@@ -307,7 +307,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Open Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .accent4,
                                           ),
@@ -316,7 +316,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Open Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryText,
                                             fontWeight: FontWeight.normal,
@@ -364,7 +364,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                           fontWeight: FontWeight.normal,
@@ -416,7 +416,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Open Sans',
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 fontSize: 14.0,
                                 letterSpacing: 2.0,
@@ -426,7 +426,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                           'Ver Todas',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Open Sans',
                                     color: const Color(0xFF035176),
                                     fontSize: 12.0,
                                     letterSpacing: 2.0,
@@ -539,7 +539,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Open Sans',
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 fontSize: 14.0,
                                 letterSpacing: 2.0,
@@ -549,7 +549,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                           'Ver Todas',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Open Sans',
                                     color: const Color(0xFF035176),
                                     fontSize: 12.0,
                                     letterSpacing: 2.0,
@@ -932,7 +932,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Open Sans',
                                   color: const Color(0xA6000000),
                                   fontSize: 14.0,
                                   letterSpacing: 2.0,
@@ -1155,7 +1155,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                                         .bodyMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Readex Pro',
+                                                                              'Open Sans',
                                                                           fontSize:
                                                                               12.0,
                                                                           letterSpacing:
@@ -1221,7 +1221,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                                           .bodyMedium
                                                                           .override(
                                                                             fontFamily:
-                                                                                'Readex Pro',
+                                                                                'Open Sans',
                                                                             fontSize:
                                                                                 11.0,
                                                                             letterSpacing:
@@ -1288,7 +1288,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                                           .bodyMedium
                                                                           .override(
                                                                             fontFamily:
-                                                                                'Readex Pro',
+                                                                                'Open Sans',
                                                                             fontSize:
                                                                                 11.0,
                                                                             letterSpacing:

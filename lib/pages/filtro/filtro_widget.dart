@@ -98,7 +98,7 @@ class _FiltroWidgetState extends State<FiltroWidget> {
                           'Filtro',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Open Sans',
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
                                     fontSize: 20.0,
@@ -148,7 +148,7 @@ class _FiltroWidgetState extends State<FiltroWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Open Sans',
                                               fontSize: 24.0,
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -204,7 +204,7 @@ class _FiltroWidgetState extends State<FiltroWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Open Sans',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primary,
@@ -266,7 +266,7 @@ class _FiltroWidgetState extends State<FiltroWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Open Sans',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryText,
@@ -328,7 +328,7 @@ class _FiltroWidgetState extends State<FiltroWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Open Sans',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryText,
@@ -390,7 +390,7 @@ class _FiltroWidgetState extends State<FiltroWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Open Sans',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryText,
@@ -413,7 +413,7 @@ class _FiltroWidgetState extends State<FiltroWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Open Sans',
                                                 fontSize: 24.0,
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -470,7 +470,7 @@ class _FiltroWidgetState extends State<FiltroWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Open Sans',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryText,
@@ -532,7 +532,7 @@ class _FiltroWidgetState extends State<FiltroWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Open Sans',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primary,
@@ -594,7 +594,7 @@ class _FiltroWidgetState extends State<FiltroWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Open Sans',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryText,
@@ -656,7 +656,7 @@ class _FiltroWidgetState extends State<FiltroWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Open Sans',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryText,
@@ -693,7 +693,7 @@ class _FiltroWidgetState extends State<FiltroWidget> {
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Open Sans',
                                             color: Colors.white,
                                           ),
                                       elevation: 3.0,

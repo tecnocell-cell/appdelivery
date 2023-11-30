@@ -94,7 +94,7 @@ class _OrdemAceitaWidgetState extends State<OrdemAceitaWidget> {
                         'Parabéns',
                         textAlign: TextAlign.center,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Open Sans',
                               fontSize: 30.0,
                               letterSpacing: 1.0,
                               fontWeight: FontWeight.w500,
@@ -104,7 +104,7 @@ class _OrdemAceitaWidgetState extends State<OrdemAceitaWidget> {
                         'Pagamento Confirmado',
                         textAlign: TextAlign.center,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Open Sans',
                               fontSize: 28.0,
                               fontWeight: FontWeight.w500,
                             ),
@@ -113,7 +113,7 @@ class _OrdemAceitaWidgetState extends State<OrdemAceitaWidget> {
                         'Pedido Enviado para Preparo! ',
                         textAlign: TextAlign.center,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Open Sans',
                               color: FlutterFlowTheme.of(context).secondaryText,
                               fontSize: 16.0,
                               fontWeight: FontWeight.w300,
@@ -145,7 +145,7 @@ class _OrdemAceitaWidgetState extends State<OrdemAceitaWidget> {
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Open Sans',
                                   color: Colors.white,
                                   fontSize: 20.0,
                                 ),
@@ -168,7 +168,7 @@ class _OrdemAceitaWidgetState extends State<OrdemAceitaWidget> {
                       child: Text(
                         'Voltar a Restaurante',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Open Sans',
                               fontSize: 18.0,
                               fontWeight: FontWeight.w500,
                             ),

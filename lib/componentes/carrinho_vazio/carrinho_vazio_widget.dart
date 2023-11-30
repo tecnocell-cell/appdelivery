@@ -60,7 +60,7 @@ class _CarrinhoVazioWidgetState extends State<CarrinhoVazioWidget> {
                 'Você ainda não tem ítens no carrinho :(',
                 textAlign: TextAlign.center,
                 style: FlutterFlowTheme.of(context).headlineSmall.override(
-                      fontFamily: 'Outfit',
+                      fontFamily: 'Bebas Neue',
                       color: FlutterFlowTheme.of(context).primaryText,
                       fontSize: 19.0,
                     ),

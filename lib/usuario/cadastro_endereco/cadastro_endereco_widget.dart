@@ -192,7 +192,7 @@ class _CadastroEnderecoWidgetState extends State<CadastroEnderecoWidget>
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Open Sans',
                                         fontSize: 14.0,
                                         letterSpacing: 1.0,
                                       ),
@@ -243,15 +243,16 @@ class _CadastroEnderecoWidgetState extends State<CadastroEnderecoWidget>
                                             obscureText: false,
                                             decoration: InputDecoration(
                                               labelText: 'CEP',
-                                              labelStyle: FlutterFlowTheme.of(
-                                                      context)
-                                                  .labelMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                  ),
+                                              labelStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                      ),
                                               hintStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .labelMedium,
@@ -400,7 +401,7 @@ class _CadastroEnderecoWidgetState extends State<CadastroEnderecoWidget>
                                               FlutterFlowTheme.of(context)
                                                   .titleSmall
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Open Sans',
                                                     color: Colors.white,
                                                   ),
                                           elevation: 3.0,
@@ -446,7 +447,7 @@ class _CadastroEnderecoWidgetState extends State<CadastroEnderecoWidget>
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                         ),
@@ -521,7 +522,7 @@ class _CadastroEnderecoWidgetState extends State<CadastroEnderecoWidget>
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                         ),
@@ -600,7 +601,7 @@ class _CadastroEnderecoWidgetState extends State<CadastroEnderecoWidget>
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Open Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryText,
                                           ),
@@ -682,7 +683,7 @@ class _CadastroEnderecoWidgetState extends State<CadastroEnderecoWidget>
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                         ),
@@ -759,7 +760,7 @@ class _CadastroEnderecoWidgetState extends State<CadastroEnderecoWidget>
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                         ),
@@ -839,7 +840,7 @@ class _CadastroEnderecoWidgetState extends State<CadastroEnderecoWidget>
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Open Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryText,
                                           ),
@@ -921,7 +922,7 @@ class _CadastroEnderecoWidgetState extends State<CadastroEnderecoWidget>
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                         ),
@@ -1060,7 +1061,7 @@ class _CadastroEnderecoWidgetState extends State<CadastroEnderecoWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                           fontSize: 18.0,

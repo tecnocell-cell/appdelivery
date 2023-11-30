@@ -148,7 +148,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Open Sans',
                                   fontSize: 18.0,
                                   letterSpacing: 1.0,
                                   fontWeight: FontWeight.bold,
@@ -196,7 +196,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Open Sans',
                                           fontSize: 16.0,
                                           letterSpacing: 1.0,
                                           fontWeight: FontWeight.bold,
@@ -236,7 +236,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Open Sans',
                                   fontSize: 30.0,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -276,7 +276,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Open Sans',
                                   fontSize: 15.0,
                                   fontWeight: FontWeight.w300,
                                 ),
@@ -302,7 +302,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Open Sans',
                                       fontSize: 20.0,
                                     ),
                               ),
@@ -411,7 +411,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Open Sans',
                                               fontSize: 20.0,
                                             ),
                                       ),
@@ -456,7 +456,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Open Sans',
                                               fontSize: 18.0,
                                             ),
                                       ),
@@ -483,7 +483,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Open Sans',
                                       fontSize: 20.0,
                                     ),
                               ),
@@ -533,7 +533,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Open Sans',
                                                           fontSize: 16.0,
                                                         ),
                                                   ),
@@ -565,7 +565,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                             .labelMedium
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Open Sans',
                                                               fontSize: 16.0,
                                                             ),
                                                     hintStyle:
@@ -574,7 +574,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                             .labelMedium
                                                             .override(
                                                               fontFamily:
-                                                                  'Readex Pro',
+                                                                  'Open Sans',
                                                               fontSize: 16.0,
                                                             ),
                                                     enabledBorder:
@@ -641,8 +641,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Open Sans',
                                                         fontSize: 16.0,
                                                       ),
                                                   keyboardType:
@@ -678,7 +677,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Open Sans',
                                                                 fontSize: 16.0,
                                                               ),
                                                     ),
@@ -708,7 +707,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                               .labelMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Open Sans',
                                                                 fontSize: 16.0,
                                                               ),
                                                       hintStyle:
@@ -717,7 +716,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                               .labelMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Open Sans',
                                                                 fontSize: 16.0,
                                                               ),
                                                       enabledBorder:
@@ -782,7 +781,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Open Sans',
                                                           fontSize: 16.0,
                                                         ),
                                                     keyboardType:
@@ -819,7 +818,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Open Sans',
                                                                 fontSize: 16.0,
                                                               ),
                                                     ),
@@ -849,7 +848,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                               .labelMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Open Sans',
                                                                 fontSize: 16.0,
                                                               ),
                                                       hintStyle:
@@ -858,7 +857,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                               .labelMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Open Sans',
                                                                 fontSize: 16.0,
                                                               ),
                                                       enabledBorder:
@@ -922,7 +921,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Open Sans',
                                                           fontSize: 16.0,
                                                         ),
                                                     keyboardType:
@@ -959,7 +958,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Open Sans',
                                                                 fontSize: 16.0,
                                                               ),
                                                     ),
@@ -998,7 +997,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                                     .labelMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Open Sans',
                                                                       fontSize:
                                                                           16.0,
                                                                     ),
@@ -1008,7 +1007,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                                     .labelMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Open Sans',
                                                                       fontSize:
                                                                           16.0,
                                                                     ),
@@ -1078,7 +1077,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Open Sans',
                                                                 fontSize: 16.0,
                                                               ),
                                                           keyboardType:
@@ -1124,7 +1123,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                                     .labelMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Open Sans',
                                                                       fontSize:
                                                                           16.0,
                                                                     ),
@@ -1134,7 +1133,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                                     .labelMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Open Sans',
                                                                       fontSize:
                                                                           16.0,
                                                                     ),
@@ -1204,7 +1203,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Open Sans',
                                                                 fontSize: 16.0,
                                                               ),
                                                           keyboardType:
@@ -1250,7 +1249,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                                     .labelMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Open Sans',
                                                                       fontSize:
                                                                           16.0,
                                                                     ),
@@ -1260,7 +1259,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                                     .labelMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Open Sans',
                                                                       fontSize:
                                                                           16.0,
                                                                     ),
@@ -1330,7 +1329,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Open Sans',
                                                                 fontSize: 16.0,
                                                               ),
                                                           keyboardType:
@@ -1375,7 +1374,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Open Sans',
                                                                 fontSize: 16.0,
                                                               ),
                                                     ),
@@ -1424,7 +1423,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                                     .labelMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Open Sans',
                                                                       fontSize:
                                                                           16.0,
                                                                     ),
@@ -1494,7 +1493,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Open Sans',
                                                                 fontSize: 16.0,
                                                               ),
                                                           keyboardType:
@@ -1537,7 +1536,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                                     .labelMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Open Sans',
                                                                       fontSize:
                                                                           16.0,
                                                                     ),
@@ -1547,7 +1546,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                                     .labelMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Open Sans',
                                                                       fontSize:
                                                                           16.0,
                                                                     ),
@@ -1620,7 +1619,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Open Sans',
                                                                 fontSize: 16.0,
                                                               ),
                                                           keyboardType:
@@ -1664,7 +1663,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Open Sans',
                                     fontSize: 20.0,
                                   ),
                             ),
@@ -1708,7 +1707,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Open Sans',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryText,
@@ -1721,7 +1720,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Open Sans',
                                                 fontSize: 15.0,
                                               ),
                                         ),
@@ -1742,7 +1741,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Open Sans',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryText,
@@ -1759,7 +1758,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Open Sans',
                                                   fontSize: 15.0,
                                                 ),
                                           ),
@@ -1790,7 +1789,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Open Sans',
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
                                   fontSize: 16.0,
@@ -1801,7 +1800,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Open Sans',
                                   fontSize: 15.0,
                                 ),
                           ),
@@ -1842,7 +1841,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Open Sans',
                                     color: Colors.white,
                                     fontSize: 13.0,
                                   ),
@@ -1926,7 +1925,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Open Sans',
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
                                   fontSize: 18.0,

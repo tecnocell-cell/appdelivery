@@ -179,15 +179,15 @@ class _EnderecoEntregaWidgetState extends State<EnderecoEntregaWidget> {
                                                     8.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'SELECIONE O ENDEREÇO',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
-                                                  ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                      ),
                                             ),
                                           ),
                                         ],
@@ -244,7 +244,7 @@ class _EnderecoEntregaWidgetState extends State<EnderecoEntregaWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Open Sans',
                                                             fontSize: 16.0,
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -390,7 +390,7 @@ class _EnderecoEntregaWidgetState extends State<EnderecoEntregaWidget> {
                                                                       .bodyMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Open Sans',
                                                                         fontSize:
                                                                             16.0,
                                                                         letterSpacing:
@@ -429,7 +429,7 @@ class _EnderecoEntregaWidgetState extends State<EnderecoEntregaWidget> {
                                                                     .bodyMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Open Sans',
                                                                       fontSize:
                                                                           14.0,
                                                                     ),
@@ -448,7 +448,7 @@ class _EnderecoEntregaWidgetState extends State<EnderecoEntregaWidget> {
                                                                   .bodyMedium
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Open Sans',
                                                                     fontSize:
                                                                         14.0,
                                                                   ),

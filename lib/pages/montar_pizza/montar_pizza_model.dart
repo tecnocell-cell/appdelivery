@@ -1,10 +1,10 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'pizza_dois_sabores_widget.dart' show PizzaDoisSaboresWidget;
+import 'montar_pizza_widget.dart' show MontarPizzaWidget;
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 
-class PizzaDoisSaboresModel extends FlutterFlowModel<PizzaDoisSaboresWidget> {
+class MontarPizzaModel extends FlutterFlowModel<MontarPizzaWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

@@ -180,7 +180,7 @@ class _LoginWidgetState extends State<LoginWidget>
                         useToggleButtonStyle: true,
                         labelStyle:
                             FlutterFlowTheme.of(context).titleMedium.override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Open Sans',
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -296,8 +296,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                           .of(context)
                                                       .labelLarge
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Open Sans',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -366,7 +365,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                         .bodyLarge
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Open Sans',
                                                           fontSize: 14.0,
                                                         ),
                                                 keyboardType:
@@ -412,15 +411,13 @@ class _LoginWidgetState extends State<LoginWidget>
                                                     .senhaLoginVisibility,
                                                 decoration: InputDecoration(
                                                   labelText: 'Senha',
-                                                  labelStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelLarge
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            fontSize: 14.0,
-                                                          ),
+                                                  labelStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .labelLarge
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        fontSize: 14.0,
+                                                      ),
                                                   enabledBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
@@ -502,7 +499,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                         .bodyLarge
                                                         .override(
                                                           fontFamily:
-                                                              'Readex Pro',
+                                                              'Open Sans',
                                                           fontSize: 14.0,
                                                         ),
                                                 keyboardType:
@@ -561,16 +558,16 @@ class _LoginWidgetState extends State<LoginWidget>
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
-                                              textStyle: FlutterFlowTheme.of(
-                                                      context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
-                                                    fontSize: 22.0,
-                                                  ),
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        fontSize: 22.0,
+                                                      ),
                                               elevation: 10.0,
                                               borderSide: const BorderSide(
                                                 color: Colors.transparent,
@@ -608,7 +605,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    fontFamily: 'Open Sans',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primary,
@@ -771,8 +768,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .bodyLarge
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Open Sans',
                                                         fontSize: 14.0,
                                                       ),
                                               validator: _model
@@ -878,8 +874,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .bodyLarge
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Open Sans',
                                                         fontSize: 14.0,
                                                       ),
                                               keyboardType:
@@ -1009,8 +1004,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .bodyLarge
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Open Sans',
                                                         fontSize: 14.0,
                                                       ),
                                               validator: _model
@@ -1138,8 +1132,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .bodyLarge
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Open Sans',
                                                         fontSize: 14.0,
                                                       ),
                                               validator: _model
@@ -1213,16 +1206,16 @@ class _LoginWidgetState extends State<LoginWidget>
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
-                                              textStyle: FlutterFlowTheme.of(
-                                                      context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
-                                                    fontSize: 22.0,
-                                                  ),
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        fontSize: 22.0,
+                                                      ),
                                               elevation: 10.0,
                                               borderSide: const BorderSide(
                                                 color: Colors.transparent,

@@ -126,7 +126,7 @@ class _ConfigWidgetState extends State<ConfigWidget>
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Open Sans',
                                                 fontSize: 20.0,
                                                 letterSpacing: 1.0,
                                               ),
@@ -149,7 +149,7 @@ class _ConfigWidgetState extends State<ConfigWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                           fontSize: 16.0,
@@ -563,7 +563,7 @@ class _ConfigWidgetState extends State<ConfigWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                           fontSize: 18.0,
