@@ -392,8 +392,10 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                       width: 70.0,
                                       height: 25.0,
                                       decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                        color: FFAppState().Status
+                                            ? const Color(0xFF298000)
+                                            : FlutterFlowTheme.of(context)
+                                                .primary,
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
@@ -403,7 +405,9 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                             MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            'Status',
+                                            FFAppState().Status
+                                                ? 'Aberto'
+                                                : 'Fechado',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(

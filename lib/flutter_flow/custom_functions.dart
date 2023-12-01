@@ -30,3 +30,17 @@ double somaTotal(
 ) {
   return subTotal + taxaEntrega;
 }
+
+String saudacao() {
+  var hour = DateTime.now().hour;
+  if (hour < 4) {
+    return 'Vai dormir, ';
+  }
+  if (hour < 12) {
+    return 'Bom dia, ';
+  }
+  if (hour < 17) {
+    return 'Boa Tarde, ';
+  }
+  return 'Boa Noite, ';
+}

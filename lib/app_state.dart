@@ -54,6 +54,9 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _PizzaIndex = prefs.getInt('ff_PizzaIndex') ?? _PizzaIndex;
     });
+    _safeInit(() {
+      _Status = prefs.getBool('ff_Status') ?? _Status;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -196,6 +199,13 @@ class FFAppState extends ChangeNotifier {
   bool get OptionSedid => _OptionSedid;
   set OptionSedid(bool value) {
     _OptionSedid = value;
+  }
+
+  bool _Status = true;
+  bool get Status => _Status;
+  set Status(bool value) {
+    _Status = value;
+    prefs.setBool('ff_Status', value);
   }
 }
 

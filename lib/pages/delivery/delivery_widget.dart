@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:badges/badges.dart' as badges;
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
@@ -196,22 +197,22 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                             Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                AuthUserStreamWidget(
-                                  builder: (context) => Text(
-                                    currentUserDisplayName,
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
-                                  ),
+                                Text(
+                                  functions.saudacao(),
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
                                 ),
                               ],
                             ),
                             Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Text(
-                                  'Endereço',
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
+                                AuthUserStreamWidget(
+                                  builder: (context) => Text(
+                                    currentUserDisplayName,
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  ),
                                 ),
                               ],
                             ),
@@ -1059,7 +1060,10 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                           print(
                                                               'AddButton pressed ...');
                                                         },
-                                                        text: 'STATUS',
+                                                        text:
+                                                            FFAppState().Status
+                                                                ? 'Aberto'
+                                                                : 'Fechado',
                                                         options:
                                                             FFButtonOptions(
                                                           width: 70.0,
@@ -1078,9 +1082,13 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                                       0.0,
                                                                       0.0,
                                                                       0.0),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
+                                                          color: FFAppState()
+                                                                  .Status
+                                                              ? const Color(
+                                                                  0xFF298000)
+                                                              : FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
                                                           textStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -1097,9 +1105,13 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                           elevation: 2.0,
                                                           borderSide:
                                                               BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primary,
+                                                            color: FFAppState()
+                                                                    .Status
+                                                                ? const Color(
+                                                                    0xFF298000)
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
                                                             width: 2.0,
                                                           ),
                                                           borderRadius:
