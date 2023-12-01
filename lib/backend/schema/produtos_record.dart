@@ -57,15 +57,20 @@ class ProdutosRecord extends FirestoreRecord {
   List<String> get categori => _categori ?? const [];
   bool hasCategori() => _categori != null;
 
-  // "Adicionais" field.
-  List<String>? _adicionais;
-  List<String> get adicionais => _adicionais ?? const [];
-  bool hasAdicionais() => _adicionais != null;
-
   // "tamanho" field.
   int? _tamanho;
   int get tamanho => _tamanho ?? 0;
   bool hasTamanho() => _tamanho != null;
+
+  // "precoPromo" field.
+  double? _precoPromo;
+  double get precoPromo => _precoPromo ?? 0.0;
+  bool hasPrecoPromo() => _precoPromo != null;
+
+  // "epromo" field.
+  bool? _epromo;
+  bool get epromo => _epromo ?? false;
+  bool hasEpromo() => _epromo != null;
 
   void _initializeFields() {
     _nome = snapshotData['nome'] as String?;
@@ -76,8 +81,9 @@ class ProdutosRecord extends FirestoreRecord {
     _image = snapshotData['image'] as String?;
     _categoria = snapshotData['categoria'] as String?;
     _categori = getDataList(snapshotData['categori']);
-    _adicionais = getDataList(snapshotData['Adicionais']);
     _tamanho = castToType<int>(snapshotData['tamanho']);
+    _precoPromo = castToType<double>(snapshotData['precoPromo']);
+    _epromo = snapshotData['epromo'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -122,14 +128,17 @@ class ProdutosRecord extends FirestoreRecord {
           'categori': safeGet(
             () => snapshot.data['categori'].toList(),
           ),
-          'Adicionais': safeGet(
-            () => snapshot.data['Adicionais'].toList(),
-          ),
           'tamanho': convertAlgoliaParam(
             snapshot.data['tamanho'],
             ParamType.int,
             false,
           ),
+          'precoPromo': convertAlgoliaParam(
+            snapshot.data['precoPromo'],
+            ParamType.double,
+            false,
+          ),
+          'epromo': snapshot.data['epromo'],
         },
         ProdutosRecord.collection.doc(snapshot.objectID),
       );
@@ -174,6 +183,8 @@ Map<String, dynamic> createProdutosRecordData({
   String? image,
   String? categoria,
   int? tamanho,
+  double? precoPromo,
+  bool? epromo,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -185,6 +196,8 @@ Map<String, dynamic> createProdutosRecordData({
       'image': image,
       'categoria': categoria,
       'tamanho': tamanho,
+      'precoPromo': precoPromo,
+      'epromo': epromo,
     }.withoutNulls,
   );
 
@@ -205,8 +218,9 @@ class ProdutosRecordDocumentEquality implements Equality<ProdutosRecord> {
         e1?.image == e2?.image &&
         e1?.categoria == e2?.categoria &&
         listEquality.equals(e1?.categori, e2?.categori) &&
-        listEquality.equals(e1?.adicionais, e2?.adicionais) &&
-        e1?.tamanho == e2?.tamanho;
+        e1?.tamanho == e2?.tamanho &&
+        e1?.precoPromo == e2?.precoPromo &&
+        e1?.epromo == e2?.epromo;
   }
 
   @override
@@ -219,8 +233,9 @@ class ProdutosRecordDocumentEquality implements Equality<ProdutosRecord> {
         e?.image,
         e?.categoria,
         e?.categori,
-        e?.adicionais,
-        e?.tamanho
+        e?.tamanho,
+        e?.precoPromo,
+        e?.epromo
       ]);
 
   @override
