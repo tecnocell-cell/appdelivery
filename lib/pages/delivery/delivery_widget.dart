@@ -11,6 +11,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -118,6 +119,25 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => DeliveryModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      while (true) {
+        await Future.delayed(const Duration(milliseconds: 30000));
+        if (_model.pageViewCurrentIndex == 2) {
+          await _model.pageViewController?.animateToPage(
+            0,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.ease,
+          );
+        } else {
+          await _model.pageViewController?.nextPage(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.ease,
+          );
+        }
+      }
+    });
 
     _model.searchController ??= TextEditingController();
     _model.searchFocusNode ??= FocusNode();

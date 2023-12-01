@@ -207,6 +207,23 @@ class FFAppState extends ChangeNotifier {
     _Status = value;
     prefs.setBool('ff_Status', value);
   }
+
+  int _bordaCondicao = 0;
+  int get bordaCondicao => _bordaCondicao;
+  set bordaCondicao(int value) {
+    _bordaCondicao = value;
+  }
+
+  BordaRefStruct _bordaRef = BordaRefStruct.fromSerializableMap(
+      jsonDecode('{"nome":"borda","preco":"0"}'));
+  BordaRefStruct get bordaRef => _bordaRef;
+  set bordaRef(BordaRefStruct value) {
+    _bordaRef = value;
+  }
+
+  void updateBordaRefStruct(Function(BordaRefStruct) updateFn) {
+    updateFn(_bordaRef);
+  }
 }
 
 LatLng? _latLngFromString(String? val) {
