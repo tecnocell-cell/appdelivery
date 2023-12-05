@@ -47,11 +47,6 @@ class ProdutosRecord extends FirestoreRecord {
   String get image => _image ?? '';
   bool hasImage() => _image != null;
 
-  // "categoria" field.
-  String? _categoria;
-  String get categoria => _categoria ?? '';
-  bool hasCategoria() => _categoria != null;
-
   // "categori" field.
   List<String>? _categori;
   List<String> get categori => _categori ?? const [];
@@ -79,7 +74,6 @@ class ProdutosRecord extends FirestoreRecord {
     _descri = snapshotData['descri'] as String?;
     _restaurante = snapshotData['restaurante'] as DocumentReference?;
     _image = snapshotData['image'] as String?;
-    _categoria = snapshotData['categoria'] as String?;
     _categori = getDataList(snapshotData['categori']);
     _tamanho = castToType<int>(snapshotData['tamanho']);
     _precoPromo = castToType<double>(snapshotData['precoPromo']);
@@ -124,7 +118,6 @@ class ProdutosRecord extends FirestoreRecord {
             false,
           ),
           'image': snapshot.data['image'],
-          'categoria': snapshot.data['categoria'],
           'categori': safeGet(
             () => snapshot.data['categori'].toList(),
           ),
@@ -181,7 +174,6 @@ Map<String, dynamic> createProdutosRecordData({
   String? descri,
   DocumentReference? restaurante,
   String? image,
-  String? categoria,
   int? tamanho,
   double? precoPromo,
   bool? epromo,
@@ -194,7 +186,6 @@ Map<String, dynamic> createProdutosRecordData({
       'descri': descri,
       'restaurante': restaurante,
       'image': image,
-      'categoria': categoria,
       'tamanho': tamanho,
       'precoPromo': precoPromo,
       'epromo': epromo,
@@ -216,7 +207,6 @@ class ProdutosRecordDocumentEquality implements Equality<ProdutosRecord> {
         e1?.descri == e2?.descri &&
         e1?.restaurante == e2?.restaurante &&
         e1?.image == e2?.image &&
-        e1?.categoria == e2?.categoria &&
         listEquality.equals(e1?.categori, e2?.categori) &&
         e1?.tamanho == e2?.tamanho &&
         e1?.precoPromo == e2?.precoPromo &&
@@ -231,7 +221,6 @@ class ProdutosRecordDocumentEquality implements Equality<ProdutosRecord> {
         e?.descri,
         e?.restaurante,
         e?.image,
-        e?.categoria,
         e?.categori,
         e?.tamanho,
         e?.precoPromo,

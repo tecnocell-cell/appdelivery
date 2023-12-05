@@ -171,7 +171,7 @@ class _LoginWidgetState extends State<LoginWidget>
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 32.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                 child: Column(
                   children: [
                     Align(

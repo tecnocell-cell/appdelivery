@@ -321,87 +321,7 @@ class _MontarPizzaWidgetState extends State<MontarPizzaWidget>
         ),
       ],
     ),
-    'imageOnActionTriggerAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        ScaleEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(1.0, 1.0),
-          end: const Offset(1.1, 1.1),
-        ),
-      ],
-    ),
-    'imageOnPageLoadAnimation4': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      applyInitialState: true,
-      effects: [
-        RotateEffect(
-          curve: Curves.easeOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 0.3,
-        ),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 700.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(0.0, 40.0),
-          end: const Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'imageOnActionTriggerAnimation2': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        ScaleEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(1.0, 1.0),
-          end: const Offset(1.1, 1.1),
-        ),
-      ],
-    ),
-    'imageOnPageLoadAnimation5': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      applyInitialState: true,
-      effects: [
-        RotateEffect(
-          curve: Curves.easeOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 0.3,
-        ),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 700.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(0.0, 40.0),
-          end: const Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'imageOnActionTriggerAnimation3': AnimationInfo(
+    'imageOnActionTriggerAnimation': AnimationInfo(
       trigger: AnimationTrigger.onActionTrigger,
       applyInitialState: true,
       effects: [
@@ -1119,23 +1039,23 @@ class _MontarPizzaWidgetState extends State<MontarPizzaWidget>
                                                     .toString() ==
                                                 '12') {
                                               if (animationsMap[
-                                                      'imageOnActionTriggerAnimation1'] !=
+                                                      'imageOnActionTriggerAnimation'] !=
                                                   null) {
                                                 await animationsMap[
-                                                        'imageOnActionTriggerAnimation1']!
+                                                        'imageOnActionTriggerAnimation']!
                                                     .controller
                                                     .forward(from: 0.0);
                                               }
                                             } else {
                                               if (animationsMap[
-                                                      'imageOnActionTriggerAnimation1'] !=
+                                                      'imageOnActionTriggerAnimation'] !=
                                                   null) {
                                                 await animationsMap[
-                                                        'imageOnActionTriggerAnimation1']!
+                                                        'imageOnActionTriggerAnimation']!
                                                     .controller
                                                     .forward(from: 0.0)
                                                     .whenComplete(animationsMap[
-                                                            'imageOnActionTriggerAnimation1']!
+                                                            'imageOnActionTriggerAnimation']!
                                                         .controller
                                                         .reverse);
                                               }
@@ -1404,7 +1324,7 @@ class _MontarPizzaWidgetState extends State<MontarPizzaWidget>
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 14.0),
                                 child: Image.asset(
-                                  'assets/images/1_sabor.png',
+                                  'assets/images/pizza.png',
                                   width: 183.0,
                                   height: 183.0,
                                   fit: BoxFit.cover,
@@ -1413,45 +1333,7 @@ class _MontarPizzaWidgetState extends State<MontarPizzaWidget>
                                         'imageOnPageLoadAnimation3']!)
                                     .animateOnActionTrigger(
                                       animationsMap[
-                                          'imageOnActionTriggerAnimation1']!,
-                                    ),
-                              ),
-                            ),
-                            Align(
-                              alignment: const AlignmentDirectional(0.00, 0.00),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 14.0),
-                                child: Image.asset(
-                                  'assets/images/2_sabor.png',
-                                  width: 183.0,
-                                  height: 183.0,
-                                  fit: BoxFit.cover,
-                                )
-                                    .animateOnPageLoad(animationsMap[
-                                        'imageOnPageLoadAnimation4']!)
-                                    .animateOnActionTrigger(
-                                      animationsMap[
-                                          'imageOnActionTriggerAnimation2']!,
-                                    ),
-                              ),
-                            ),
-                            Align(
-                              alignment: const AlignmentDirectional(0.00, 0.00),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 14.0),
-                                child: Image.asset(
-                                  'assets/images/3_sabor.png',
-                                  width: 183.0,
-                                  height: 183.0,
-                                  fit: BoxFit.cover,
-                                )
-                                    .animateOnPageLoad(animationsMap[
-                                        'imageOnPageLoadAnimation5']!)
-                                    .animateOnActionTrigger(
-                                      animationsMap[
-                                          'imageOnActionTriggerAnimation3']!,
+                                          'imageOnActionTriggerAnimation']!,
                                     ),
                               ),
                             ),
