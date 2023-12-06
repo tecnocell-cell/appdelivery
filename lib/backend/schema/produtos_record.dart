@@ -57,15 +57,25 @@ class ProdutosRecord extends FirestoreRecord {
   int get tamanho => _tamanho ?? 0;
   bool hasTamanho() => _tamanho != null;
 
-  // "precoPromo" field.
-  double? _precoPromo;
-  double get precoPromo => _precoPromo ?? 0.0;
-  bool hasPrecoPromo() => _precoPromo != null;
+  // "isActive" field.
+  bool? _isActive;
+  bool get isActive => _isActive ?? false;
+  bool hasIsActive() => _isActive != null;
 
-  // "epromo" field.
-  bool? _epromo;
-  bool get epromo => _epromo ?? false;
-  bool hasEpromo() => _epromo != null;
+  // "qtdSabores" field.
+  DocumentReference? _qtdSabores;
+  DocumentReference? get qtdSabores => _qtdSabores;
+  bool hasQtdSabores() => _qtdSabores != null;
+
+  // "personalizado" field.
+  bool? _personalizado;
+  bool get personalizado => _personalizado ?? false;
+  bool hasPersonalizado() => _personalizado != null;
+
+  // "categoria" field.
+  List<DocumentReference>? _categoria;
+  List<DocumentReference> get categoria => _categoria ?? const [];
+  bool hasCategoria() => _categoria != null;
 
   void _initializeFields() {
     _nome = snapshotData['nome'] as String?;
@@ -76,8 +86,10 @@ class ProdutosRecord extends FirestoreRecord {
     _image = snapshotData['image'] as String?;
     _categori = getDataList(snapshotData['categori']);
     _tamanho = castToType<int>(snapshotData['tamanho']);
-    _precoPromo = castToType<double>(snapshotData['precoPromo']);
-    _epromo = snapshotData['epromo'] as bool?;
+    _isActive = snapshotData['isActive'] as bool?;
+    _qtdSabores = snapshotData['qtdSabores'] as DocumentReference?;
+    _personalizado = snapshotData['personalizado'] as bool?;
+    _categoria = getDataList(snapshotData['categoria']);
   }
 
   static CollectionReference get collection =>
@@ -126,12 +138,20 @@ class ProdutosRecord extends FirestoreRecord {
             ParamType.int,
             false,
           ),
-          'precoPromo': convertAlgoliaParam(
-            snapshot.data['precoPromo'],
-            ParamType.double,
+          'isActive': snapshot.data['isActive'],
+          'qtdSabores': convertAlgoliaParam(
+            snapshot.data['qtdSabores'],
+            ParamType.DocumentReference,
             false,
           ),
-          'epromo': snapshot.data['epromo'],
+          'personalizado': snapshot.data['personalizado'],
+          'categoria': safeGet(
+            () => convertAlgoliaParam<DocumentReference>(
+              snapshot.data['categoria'],
+              ParamType.DocumentReference,
+              true,
+            ).toList(),
+          ),
         },
         ProdutosRecord.collection.doc(snapshot.objectID),
       );
@@ -175,8 +195,9 @@ Map<String, dynamic> createProdutosRecordData({
   DocumentReference? restaurante,
   String? image,
   int? tamanho,
-  double? precoPromo,
-  bool? epromo,
+  bool? isActive,
+  DocumentReference? qtdSabores,
+  bool? personalizado,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -187,8 +208,9 @@ Map<String, dynamic> createProdutosRecordData({
       'restaurante': restaurante,
       'image': image,
       'tamanho': tamanho,
-      'precoPromo': precoPromo,
-      'epromo': epromo,
+      'isActive': isActive,
+      'qtdSabores': qtdSabores,
+      'personalizado': personalizado,
     }.withoutNulls,
   );
 
@@ -209,8 +231,10 @@ class ProdutosRecordDocumentEquality implements Equality<ProdutosRecord> {
         e1?.image == e2?.image &&
         listEquality.equals(e1?.categori, e2?.categori) &&
         e1?.tamanho == e2?.tamanho &&
-        e1?.precoPromo == e2?.precoPromo &&
-        e1?.epromo == e2?.epromo;
+        e1?.isActive == e2?.isActive &&
+        e1?.qtdSabores == e2?.qtdSabores &&
+        e1?.personalizado == e2?.personalizado &&
+        listEquality.equals(e1?.categoria, e2?.categoria);
   }
 
   @override
@@ -223,8 +247,10 @@ class ProdutosRecordDocumentEquality implements Equality<ProdutosRecord> {
         e?.image,
         e?.categori,
         e?.tamanho,
-        e?.precoPromo,
-        e?.epromo
+        e?.isActive,
+        e?.qtdSabores,
+        e?.personalizado,
+        e?.categoria
       ]);
 
   @override

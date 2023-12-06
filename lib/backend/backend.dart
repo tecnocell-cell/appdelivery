@@ -9,9 +9,19 @@ import 'schema/users_record.dart';
 import 'schema/produtos_record.dart';
 import 'schema/restaurante_record.dart';
 import 'schema/tipo_comercio_record.dart';
-import 'schema/vendas_record.dart';
 import 'schema/endereco_record.dart';
 import 'schema/adicionais_record.dart';
+import 'schema/tipo_usuario_record.dart';
+import 'schema/tipo_de_massa_record.dart';
+import 'schema/produto_venda_record.dart';
+import 'schema/taxade_entrega_record.dart';
+import 'schema/qtd_sabores_record.dart';
+import 'schema/categoria_record.dart';
+import 'schema/venda_record.dart';
+import 'schema/cupons_record.dart';
+import 'schema/promocao_record.dart';
+import 'schema/etregadores_record.dart';
+import 'schema/rastreamento_pedidos_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -23,9 +33,19 @@ export 'schema/users_record.dart';
 export 'schema/produtos_record.dart';
 export 'schema/restaurante_record.dart';
 export 'schema/tipo_comercio_record.dart';
-export 'schema/vendas_record.dart';
 export 'schema/endereco_record.dart';
 export 'schema/adicionais_record.dart';
+export 'schema/tipo_usuario_record.dart';
+export 'schema/tipo_de_massa_record.dart';
+export 'schema/produto_venda_record.dart';
+export 'schema/taxade_entrega_record.dart';
+export 'schema/qtd_sabores_record.dart';
+export 'schema/categoria_record.dart';
+export 'schema/venda_record.dart';
+export 'schema/cupons_record.dart';
+export 'schema/promocao_record.dart';
+export 'schema/etregadores_record.dart';
+export 'schema/rastreamento_pedidos_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -175,43 +195,6 @@ Future<List<TipoComercioRecord>> queryTipoComercioRecordOnce({
       singleRecord: singleRecord,
     );
 
-/// Functions to query VendasRecords (as a Stream and as a Future).
-Future<int> queryVendasRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      VendasRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<VendasRecord>> queryVendasRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      VendasRecord.collection,
-      VendasRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<VendasRecord>> queryVendasRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      VendasRecord.collection,
-      VendasRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
 /// Functions to query EnderecoRecords (as a Stream and as a Future).
 Future<int> queryEnderecoRecordCount({
   Query Function(Query)? queryBuilder,
@@ -281,6 +264,413 @@ Future<List<AdicionaisRecord>> queryAdicionaisRecordOnce({
     queryCollectionOnce(
       AdicionaisRecord.collection,
       AdicionaisRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query TipoUsuarioRecords (as a Stream and as a Future).
+Future<int> queryTipoUsuarioRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      TipoUsuarioRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<TipoUsuarioRecord>> queryTipoUsuarioRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      TipoUsuarioRecord.collection,
+      TipoUsuarioRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<TipoUsuarioRecord>> queryTipoUsuarioRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      TipoUsuarioRecord.collection,
+      TipoUsuarioRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query TipoDeMassaRecords (as a Stream and as a Future).
+Future<int> queryTipoDeMassaRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      TipoDeMassaRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<TipoDeMassaRecord>> queryTipoDeMassaRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      TipoDeMassaRecord.collection,
+      TipoDeMassaRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<TipoDeMassaRecord>> queryTipoDeMassaRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      TipoDeMassaRecord.collection,
+      TipoDeMassaRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query ProdutoVendaRecords (as a Stream and as a Future).
+Future<int> queryProdutoVendaRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ProdutoVendaRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ProdutoVendaRecord>> queryProdutoVendaRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ProdutoVendaRecord.collection,
+      ProdutoVendaRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ProdutoVendaRecord>> queryProdutoVendaRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ProdutoVendaRecord.collection,
+      ProdutoVendaRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query TaxadeEntregaRecords (as a Stream and as a Future).
+Future<int> queryTaxadeEntregaRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      TaxadeEntregaRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<TaxadeEntregaRecord>> queryTaxadeEntregaRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      TaxadeEntregaRecord.collection,
+      TaxadeEntregaRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<TaxadeEntregaRecord>> queryTaxadeEntregaRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      TaxadeEntregaRecord.collection,
+      TaxadeEntregaRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query QtdSaboresRecords (as a Stream and as a Future).
+Future<int> queryQtdSaboresRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      QtdSaboresRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<QtdSaboresRecord>> queryQtdSaboresRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      QtdSaboresRecord.collection,
+      QtdSaboresRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<QtdSaboresRecord>> queryQtdSaboresRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      QtdSaboresRecord.collection,
+      QtdSaboresRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query CategoriaRecords (as a Stream and as a Future).
+Future<int> queryCategoriaRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      CategoriaRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<CategoriaRecord>> queryCategoriaRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      CategoriaRecord.collection,
+      CategoriaRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<CategoriaRecord>> queryCategoriaRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      CategoriaRecord.collection,
+      CategoriaRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query VendaRecords (as a Stream and as a Future).
+Future<int> queryVendaRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      VendaRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<VendaRecord>> queryVendaRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      VendaRecord.collection,
+      VendaRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<VendaRecord>> queryVendaRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      VendaRecord.collection,
+      VendaRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query CuponsRecords (as a Stream and as a Future).
+Future<int> queryCuponsRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      CuponsRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<CuponsRecord>> queryCuponsRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      CuponsRecord.collection,
+      CuponsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<CuponsRecord>> queryCuponsRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      CuponsRecord.collection,
+      CuponsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query PromocaoRecords (as a Stream and as a Future).
+Future<int> queryPromocaoRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      PromocaoRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<PromocaoRecord>> queryPromocaoRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      PromocaoRecord.collection,
+      PromocaoRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<PromocaoRecord>> queryPromocaoRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      PromocaoRecord.collection,
+      PromocaoRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query EtregadoresRecords (as a Stream and as a Future).
+Future<int> queryEtregadoresRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      EtregadoresRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<EtregadoresRecord>> queryEtregadoresRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      EtregadoresRecord.collection,
+      EtregadoresRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<EtregadoresRecord>> queryEtregadoresRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      EtregadoresRecord.collection,
+      EtregadoresRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query RastreamentoPedidosRecords (as a Stream and as a Future).
+Future<int> queryRastreamentoPedidosRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      RastreamentoPedidosRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<RastreamentoPedidosRecord>> queryRastreamentoPedidosRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      RastreamentoPedidosRecord.collection,
+      RastreamentoPedidosRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<RastreamentoPedidosRecord>> queryRastreamentoPedidosRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      RastreamentoPedidosRecord.collection,
+      RastreamentoPedidosRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

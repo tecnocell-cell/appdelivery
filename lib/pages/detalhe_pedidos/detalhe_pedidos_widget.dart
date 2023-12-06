@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_count_controller.dart';
@@ -10,7 +9,6 @@ import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'detalhe_pedidos_model.dart';
@@ -200,39 +198,6 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
         ),
       ],
     ),
-    'rowOnPageLoadAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeOut,
-          delay: 650.ms,
-          duration: 400.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        BlurEffect(
-          curve: Curves.easeOut,
-          delay: 650.ms,
-          duration: 400.ms,
-          begin: const Offset(10.0, 10.0),
-          end: const Offset(0.0, 0.0),
-        ),
-        MoveEffect(
-          curve: Curves.easeOut,
-          delay: 650.ms,
-          duration: 400.ms,
-          begin: const Offset(0.0, 20.0),
-          end: const Offset(0.0, 0.0),
-        ),
-        ScaleEffect(
-          curve: Curves.easeOut,
-          delay: 650.ms,
-          duration: 400.ms,
-          begin: const Offset(2.0, 2.0),
-          end: const Offset(1.0, 1.0),
-        ),
-      ],
-    ),
     'containerOnPageLoadAnimation5': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
@@ -266,33 +231,33 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
         ),
       ],
     ),
-    'rowOnPageLoadAnimation2': AnimationInfo(
+    'containerOnPageLoadAnimation6': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         FadeEffect(
           curve: Curves.easeOut,
-          delay: 700.ms,
+          delay: 550.ms,
           duration: 400.ms,
           begin: 0.0,
           end: 1.0,
         ),
         BlurEffect(
           curve: Curves.easeOut,
-          delay: 700.ms,
+          delay: 550.ms,
           duration: 400.ms,
           begin: const Offset(10.0, 10.0),
           end: const Offset(0.0, 0.0),
         ),
         MoveEffect(
           curve: Curves.easeOut,
-          delay: 700.ms,
+          delay: 550.ms,
           duration: 400.ms,
           begin: const Offset(0.0, 20.0),
           end: const Offset(0.0, 0.0),
         ),
         ScaleEffect(
           curve: Curves.easeOut,
-          delay: 700.ms,
+          delay: 550.ms,
           duration: 400.ms,
           begin: const Offset(2.0, 2.0),
           end: const Offset(1.0, 1.0),
@@ -332,7 +297,7 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
         ),
       ],
     ),
-    'containerOnPageLoadAnimation6': AnimationInfo(
+    'containerOnPageLoadAnimation7': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         FadeEffect(
@@ -371,6 +336,9 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => DetalhePedidosModel());
+
+    _model.textController ??= TextEditingController();
+    _model.textFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -645,51 +613,73 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                     ).animateOnPageLoad(
                         animationsMap['containerOnPageLoadAnimation2']!),
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                    child: Container(
-                      width: double.infinity,
-                      height: 90.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        child: Container(
+                          width: double.infinity,
+                          height: 90.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            border: Border.all(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                            ),
+                          ),
+                          child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              Text(
-                                'Detalhes do Produto',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Open Sans',
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w600,
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'INGREDIENTES:',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    5.0, 5.0, 5.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        detalhePedidosProdutosRecord.descri
+                                            .maybeHandleOverflow(
+                                          maxChars: 100,
+                                          replacement: '…',
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Open Sans',
+                                              fontSize: 12.0,
+                                            ),
+                                      ),
                                     ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
-                          Expanded(
-                            child: Text(
-                              detalhePedidosProdutosRecord.descri,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Open Sans',
-                                    color: const Color(0xFF7C7C7C),
-                                    fontSize: 13.0,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                            ),
-                          ),
-                        ].divide(const SizedBox(height: 8.0)),
+                        ).animateOnPageLoad(
+                            animationsMap['containerOnPageLoadAnimation3']!),
                       ),
-                    ).animateOnPageLoad(
-                        animationsMap['containerOnPageLoadAnimation3']!),
+                    ],
                   ),
                   Padding(
                     padding:
@@ -703,59 +693,128 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                     ).animateOnPageLoad(
                         animationsMap['containerOnPageLoadAnimation4']!),
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Nutritions',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Open Sans',
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Container(
-                              width: 33.0,
-                              height: 18.0,
-                              decoration: BoxDecoration(
-                                color: const Color(0x267C7C7C),
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '100gr',
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        child: Container(
+                          width: double.infinity,
+                          height: 120.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 0.0, 16.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Icon(
+                                      Icons.mode,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      size: 24.0,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          20.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'Observação',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Open Sans',
+                                              fontSize: 14.0,
+                                            ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 8.0, 0.0, 0.0),
+                                  child: TextFormField(
+                                    controller: _model.textController,
+                                    focusNode: _model.textFieldFocusNode,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText:
+                                          'Se desejar, digite aqui sua observação',
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                          ),
+                                      alignLabelWithHint: false,
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      filled: true,
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Open Sans',
-                                          fontSize: 9.0,
-                                          fontWeight: FontWeight.w300,
+                                          fontSize: 14.0,
                                         ),
+                                    textAlign: TextAlign.start,
+                                    maxLines: 2,
+                                    validator: _model.textControllerValidator
+                                        .asValidator(context),
                                   ),
-                                ].divide(const SizedBox(width: 24.0)),
-                              ),
+                                ),
+                              ],
                             ),
-                            Icon(
-                              Icons.keyboard_arrow_right_outlined,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
-                            ),
-                          ].divide(const SizedBox(width: 16.0)),
-                        ),
-                      ],
-                    ).animateOnPageLoad(
-                        animationsMap['rowOnPageLoadAnimation1']!),
+                          ),
+                        ).animateOnPageLoad(
+                            animationsMap['containerOnPageLoadAnimation5']!),
+                      ),
+                    ],
                   ),
                   Padding(
                     padding:
@@ -767,52 +826,7 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                         color: Color(0xFFE2E2E2),
                       ),
                     ).animateOnPageLoad(
-                        animationsMap['containerOnPageLoadAnimation5']!),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Review',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Open Sans',
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            RatingBar.builder(
-                              onRatingUpdate: (newValue) => setState(
-                                  () => _model.ratingBarValue = newValue),
-                              itemBuilder: (context, index) => Icon(
-                                Icons.star_rounded,
-                                color: FlutterFlowTheme.of(context).tertiary,
-                              ),
-                              direction: Axis.horizontal,
-                              initialRating: _model.ratingBarValue ??= 3.0,
-                              unratedColor:
-                                  FlutterFlowTheme.of(context).accent3,
-                              itemCount: 5,
-                              itemSize: 18.0,
-                              glowColor: FlutterFlowTheme.of(context).tertiary,
-                            ),
-                            Icon(
-                              Icons.keyboard_arrow_right_outlined,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
-                            ),
-                          ].divide(const SizedBox(width: 16.0)),
-                        ),
-                      ],
-                    ).animateOnPageLoad(
-                        animationsMap['rowOnPageLoadAnimation2']!),
+                        animationsMap['containerOnPageLoadAnimation6']!),
                   ),
                   Padding(
                     padding:
@@ -871,13 +885,6 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                           highlightColor: Colors.transparent,
                           onTap: () async {
                             setState(() {
-                              FFAppState().addToPedido(PedidoStruct(
-                                quantidade: _model.countControllerValue,
-                                img: detalhePedidosProdutosRecord.image,
-                                subTotal: detalhePedidosProdutosRecord.preco,
-                                produto: detalhePedidosProdutosRecord.reference,
-                                usuario: currentUserReference,
-                              ));
                               FFAppState().addCarrinho =
                                   FFAppState().addCarrinho + 1.0;
                               FFAppState().soma = FFAppState().soma +
@@ -943,7 +950,7 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                             ),
                           ),
                         ).animateOnPageLoad(
-                            animationsMap['containerOnPageLoadAnimation6']!),
+                            animationsMap['containerOnPageLoadAnimation7']!),
                       ],
                     ),
                   ),

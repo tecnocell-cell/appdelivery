@@ -6,8 +6,8 @@ import '/backend/schema/util/firestore_util.dart';
 
 import 'index.dart';
 
-class AdicionaisRecord extends FirestoreRecord {
-  AdicionaisRecord._(
+class TipoDeMassaRecord extends FirestoreRecord {
+  TipoDeMassaRecord._(
     super.reference,
     super.data,
   ) {
@@ -30,40 +30,40 @@ class AdicionaisRecord extends FirestoreRecord {
   }
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('adicionais');
+      FirebaseFirestore.instance.collection('tipoDeMassa');
 
-  static Stream<AdicionaisRecord> getDocument(DocumentReference ref) =>
-      ref.snapshots().map((s) => AdicionaisRecord.fromSnapshot(s));
+  static Stream<TipoDeMassaRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => TipoDeMassaRecord.fromSnapshot(s));
 
-  static Future<AdicionaisRecord> getDocumentOnce(DocumentReference ref) =>
-      ref.get().then((s) => AdicionaisRecord.fromSnapshot(s));
+  static Future<TipoDeMassaRecord> getDocumentOnce(DocumentReference ref) =>
+      ref.get().then((s) => TipoDeMassaRecord.fromSnapshot(s));
 
-  static AdicionaisRecord fromSnapshot(DocumentSnapshot snapshot) =>
-      AdicionaisRecord._(
+  static TipoDeMassaRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      TipoDeMassaRecord._(
         snapshot.reference,
         mapFromFirestore(snapshot.data() as Map<String, dynamic>),
       );
 
-  static AdicionaisRecord getDocumentFromData(
+  static TipoDeMassaRecord getDocumentFromData(
     Map<String, dynamic> data,
     DocumentReference reference,
   ) =>
-      AdicionaisRecord._(reference, mapFromFirestore(data));
+      TipoDeMassaRecord._(reference, mapFromFirestore(data));
 
   @override
   String toString() =>
-      'AdicionaisRecord(reference: ${reference.path}, data: $snapshotData)';
+      'TipoDeMassaRecord(reference: ${reference.path}, data: $snapshotData)';
 
   @override
   int get hashCode => reference.path.hashCode;
 
   @override
   bool operator ==(other) =>
-      other is AdicionaisRecord &&
+      other is TipoDeMassaRecord &&
       reference.path.hashCode == other.reference.path.hashCode;
 }
 
-Map<String, dynamic> createAdicionaisRecordData({
+Map<String, dynamic> createTipoDeMassaRecordData({
   String? nome,
   double? preco,
 }) {
@@ -77,18 +77,18 @@ Map<String, dynamic> createAdicionaisRecordData({
   return firestoreData;
 }
 
-class AdicionaisRecordDocumentEquality implements Equality<AdicionaisRecord> {
-  const AdicionaisRecordDocumentEquality();
+class TipoDeMassaRecordDocumentEquality implements Equality<TipoDeMassaRecord> {
+  const TipoDeMassaRecordDocumentEquality();
 
   @override
-  bool equals(AdicionaisRecord? e1, AdicionaisRecord? e2) {
+  bool equals(TipoDeMassaRecord? e1, TipoDeMassaRecord? e2) {
     return e1?.nome == e2?.nome && e1?.preco == e2?.preco;
   }
 
   @override
-  int hash(AdicionaisRecord? e) =>
+  int hash(TipoDeMassaRecord? e) =>
       const ListEquality().hash([e?.nome, e?.preco]);
 
   @override
-  bool isValidKey(Object? o) => o is AdicionaisRecord;
+  bool isValidKey(Object? o) => o is TipoDeMassaRecord;
 }

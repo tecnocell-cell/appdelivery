@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -1647,101 +1646,54 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                         ],
                       ),
                     ),
-                    Builder(
-                      builder: (context) {
-                        final carrinhoItemFinalizar =
-                            FFAppState().pedido.toList();
-                        return ListView.builder(
-                          padding: EdgeInsets.zero,
-                          primary: false,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          itemCount: carrinhoItemFinalizar.length,
-                          itemBuilder: (context, carrinhoItemFinalizarIndex) {
-                            final carrinhoItemFinalizarItem =
-                                carrinhoItemFinalizar[
-                                    carrinhoItemFinalizarIndex];
-                            return Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  6.0, 6.0, 6.0, 6.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        10.0, 0.0, 10.0, 6.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        StreamBuilder<ProdutosRecord>(
-                                          stream: ProdutosRecord.getDocument(
-                                              carrinhoItemFinalizarItem
-                                                  .produto!),
-                                          builder: (context, snapshot) {
-                                            // Customize what your widget looks like when it's loading.
-                                            if (!snapshot.hasData) {
-                                              return Center(
-                                                child: SizedBox(
-                                                  width: 50.0,
-                                                  height: 50.0,
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                    valueColor:
-                                                        AlwaysStoppedAnimation<
-                                                            Color>(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            }
-                                            final textProdutosRecord =
-                                                snapshot.data!;
-                                            return Text(
-                                              textProdutosRecord.nome,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Open Sans',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        fontSize: 16.0,
-                                                      ),
-                                            );
-                                          },
-                                        ),
-                                        Text(
-                                          '${carrinhoItemFinalizarItem.quantidade.toString()} x ${formatNumber(
-                                            carrinhoItemFinalizarItem.subTotal,
-                                            formatType: FormatType.custom,
-                                            currency: 'R\$ ',
-                                            format: '.00',
-                                            locale: 'pt_BR',
-                                          )}',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Open Sans',
-                                                fontSize: 15.0,
-                                              ),
-                                        ),
-                                      ],
+                    ListView(
+                      padding: EdgeInsets.zero,
+                      primary: false,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              6.0, 6.0, 6.0, 6.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 0.0, 10.0, 6.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Suco de Manga',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            fontSize: 16.0,
+                                          ),
                                     ),
-                                  ),
-                                ],
+                                    Text(
+                                      '2x R\$10,00',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            fontSize: 15.0,
+                                          ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            );
-                          },
-                        );
-                      },
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                     Divider(
                       thickness: 1.0,
@@ -1842,46 +1794,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                   focusColor: Colors.transparent,
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
-                  onTap: () async {
-                    if (FFAppState().pedido.isNotEmpty) {
-                      setState(() {
-                        FFAppState().contador = -1;
-                      });
-                      while (
-                          FFAppState().contador <= FFAppState().pedido.length) {
-                        setState(() {
-                          FFAppState().contador = FFAppState().contador + 1;
-                        });
-
-                        await VendasRecord.collection
-                            .doc()
-                            .set(createVendasRecordData(
-                              valortotal: FFAppState().totalCompra,
-                              dataVenda: getCurrentTimestamp,
-                              usuarioVenda: currentUserReference,
-                              endereco: widget.paramEnderecoEntrega,
-                              pedidoSendoPrepatado: false,
-                              pedidoEnviadoEntrega: false,
-                              pagamentoSucesso: true,
-                              entregaRealizada: false,
-                              preco: FFAppState()
-                                  .pedido[FFAppState().contador]
-                                  .subTotal,
-                              produto: FFAppState()
-                                  .pedido[FFAppState().contador]
-                                  .produto
-                                  ?.id,
-                              quantidade: FFAppState()
-                                  .pedido[FFAppState().contador]
-                                  .quantidade,
-                            ));
-
-                        context.pushNamed('ordemAceita');
-                      }
-                    } else {
-                      return;
-                    }
-                  },
+                  onTap: () async {},
                   child: Container(
                     width: 250.0,
                     height: 40.0,

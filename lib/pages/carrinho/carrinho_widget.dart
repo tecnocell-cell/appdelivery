@@ -1,5 +1,3 @@
-import '/backend/backend.dart';
-import '/componentes/carrinho_vazio/carrinho_vazio_widget.dart';
 import '/componentes/seleciona_end_entrega/seleciona_end_entrega_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -298,349 +296,202 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                   ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                  child: Builder(
-                    builder: (context) {
-                      final carrinho = FFAppState().pedido.toList();
-                      if (carrinho.isEmpty) {
-                        return const Center(
-                          child: CarrinhoVazioWidget(),
-                        );
-                      }
-                      return Column(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children:
-                            List.generate(carrinho.length, (carrinhoIndex) {
-                          final carrinhoItem = carrinho[carrinhoIndex];
-                          return Column(
+                        children: [
+                          Row(
                             mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: 60.0,
-                                    height: 60.0,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      shape: BoxShape.rectangle,
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          5.0, 5.0, 5.0, 5.0),
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        child: Image.network(
-                                          carrinhoItem.img,
-                                          width: 60.0,
-                                          height: 60.0,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
+                              Container(
+                                width: 60.0,
+                                height: 60.0,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  shape: BoxShape.rectangle,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      5.0, 5.0, 5.0, 5.0),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Image.network(
+                                      '',
+                                      width: 60.0,
+                                      height: 60.0,
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
-                                  Flexible(
-                                    child: Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          0.74,
-                                      decoration: const BoxDecoration(),
-                                      child: Row(
+                                ),
+                              ),
+                              Flexible(
+                                child: Container(
+                                  width:
+                                      MediaQuery.sizeOf(context).width * 0.74,
+                                  decoration: const BoxDecoration(),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Expanded(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(10.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      'Item Pedido',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLarge
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                fontSize: 14.0,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          10.0, 2.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'R\$ 12,00',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Open Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          fontSize: 14.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Column(
                                         mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                          Expanded(
-                                            child: Column(
+                                          Container(
+                                            width: 102.0,
+                                            height: 32.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                              ),
+                                            ),
+                                            child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                                  CrossAxisAlignment.center,
                                               children: [
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Expanded(
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    10.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: StreamBuilder<
-                                                            ProdutosRecord>(
-                                                          stream: ProdutosRecord
-                                                              .getDocument(
-                                                                  carrinhoItem
-                                                                      .produto!),
-                                                          builder: (context,
-                                                              snapshot) {
-                                                            // Customize what your widget looks like when it's loading.
-                                                            if (!snapshot
-                                                                .hasData) {
-                                                              return Center(
-                                                                child: SizedBox(
-                                                                  width: 50.0,
-                                                                  height: 50.0,
-                                                                  child:
-                                                                      CircularProgressIndicator(
-                                                                    valueColor:
-                                                                        AlwaysStoppedAnimation<
-                                                                            Color>(
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              );
-                                                            }
-                                                            final textProdutosRecord =
-                                                                snapshot.data!;
-                                                            return Text(
-                                                              textProdutosRecord
-                                                                  .nome,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyLarge
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Open Sans',
-                                                                    fontSize:
-                                                                        14.0,
-                                                                  ),
-                                                            );
-                                                          },
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
+                                                InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {},
+                                                  child: Icon(
+                                                    FFIcons.kminus,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    size: 16.0,
+                                                  ),
                                                 ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  10.0,
-                                                                  2.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        formatNumber(
-                                                          functions
-                                                              .subtotalProdutos(
-                                                                  carrinhoItem
-                                                                      .subTotal,
-                                                                  carrinhoItem
-                                                                      .quantidade),
-                                                          formatType:
-                                                              FormatType.custom,
-                                                          currency: 'R\$ ',
-                                                          format: '.00',
-                                                          locale: 'pt_BR',
-                                                        ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Open Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ],
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          10.0, 0.0, 10.0, 0.0),
+                                                  child: Text(
+                                                    '1',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium,
+                                                  ),
+                                                ),
+                                                InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {},
+                                                  child: Icon(
+                                                    FFIcons.kadd,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    size: 16.0,
+                                                  ),
                                                 ),
                                               ],
                                             ),
                                           ),
-                                          Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                width: 102.0,
-                                                height: 32.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                  border: Border.all(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .alternate,
-                                                  ),
-                                                ),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        if (carrinhoItem
-                                                                .quantidade >=
-                                                            1) {
-                                                          setState(() {
-                                                            FFAppState()
-                                                                .updatePedidoAtIndex(
-                                                              carrinhoIndex,
-                                                              (e) => e
-                                                                ..incrementQuantidade(
-                                                                    -1),
-                                                            );
-                                                            FFAppState()
-                                                                    .localRefer =
-                                                                FFAppState()
-                                                                        .localRefer +
-                                                                    -1;
-                                                            FFAppState()
-                                                                .soma = FFAppState()
-                                                                    .soma +
-                                                                functions.subtrair(
-                                                                    carrinhoItem
-                                                                        .subTotal);
-                                                          });
-                                                          if (carrinhoItem
-                                                                  .quantidade <=
-                                                              0) {
-                                                            setState(() {
-                                                              FFAppState()
-                                                                  .removeAtIndexFromPedido(
-                                                                      carrinhoIndex);
-                                                              FFAppState()
-                                                                      .addCarrinho =
-                                                                  FFAppState()
-                                                                          .addCarrinho +
-                                                                      -1.0;
-                                                            });
-                                                          } else {
-                                                            return;
-                                                          }
-
-                                                          return;
-                                                        } else {
-                                                          return;
-                                                        }
-                                                      },
-                                                      child: Icon(
-                                                        FFIcons.kminus,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                        size: 16.0,
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  10.0,
-                                                                  0.0,
-                                                                  10.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        carrinhoItem.quantidade
-                                                            .toString(),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium,
-                                                      ),
-                                                    ),
-                                                    InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        setState(() {
-                                                          FFAppState()
-                                                              .updatePedidoAtIndex(
-                                                            valueOrDefault<int>(
-                                                              carrinhoIndex,
-                                                              1,
-                                                            ),
-                                                            (e) => e
-                                                              ..incrementQuantidade(
-                                                                  1),
-                                                          );
-                                                          FFAppState().soma =
-                                                              FFAppState()
-                                                                      .soma +
-                                                                  carrinhoItem
-                                                                      .subTotal;
-                                                          FFAppState()
-                                                                  .localRefer =
-                                                              FFAppState()
-                                                                      .localRefer +
-                                                                  1;
-                                                        });
-                                                      },
-                                                      child: Icon(
-                                                        FFIcons.kadd,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        size: 16.0,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
                                         ],
                                       ),
-                                    ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                              const Divider(
-                                thickness: 1.0,
-                                color: Color(0xFFFEF0EF),
+                                ),
                               ),
                             ],
-                          );
-                        }),
-                      );
-                    },
+                          ),
+                          const Divider(
+                            thickness: 1.0,
+                            color: Color(0xFFFEF0EF),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
                 if (FFAppState().localRefer > 0)

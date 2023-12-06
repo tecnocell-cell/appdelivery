@@ -49,15 +49,20 @@ class UsersRecord extends FirestoreRecord {
   List<DocumentReference> get endereco => _endereco ?? const [];
   bool hasEndereco() => _endereco != null;
 
+  // "tipoUsuario" field.
+  DocumentReference? _tipoUsuario;
+  DocumentReference? get tipoUsuario => _tipoUsuario;
+  bool hasTipoUsuario() => _tipoUsuario != null;
+
+  // "saldo" field.
+  double? _saldo;
+  double get saldo => _saldo ?? 0.0;
+  bool hasSaldo() => _saldo != null;
+
   // "vendas" field.
   List<DocumentReference>? _vendas;
   List<DocumentReference> get vendas => _vendas ?? const [];
   bool hasVendas() => _vendas != null;
-
-  // "pedido" field.
-  List<String>? _pedido;
-  List<String> get pedido => _pedido ?? const [];
-  bool hasPedido() => _pedido != null;
 
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
@@ -67,8 +72,9 @@ class UsersRecord extends FirestoreRecord {
     _createdTime = snapshotData['created_time'] as DateTime?;
     _phoneNumber = snapshotData['phone_number'] as String?;
     _endereco = getDataList(snapshotData['endereco']);
+    _tipoUsuario = snapshotData['tipoUsuario'] as DocumentReference?;
+    _saldo = castToType<double>(snapshotData['saldo']);
     _vendas = getDataList(snapshotData['vendas']);
-    _pedido = getDataList(snapshotData['pedido']);
   }
 
   static CollectionReference get collection =>
@@ -111,6 +117,8 @@ Map<String, dynamic> createUsersRecordData({
   String? uid,
   DateTime? createdTime,
   String? phoneNumber,
+  DocumentReference? tipoUsuario,
+  double? saldo,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -120,6 +128,8 @@ Map<String, dynamic> createUsersRecordData({
       'uid': uid,
       'created_time': createdTime,
       'phone_number': phoneNumber,
+      'tipoUsuario': tipoUsuario,
+      'saldo': saldo,
     }.withoutNulls,
   );
 
@@ -139,8 +149,9 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.createdTime == e2?.createdTime &&
         e1?.phoneNumber == e2?.phoneNumber &&
         listEquality.equals(e1?.endereco, e2?.endereco) &&
-        listEquality.equals(e1?.vendas, e2?.vendas) &&
-        listEquality.equals(e1?.pedido, e2?.pedido);
+        e1?.tipoUsuario == e2?.tipoUsuario &&
+        e1?.saldo == e2?.saldo &&
+        listEquality.equals(e1?.vendas, e2?.vendas);
   }
 
   @override
@@ -152,8 +163,9 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.createdTime,
         e?.phoneNumber,
         e?.endereco,
-        e?.vendas,
-        e?.pedido
+        e?.tipoUsuario,
+        e?.saldo,
+        e?.vendas
       ]);
 
   @override

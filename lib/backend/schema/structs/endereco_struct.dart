@@ -3,7 +3,6 @@ import '/backend/algolia/serialization_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '/backend/schema/util/firestore_util.dart';
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -18,6 +17,7 @@ class EnderecoStruct extends FFFirebaseStruct {
     String? complemento,
     int? numero,
     String? tipoEndereco,
+    PagamentoStruct? pagamento,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _cep = cep,
         _rua = rua,
@@ -27,6 +27,7 @@ class EnderecoStruct extends FFFirebaseStruct {
         _complemento = complemento,
         _numero = numero,
         _tipoEndereco = tipoEndereco,
+        _pagamento = pagamento,
         super(firestoreUtilData);
 
   // "cep" field.
@@ -78,6 +79,14 @@ class EnderecoStruct extends FFFirebaseStruct {
   set tipoEndereco(String? val) => _tipoEndereco = val;
   bool hasTipoEndereco() => _tipoEndereco != null;
 
+  // "pagamento" field.
+  PagamentoStruct? _pagamento;
+  PagamentoStruct get pagamento => _pagamento ?? PagamentoStruct();
+  set pagamento(PagamentoStruct? val) => _pagamento = val;
+  void updatePagamento(Function(PagamentoStruct) updateFn) =>
+      updateFn(_pagamento ??= PagamentoStruct());
+  bool hasPagamento() => _pagamento != null;
+
   static EnderecoStruct fromMap(Map<String, dynamic> data) => EnderecoStruct(
         cep: data['cep'] as String?,
         rua: data['rua'] as String?,
@@ -87,6 +96,7 @@ class EnderecoStruct extends FFFirebaseStruct {
         complemento: data['complemento'] as String?,
         numero: castToType<int>(data['numero']),
         tipoEndereco: data['tipoEndereco'] as String?,
+        pagamento: PagamentoStruct.maybeFromMap(data['pagamento']),
       );
 
   static EnderecoStruct? maybeFromMap(dynamic data) =>
@@ -101,6 +111,7 @@ class EnderecoStruct extends FFFirebaseStruct {
         'complemento': _complemento,
         'numero': _numero,
         'tipoEndereco': _tipoEndereco,
+        'pagamento': _pagamento?.toMap(),
       }.withoutNulls;
 
   @override
@@ -136,6 +147,10 @@ class EnderecoStruct extends FFFirebaseStruct {
         'tipoEndereco': serializeParam(
           _tipoEndereco,
           ParamType.String,
+        ),
+        'pagamento': serializeParam(
+          _pagamento,
+          ParamType.DataStruct,
         ),
       }.withoutNulls;
 
@@ -181,6 +196,12 @@ class EnderecoStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        pagamento: deserializeStructParam(
+          data['pagamento'],
+          ParamType.DataStruct,
+          false,
+          structBuilder: PagamentoStruct.fromSerializableMap,
+        ),
       );
 
   static EnderecoStruct fromAlgoliaData(Map<String, dynamic> data) =>
@@ -225,6 +246,12 @@ class EnderecoStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        pagamento: convertAlgoliaParam(
+          data['pagamento'],
+          ParamType.DataStruct,
+          false,
+          structBuilder: PagamentoStruct.fromAlgoliaData,
+        ),
         firestoreUtilData: const FirestoreUtilData(
           clearUnsetFields: false,
           create: true,
@@ -244,12 +271,22 @@ class EnderecoStruct extends FFFirebaseStruct {
         estado == other.estado &&
         complemento == other.complemento &&
         numero == other.numero &&
-        tipoEndereco == other.tipoEndereco;
+        tipoEndereco == other.tipoEndereco &&
+        pagamento == other.pagamento;
   }
 
   @override
-  int get hashCode => const ListEquality().hash(
-      [cep, rua, bairro, cidade, estado, complemento, numero, tipoEndereco]);
+  int get hashCode => const ListEquality().hash([
+        cep,
+        rua,
+        bairro,
+        cidade,
+        estado,
+        complemento,
+        numero,
+        tipoEndereco,
+        pagamento
+      ]);
 }
 
 EnderecoStruct createEnderecoStruct({
@@ -261,6 +298,7 @@ EnderecoStruct createEnderecoStruct({
   String? complemento,
   int? numero,
   String? tipoEndereco,
+  PagamentoStruct? pagamento,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -275,6 +313,7 @@ EnderecoStruct createEnderecoStruct({
       complemento: complemento,
       numero: numero,
       tipoEndereco: tipoEndereco,
+      pagamento: pagamento ?? (clearUnsetFields ? PagamentoStruct() : null),
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,
@@ -329,6 +368,14 @@ Map<String, dynamic> getEnderecoFirestoreData(
     return {};
   }
   final firestoreData = mapToFirestore(endereco.toMap());
+
+  // Handle nested data for "pagamento" field.
+  addPagamentoStructData(
+    firestoreData,
+    endereco.hasPagamento() ? endereco.pagamento : null,
+    'pagamento',
+    forFieldValue,
+  );
 
   // Add any Firestore field values
   endereco.firestoreUtilData.fieldValues
