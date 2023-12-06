@@ -59,6 +59,11 @@ class ProdutoVendaRecord extends FirestoreRecord {
   DocumentReference? get tipodeMassa => _tipodeMassa;
   bool hasTipodeMassa() => _tipodeMassa != null;
 
+  // "foto" field.
+  String? _foto;
+  String get foto => _foto ?? '';
+  bool hasFoto() => _foto != null;
+
   void _initializeFields() {
     _valorSubtotal = castToType<double>(snapshotData['valorSubtotal']);
     _produto = snapshotData['produto'] as DocumentReference?;
@@ -69,6 +74,7 @@ class ProdutoVendaRecord extends FirestoreRecord {
     _observacaoPedido = snapshotData['observacaoPedido'] as String?;
     _adicional = getDataList(snapshotData['adicional']);
     _tipodeMassa = snapshotData['tipodeMassa'] as DocumentReference?;
+    _foto = snapshotData['foto'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -114,6 +120,7 @@ Map<String, dynamic> createProdutoVendaRecordData({
   PagamentoStruct? pagamento,
   String? observacaoPedido,
   DocumentReference? tipodeMassa,
+  String? foto,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -125,6 +132,7 @@ Map<String, dynamic> createProdutoVendaRecordData({
       'pagamento': PagamentoStruct().toMap(),
       'observacaoPedido': observacaoPedido,
       'tipodeMassa': tipodeMassa,
+      'foto': foto,
     }.withoutNulls,
   );
 
@@ -149,7 +157,8 @@ class ProdutoVendaRecordDocumentEquality
         e1?.pagamento == e2?.pagamento &&
         e1?.observacaoPedido == e2?.observacaoPedido &&
         listEquality.equals(e1?.adicional, e2?.adicional) &&
-        e1?.tipodeMassa == e2?.tipodeMassa;
+        e1?.tipodeMassa == e2?.tipodeMassa &&
+        e1?.foto == e2?.foto;
   }
 
   @override
@@ -162,7 +171,8 @@ class ProdutoVendaRecordDocumentEquality
         e?.pagamento,
         e?.observacaoPedido,
         e?.adicional,
-        e?.tipodeMassa
+        e?.tipodeMassa,
+        e?.foto
       ]);
 
   @override

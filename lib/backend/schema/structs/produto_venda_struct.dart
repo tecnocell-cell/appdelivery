@@ -18,6 +18,7 @@ class ProdutoVendaStruct extends FFFirebaseStruct {
     DocumentReference? adicional,
     DocumentReference? tipoDeMassa,
     String? observacao,
+    String? foto,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _valorSubtotal = valorSubtotal,
         _produto = produto,
@@ -27,6 +28,7 @@ class ProdutoVendaStruct extends FFFirebaseStruct {
         _adicional = adicional,
         _tipoDeMassa = tipoDeMassa,
         _observacao = observacao,
+        _foto = foto,
         super(firestoreUtilData);
 
   // "valorSubtotal" field.
@@ -80,6 +82,12 @@ class ProdutoVendaStruct extends FFFirebaseStruct {
   set observacao(String? val) => _observacao = val;
   bool hasObservacao() => _observacao != null;
 
+  // "foto" field.
+  String? _foto;
+  String get foto => _foto ?? '';
+  set foto(String? val) => _foto = val;
+  bool hasFoto() => _foto != null;
+
   static ProdutoVendaStruct fromMap(Map<String, dynamic> data) =>
       ProdutoVendaStruct(
         valorSubtotal: castToType<double>(data['valorSubtotal']),
@@ -90,6 +98,7 @@ class ProdutoVendaStruct extends FFFirebaseStruct {
         adicional: data['adicional'] as DocumentReference?,
         tipoDeMassa: data['tipoDeMassa'] as DocumentReference?,
         observacao: data['observacao'] as String?,
+        foto: data['foto'] as String?,
       );
 
   static ProdutoVendaStruct? maybeFromMap(dynamic data) =>
@@ -104,6 +113,7 @@ class ProdutoVendaStruct extends FFFirebaseStruct {
         'adicional': _adicional,
         'tipoDeMassa': _tipoDeMassa,
         'observacao': _observacao,
+        'foto': _foto,
       }.withoutNulls;
 
   @override
@@ -138,6 +148,10 @@ class ProdutoVendaStruct extends FFFirebaseStruct {
         ),
         'observacao': serializeParam(
           _observacao,
+          ParamType.String,
+        ),
+        'foto': serializeParam(
+          _foto,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -189,6 +203,11 @@ class ProdutoVendaStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        foto: deserializeParam(
+          data['foto'],
+          ParamType.String,
+          false,
+        ),
       );
 
   static ProdutoVendaStruct fromAlgoliaData(Map<String, dynamic> data) =>
@@ -233,6 +252,11 @@ class ProdutoVendaStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        foto: convertAlgoliaParam(
+          data['foto'],
+          ParamType.String,
+          false,
+        ),
         firestoreUtilData: const FirestoreUtilData(
           clearUnsetFields: false,
           create: true,
@@ -252,7 +276,8 @@ class ProdutoVendaStruct extends FFFirebaseStruct {
         restaurante == other.restaurante &&
         adicional == other.adicional &&
         tipoDeMassa == other.tipoDeMassa &&
-        observacao == other.observacao;
+        observacao == other.observacao &&
+        foto == other.foto;
   }
 
   @override
@@ -264,7 +289,8 @@ class ProdutoVendaStruct extends FFFirebaseStruct {
         restaurante,
         adicional,
         tipoDeMassa,
-        observacao
+        observacao,
+        foto
       ]);
 }
 
@@ -277,6 +303,7 @@ ProdutoVendaStruct createProdutoVendaStruct({
   DocumentReference? adicional,
   DocumentReference? tipoDeMassa,
   String? observacao,
+  String? foto,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -291,6 +318,7 @@ ProdutoVendaStruct createProdutoVendaStruct({
       adicional: adicional,
       tipoDeMassa: tipoDeMassa,
       observacao: observacao,
+      foto: foto,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

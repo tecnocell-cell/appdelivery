@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_count_controller.dart';
@@ -878,79 +879,133 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                           ),
                         ).animateOnPageLoad(animationsMap[
                             'countControllerOnPageLoadAnimation']!),
-                        InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            setState(() {
-                              FFAppState().addCarrinho =
-                                  FFAppState().addCarrinho + 1.0;
-                              FFAppState().soma = FFAppState().soma +
-                                  functions.subtotalProdutos(
-                                      detalhePedidosProdutosRecord.preco,
-                                      _model.countControllerValue!)!;
-                              FFAppState().localRefer =
-                                  FFAppState().localRefer +
-                                      _model.countControllerValue!;
-                            });
-
-                            context.pushNamed('Carrinho');
-                          },
-                          child: Container(
-                            width: 180.0,
-                            height: 45.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).primary,
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 0.0, 12.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Adicionar',
-                                    maxLines: 1,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Open Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                        StreamBuilder<RestauranteRecord>(
+                          stream: RestauranteRecord.getDocument(
+                              detalhePedidosProdutosRecord.restaurante!),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).primary,
+                                    ),
                                   ),
-                                  Text(
-                                    formatNumber(
+                                ),
+                              );
+                            }
+                            final containerRestauranteRecord = snapshot.data!;
+                            return InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                setState(() {
+                                  FFAppState().addCarrinho =
+                                      FFAppState().addCarrinho + 1.0;
+                                  FFAppState().soma = FFAppState().soma +
                                       functions.subtotalProdutos(
                                           detalhePedidosProdutosRecord.preco,
+                                          _model.countControllerValue!)!;
+                                  FFAppState().localRefer =
+                                      FFAppState().localRefer +
+                                          _model.countControllerValue!;
+                                  FFAppState()
+                                      .addToProdutoVenda(ProdutoVendaStruct(
+                                    valorSubtotal: functions.subtotalProdutos(
+                                        detalhePedidosProdutosRecord.preco,
+                                        _model.countControllerValue!),
+                                    produto: widget.detalheProduto,
+                                    quantidade: _model.countControllerValue,
+                                    usuario: currentUserReference,
+                                    restaurante: detalhePedidosProdutosRecord
+                                        .restaurante,
+                                    observacao: _model.textController.text,
+                                    foto: detalhePedidosProdutosRecord.image,
+                                  ));
+                                });
+
+                                await ProdutoVendaRecord.collection
+                                    .doc()
+                                    .set(createProdutoVendaRecordData(
+                                      valorSubtotal: functions.subtotalProdutos(
+                                          detalhePedidosProdutosRecord.preco,
                                           _model.countControllerValue!),
-                                      formatType: FormatType.custom,
-                                      currency: 'R\$ ',
-                                      format: '.00',
-                                      locale: 'pt_BR',
-                                    ),
-                                    textAlign: TextAlign.end,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Open Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                      produto: detalhePedidosProdutosRecord
+                                          .reference,
+                                      quantidade: _model.countControllerValue,
+                                      usuario: currentUserReference,
+                                      restaurante: detalhePedidosProdutosRecord
+                                          .restaurante,
+                                      observacaoPedido:
+                                          _model.textController.text,
+                                      foto: detalhePedidosProdutosRecord.image,
+                                    ));
+
+                                context.pushNamed('Carrinho');
+                              },
+                              child: Container(
+                                width: 180.0,
+                                height: 45.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      12.0, 0.0, 12.0, 0.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Adicionar',
+                                        maxLines: 1,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Open Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              fontSize: 16.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                      Text(
+                                        formatNumber(
+                                          functions.subtotalProdutos(
+                                              detalhePedidosProdutosRecord
+                                                  .preco,
+                                              _model.countControllerValue!),
+                                          formatType: FormatType.custom,
+                                          currency: 'R\$ ',
+                                          format: '.00',
+                                          locale: 'pt_BR',
                                         ),
+                                        textAlign: TextAlign.end,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Open Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                ),
                               ),
-                            ),
-                          ),
-                        ).animateOnPageLoad(
-                            animationsMap['containerOnPageLoadAnimation7']!),
+                            ).animateOnPageLoad(animationsMap[
+                                'containerOnPageLoadAnimation7']!);
+                          },
+                        ),
                       ],
                     ),
                   ),

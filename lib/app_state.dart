@@ -43,15 +43,19 @@ class FFAppState extends ChangeNotifier {
       _Status = prefs.getBool('ff_Status') ?? _Status;
     });
     _safeInit(() {
-      if (prefs.containsKey('ff_produtoVenda')) {
-        try {
-          final serializedData = prefs.getString('ff_produtoVenda') ?? '{}';
-          _produtoVenda = ProdutoVendaStruct.fromSerializableMap(
-              jsonDecode(serializedData));
-        } catch (e) {
-          print("Can't decode persisted data type. Error: $e.");
-        }
-      }
+      _produtoVenda = prefs
+              .getStringList('ff_produtoVenda')
+              ?.map((x) {
+                try {
+                  return ProdutoVendaStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _produtoVenda;
     });
   }
 
@@ -170,17 +174,45 @@ class FFAppState extends ChangeNotifier {
     _bordaCondicao = value;
   }
 
-  ProdutoVendaStruct _produtoVenda =
-      ProdutoVendaStruct.fromSerializableMap(jsonDecode('{}'));
-  ProdutoVendaStruct get produtoVenda => _produtoVenda;
-  set produtoVenda(ProdutoVendaStruct value) {
+  List<ProdutoVendaStruct> _produtoVenda = [];
+  List<ProdutoVendaStruct> get produtoVenda => _produtoVenda;
+  set produtoVenda(List<ProdutoVendaStruct> value) {
     _produtoVenda = value;
-    prefs.setString('ff_produtoVenda', value.serialize());
+    prefs.setStringList(
+        'ff_produtoVenda', value.map((x) => x.serialize()).toList());
   }
 
-  void updateProdutoVendaStruct(Function(ProdutoVendaStruct) updateFn) {
-    updateFn(_produtoVenda);
-    prefs.setString('ff_produtoVenda', _produtoVenda.serialize());
+  void addToProdutoVenda(ProdutoVendaStruct value) {
+    _produtoVenda.add(value);
+    prefs.setStringList(
+        'ff_produtoVenda', _produtoVenda.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromProdutoVenda(ProdutoVendaStruct value) {
+    _produtoVenda.remove(value);
+    prefs.setStringList(
+        'ff_produtoVenda', _produtoVenda.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromProdutoVenda(int index) {
+    _produtoVenda.removeAt(index);
+    prefs.setStringList(
+        'ff_produtoVenda', _produtoVenda.map((x) => x.serialize()).toList());
+  }
+
+  void updateProdutoVendaAtIndex(
+    int index,
+    ProdutoVendaStruct Function(ProdutoVendaStruct) updateFn,
+  ) {
+    _produtoVenda[index] = updateFn(_produtoVenda[index]);
+    prefs.setStringList(
+        'ff_produtoVenda', _produtoVenda.map((x) => x.serialize()).toList());
+  }
+
+  void insertAtIndexInProdutoVenda(int index, ProdutoVendaStruct value) {
+    _produtoVenda.insert(index, value);
+    prefs.setStringList(
+        'ff_produtoVenda', _produtoVenda.map((x) => x.serialize()).toList());
   }
 }
 
