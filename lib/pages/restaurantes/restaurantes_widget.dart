@@ -616,10 +616,30 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                               ],
                               borderRadius: BorderRadius.circular(8.0),
                             ),
-                            child: Icon(
-                              Icons.tune,
-                              color: FlutterFlowTheme.of(context).primary,
-                              size: 24.0,
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                setState(() {
+                                  FFAppState().subTotalItem = 0;
+                                  FFAppState().addCarrinho = 0.0;
+                                  FFAppState().soma = 0.0;
+                                  FFAppState().localRefer = 0;
+                                  FFAppState().enderecoUsuarioRef =
+                                      EnderecoStruct();
+                                  FFAppState().opcaoEndereco = false;
+                                  FFAppState().taxaEntrega = 3;
+                                  FFAppState().totalCompra = 0.0;
+                                  FFAppState().produtoVenda = [];
+                                });
+                              },
+                              child: Icon(
+                                Icons.tune,
+                                color: FlutterFlowTheme.of(context).primary,
+                                size: 24.0,
+                              ),
                             ),
                           ),
                         ),

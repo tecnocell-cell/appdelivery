@@ -346,9 +346,18 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                                                                   0.0,
                                                                   0.0),
                                                       child: Text(
-                                                        itensCarrinhoItem
-                                                            .valorSubtotal
-                                                            .toString(),
+                                                        formatNumber(
+                                                          functions.subtotalProdutos(
+                                                              itensCarrinhoItem
+                                                                  .valorSubtotal,
+                                                              itensCarrinhoItem
+                                                                  .quantidade),
+                                                          formatType:
+                                                              FormatType.custom,
+                                                          currency: 'R\$ ',
+                                                          format: '.00',
+                                                          locale: 'pt_BR',
+                                                        ),
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -411,8 +420,8 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                                                           Colors.transparent,
                                                       onTap: () async {
                                                         if (itensCarrinhoItem
-                                                                .quantidade <=
-                                                            0) {
+                                                                .quantidade >=
+                                                            1) {
                                                           setState(() {
                                                             FFAppState()
                                                                 .updateProdutoVendaAtIndex(
@@ -593,7 +602,13 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                                       textProdutoVendaRecordList =
                                       snapshot.data!;
                                   return Text(
-                                    FFAppState().soma.toString(),
+                                    formatNumber(
+                                      FFAppState().soma,
+                                      formatType: FormatType.custom,
+                                      currency: 'R\$ ',
+                                      format: '.00',
+                                      locale: 'pt_BR',
+                                    ),
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                   );
