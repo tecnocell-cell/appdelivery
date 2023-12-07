@@ -6,12 +6,12 @@ class CarrinhoModel extends FlutterFlowModel<CarrinhoWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // State field(s) for TextFieldCUPOM widget.
+  FocusNode? textFieldCUPOMFocusNode;
+  TextEditingController? textFieldCUPOMController;
+  String? Function(BuildContext, String?)? textFieldCUPOMControllerValidator;
   // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
+  FocusNode? textFieldFocusNode;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
 
@@ -23,10 +23,10 @@ class CarrinhoModel extends FlutterFlowModel<CarrinhoWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    textFieldFocusNode1?.dispose();
-    textController1?.dispose();
+    textFieldCUPOMFocusNode?.dispose();
+    textFieldCUPOMController?.dispose();
 
-    textFieldFocusNode2?.dispose();
+    textFieldFocusNode?.dispose();
     textController2?.dispose();
   }
 

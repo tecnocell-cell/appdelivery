@@ -44,3 +44,19 @@ String saudacao() {
   }
   return 'Boa Noite, ';
 }
+
+double subtotalSacola(
+  List<ProdutoVendaRecord> todosPVENDA,
+  List<DocumentReference> referenciaLocal,
+) {
+  double resultado = 0.0;
+  for (var pvenda in todosPVENDA) {
+    for (var local in referenciaLocal) {
+      if (pvenda.reference == local) {
+        resultado = resultado + double.parse(pvenda.valorSubtotal.toString());
+      }
+    }
+  }
+
+  return resultado;
+}

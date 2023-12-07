@@ -37,9 +37,6 @@ class FFAppState extends ChangeNotifier {
       _totalCompra = prefs.getDouble('ff_totalCompra') ?? _totalCompra;
     });
     _safeInit(() {
-      _PizzaIndex = prefs.getInt('ff_PizzaIndex') ?? _PizzaIndex;
-    });
-    _safeInit(() {
       _Status = prefs.getBool('ff_Status') ?? _Status;
     });
     _safeInit(() {
@@ -136,31 +133,6 @@ class FFAppState extends ChangeNotifier {
     _statusPag = value;
   }
 
-  bool _addFavorito = false;
-  bool get addFavorito => _addFavorito;
-  set addFavorito(bool value) {
-    _addFavorito = value;
-  }
-
-  bool _addToCarrinho = false;
-  bool get addToCarrinho => _addToCarrinho;
-  set addToCarrinho(bool value) {
-    _addToCarrinho = value;
-  }
-
-  int _PizzaIndex = 0;
-  int get PizzaIndex => _PizzaIndex;
-  set PizzaIndex(int value) {
-    _PizzaIndex = value;
-    prefs.setInt('ff_PizzaIndex', value);
-  }
-
-  bool _OptionSedid = false;
-  bool get OptionSedid => _OptionSedid;
-  set OptionSedid(bool value) {
-    _OptionSedid = value;
-  }
-
   bool _Status = true;
   bool get Status => _Status;
   set Status(bool value) {
@@ -213,6 +185,35 @@ class FFAppState extends ChangeNotifier {
     _produtoVenda.insert(index, value);
     prefs.setStringList(
         'ff_produtoVenda', _produtoVenda.map((x) => x.serialize()).toList());
+  }
+
+  List<int> _statusEndereo = [];
+  List<int> get statusEndereo => _statusEndereo;
+  set statusEndereo(List<int> value) {
+    _statusEndereo = value;
+  }
+
+  void addToStatusEndereo(int value) {
+    _statusEndereo.add(value);
+  }
+
+  void removeFromStatusEndereo(int value) {
+    _statusEndereo.remove(value);
+  }
+
+  void removeAtIndexFromStatusEndereo(int index) {
+    _statusEndereo.removeAt(index);
+  }
+
+  void updateStatusEndereoAtIndex(
+    int index,
+    int Function(int) updateFn,
+  ) {
+    _statusEndereo[index] = updateFn(_statusEndereo[index]);
+  }
+
+  void insertAtIndexInStatusEndereo(int index, int value) {
+    _statusEndereo.insert(index, value);
   }
 }
 

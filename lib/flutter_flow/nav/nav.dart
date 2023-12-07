@@ -172,11 +172,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const FiltroWidget(),
         ),
         FFRoute(
-          name: 'montarPizza',
-          path: '/montarPizza',
-          builder: (context, params) => MontarPizzaWidget(
-            pizzaindex: params.getParam('pizzaindex', ParamType.int),
-          ),
+          name: 'selecionaEndereco',
+          path: '/selecionaEndereco',
+          builder: (context, params) => const SelecionaEnderecoWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
