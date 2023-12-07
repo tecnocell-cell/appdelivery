@@ -215,6 +215,12 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInStatusEndereo(int index, int value) {
     _statusEndereo.insert(index, value);
   }
+
+  double _cupomValor = 0;
+  double get cupomValor => _cupomValor;
+  set cupomValor(double value) {
+    _cupomValor = value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

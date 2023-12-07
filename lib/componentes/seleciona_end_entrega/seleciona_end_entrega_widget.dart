@@ -244,59 +244,118 @@ class _SelecionaEndEntregaWidgetState extends State<SelecionaEndEntregaWidget> {
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 12.0, 5.0),
-                                          child: Container(
-                                            width: double.infinity,
-                                            height: 93.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              boxShadow: const [
-                                                BoxShadow(
-                                                  blurRadius: 4.0,
-                                                  color: Color(0x33000000),
-                                                  offset: Offset(0.0, 2.0),
-                                                )
-                                              ],
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      12.0, 0.0, 12.0, 0.0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    children: [
-                                                      Icon(
-                                                        Icons
-                                                            .location_on_rounded,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        size: 26.0,
-                                                      ),
-                                                      Flexible(
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      5.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            columnEnderecoRecord
-                                                                .identificador,
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              context.pushNamed(
+                                                'pagamento',
+                                                queryParameters: {
+                                                  'paramEnderecoEntrega':
+                                                      serializeParam(
+                                                    columnEnderecoRecord
+                                                        .reference,
+                                                    ParamType.DocumentReference,
+                                                  ),
+                                                }.withoutNulls,
+                                              );
+                                            },
+                                            child: Container(
+                                              width: double.infinity,
+                                              height: 93.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                boxShadow: const [
+                                                  BoxShadow(
+                                                    blurRadius: 4.0,
+                                                    color: Color(0x33000000),
+                                                    offset: Offset(0.0, 2.0),
+                                                  )
+                                                ],
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        12.0, 0.0, 12.0, 0.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Icon(
+                                                          Icons
+                                                              .location_on_rounded,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          size: 26.0,
+                                                        ),
+                                                        Flexible(
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        5.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              columnEnderecoRecord
+                                                                  .identificador,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Open Sans',
+                                                                    fontSize:
+                                                                        16.0,
+                                                                    letterSpacing:
+                                                                        1.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Divider(
+                                                      thickness: 1.0,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  21.0,
+                                                                  0.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Text(
+                                                            '${columnEnderecoRecord.rua}, ${columnEnderecoRecord.bairro}, ${columnEnderecoRecord.numero}',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
@@ -304,35 +363,18 @@ class _SelecionaEndEntregaWidgetState extends State<SelecionaEndEntregaWidget> {
                                                                   fontFamily:
                                                                       'Open Sans',
                                                                   fontSize:
-                                                                      16.0,
-                                                                  letterSpacing:
-                                                                      1.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
+                                                                      14.0,
                                                                 ),
                                                           ),
-                                                        ),
+                                                        ],
                                                       ),
-                                                    ],
-                                                  ),
-                                                  Divider(
-                                                    thickness: 1.0,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .alternate,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                21.0, 0.0),
-                                                    child: Row(
+                                                    ),
+                                                    Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
                                                       children: [
                                                         Text(
-                                                          '${columnEnderecoRecord.rua}, ${columnEnderecoRecord.bairro}, ${columnEnderecoRecord.numero}',
+                                                          '${columnEnderecoRecord.cidade} - ${columnEnderecoRecord.estado}',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -344,25 +386,8 @@ class _SelecionaEndEntregaWidgetState extends State<SelecionaEndEntregaWidget> {
                                                         ),
                                                       ],
                                                     ),
-                                                  ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Text(
-                                                        '${columnEnderecoRecord.cidade} - ${columnEnderecoRecord.estado}',
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Open Sans',
-                                                              fontSize: 14.0,
-                                                            ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ),

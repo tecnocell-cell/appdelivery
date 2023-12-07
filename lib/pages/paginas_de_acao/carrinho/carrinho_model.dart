@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'carrinho_widget.dart' show CarrinhoWidget;
 import 'package:flutter/material.dart';
@@ -10,10 +11,8 @@ class CarrinhoModel extends FlutterFlowModel<CarrinhoWidget> {
   FocusNode? textFieldCUPOMFocusNode;
   TextEditingController? textFieldCUPOMController;
   String? Function(BuildContext, String?)? textFieldCUPOMControllerValidator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
+  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  CuponsRecord? cupomaction;
 
   /// Initialization and disposal methods.
 
@@ -25,9 +24,6 @@ class CarrinhoModel extends FlutterFlowModel<CarrinhoWidget> {
     unfocusNode.dispose();
     textFieldCUPOMFocusNode?.dispose();
     textFieldCUPOMController?.dispose();
-
-    textFieldFocusNode?.dispose();
-    textController2?.dispose();
   }
 
   /// Action blocks are added here.

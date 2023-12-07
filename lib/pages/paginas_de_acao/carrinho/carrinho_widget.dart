@@ -1,10 +1,12 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/componentes/carrinho_vazio/carrinho_vazio_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -48,9 +50,6 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
 
     _model.textFieldCUPOMController ??= TextEditingController();
     _model.textFieldCUPOMFocusNode ??= FocusNode();
-
-    _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -221,6 +220,9 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                         builder: (context) {
                           final itensCarrinho =
                               FFAppState().produtoVenda.toList();
+                          if (itensCarrinho.isEmpty) {
+                            return const CarrinhoVazioWidget();
+                          }
                           return Column(
                             mainAxisSize: MainAxisSize.max,
                             children: List.generate(itensCarrinho.length,
@@ -643,7 +645,13 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                                         ),
                                   ),
                                   Text(
-                                    'R\$ 2,50',
+                                    formatNumber(
+                                      FFAppState().taxaEntrega,
+                                      formatType: FormatType.custom,
+                                      currency: 'R\$ ',
+                                      format: '.00',
+                                      locale: 'pt_BR',
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -692,7 +700,15 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                                         textProdutoVendaRecordList =
                                         snapshot.data!;
                                     return Text(
-                                      'R\$ 5000',
+                                      formatNumber(
+                                        (FFAppState().soma +
+                                                FFAppState().taxaEntrega) -
+                                            FFAppState().cupomValor,
+                                        formatType: FormatType.custom,
+                                        currency: 'R\$ ',
+                                        format: '.00',
+                                        locale: 'pt_BR',
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
                                     );
@@ -700,312 +716,364 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                                 ),
                               ],
                             ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 20.0, 0.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Cupom apilicado',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Open Sans',
-                                          fontSize: 14.0,
-                                          fontWeight: FontWeight.w300,
-                                        ),
-                                  ),
-                                  Text(
-                                    'Cupom apilicado',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Open Sans',
-                                          fontSize: 14.0,
-                                        ),
-                                  ),
-                                ],
+                            if (FFAppState().cupomValor > 0.0)
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 20.0, 0.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Cupom apilicado',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            fontSize: 14.0,
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                    ),
+                                    Text(
+                                      formatNumber(
+                                        FFAppState().cupomValor,
+                                        formatType: FormatType.custom,
+                                        currency: 'R\$ ',
+                                        format: '.00',
+                                        locale: 'pt_BR',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            fontSize: 14.0,
+                                          ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 15.0, 0.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 5.0, 0.0),
-                                      child: TextFormField(
-                                        controller:
-                                            _model.textFieldCUPOMController,
-                                        focusNode:
-                                            _model.textFieldCUPOMFocusNode,
-                                        onChanged: (_) => EasyDebounce.debounce(
-                                          '_model.textFieldCUPOMController',
-                                          const Duration(milliseconds: 100),
-                                          () => setState(() {}),
-                                        ),
-                                        obscureText: false,
-                                        decoration: InputDecoration(
-                                          isDense: true,
-                                          labelText: 'Cupom',
-                                          hintText: 'Seu cupom',
-                                          hintStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodySmall
-                                              .override(
-                                                fontFamily: 'Open Sans',
+                            if (FFAppState().cupomValor == 0.0)
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 15.0, 0.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 5.0, 0.0),
+                                        child: TextFormField(
+                                          controller:
+                                              _model.textFieldCUPOMController,
+                                          focusNode:
+                                              _model.textFieldCUPOMFocusNode,
+                                          onChanged: (_) =>
+                                              EasyDebounce.debounce(
+                                            '_model.textFieldCUPOMController',
+                                            const Duration(milliseconds: 100),
+                                            () => setState(() {}),
+                                          ),
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            isDense: true,
+                                            labelText: 'Cupom',
+                                            hintText: 'Seu cupom',
+                                            hintStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodySmall
+                                                    .override(
+                                                      fontFamily: 'Open Sans',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .primaryText,
+                                                        .alternate,
+                                                width: 1.0,
                                               ),
-                                          enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Color(0xFF5C5C5C),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            filled: true,
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .alternate,
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium,
+                                          validator: _model
+                                              .textFieldCUPOMControllerValidator
+                                              .asValidator(context),
+                                        ),
+                                      ),
+                                    ),
+                                    StreamBuilder<List<CuponsRecord>>(
+                                      stream: queryCuponsRecord(
+                                        queryBuilder: (cuponsRecord) =>
+                                            cuponsRecord.where(
+                                          'codigo',
+                                          isEqualTo: _model
+                                              .textFieldCUPOMController.text,
+                                        ),
+                                        singleRecord: true,
+                                      ),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              child: CircularProgressIndicator(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation<
+                                                        Color>(
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        List<CuponsRecord>
+                                            buttonCuponsRecordList =
+                                            snapshot.data!;
+                                        final buttonCuponsRecord =
+                                            buttonCuponsRecordList.isNotEmpty
+                                                ? buttonCuponsRecordList.first
+                                                : null;
+                                        return FFButtonWidget(
+                                          onPressed: () async {
+                                            _model.cupomaction =
+                                                await queryCuponsRecordOnce(
+                                              queryBuilder: (cuponsRecord) =>
+                                                  cuponsRecord.where(
+                                                'codigo',
+                                                isEqualTo: _model
+                                                    .textFieldCUPOMController
+                                                    .text,
+                                              ),
+                                              singleRecord: true,
+                                            ).then((s) => s.firstOrNull);
+                                            if (_model.cupomaction?.reference !=
+                                                null) {
+                                              if (_model
+                                                      .cupomaction!.expiraEm! >
+                                                  getCurrentTimestamp) {
+                                                ScaffoldMessenger.of(context)
+                                                    .clearSnackBars();
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      'CUPOM APLICADO',
+                                                      style: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                      ),
+                                                    ),
+                                                    duration: const Duration(
+                                                        milliseconds: 2200),
+                                                    backgroundColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .success,
+                                                  ),
+                                                );
+                                                setState(() {
+                                                  FFAppState().cupomValor =
+                                                      buttonCuponsRecord!.valor;
+                                                });
+                                                setState(() {
+                                                  _model
+                                                      .textFieldCUPOMController
+                                                      ?.clear();
+                                                });
+                                              } else {
+                                                ScaffoldMessenger.of(context)
+                                                    .clearSnackBars();
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      'CUPOM EXPIROU',
+                                                      style: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                      ),
+                                                    ),
+                                                    duration: const Duration(
+                                                        milliseconds: 2200),
+                                                    backgroundColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .error,
+                                                  ),
+                                                );
+                                                setState(() {
+                                                  FFAppState().cupomValor = 0.0;
+                                                });
+                                              }
+                                            } else {
+                                              ScaffoldMessenger.of(context)
+                                                  .clearSnackBars();
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'CUPOM INVÁLIDO',
+                                                    style: TextStyle(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
+                                                  ),
+                                                  duration: const Duration(
+                                                      milliseconds: 2200),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .error,
+                                                ),
+                                              );
+                                              setState(() {
+                                                FFAppState().cupomValor = 0.0;
+                                              });
+                                            }
+
+                                            setState(() {});
+                                          },
+                                          text: 'Aplicar',
+                                          icon: Icon(
+                                            Icons.confirmation_num,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            size: 15.0,
+                                          ),
+                                          options: FFButtonOptions(
+                                            width: 100.0,
+                                            height: 45.2,
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            iconPadding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            textStyle: FlutterFlowTheme.of(
+                                                    context)
+                                                .titleSmall
+                                                .override(
+                                                  fontFamily: 'Open Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                  fontSize: 14.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                             borderSide: BorderSide(
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              width: 1.0,
+                                                      .primary,
+                                              width: 2.0,
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                              color: Color(0xFF5C5C5C),
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                          errorBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                          focusedErrorBorder:
-                                              OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                          filled: true,
-                                          fillColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .alternate,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium,
-                                        validator: _model
-                                            .textFieldCUPOMControllerValidator
-                                            .asValidator(context),
-                                      ),
-                                    ),
-                                  ),
-                                  FFButtonWidget(
-                                    onPressed: () async {},
-                                    text: 'Aplicar',
-                                    icon: Icon(
-                                      Icons.confirmation_num,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      size: 15.0,
-                                    ),
-                                    options: FFButtonOptions(
-                                      width: 100.0,
-                                      height: 45.2,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 0.0),
-                                      iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Open Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 15.0, 0.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Expanded(
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        setState(() {
-                                          FFAppState()
-                                              .updateProdutoVendaAtIndex(
-                                            FFAppState().subTotalItem,
-                                            (e) => e..incrementQuantidade(-1),
-                                          );
-                                        });
+                                        );
                                       },
-                                      text: 'Remover cupom',
-                                      options: FFButtonOptions(
-                                        width: 130.0,
-                                        height: 45.2,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 0.0),
-                                        iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: const Color(0xFF585858),
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily: 'Open Sans',
-                                              color: Colors.white,
-                                            ),
-                                        borderSide: const BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                        child: Container(
-                          width: double.infinity,
-                          height: 120.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                16.0, 0.0, 16.0, 0.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Row(
+                            if (FFAppState().cupomValor > 0.0)
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 15.0, 0.0, 0.0),
+                                child: Row(
                                   mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(
-                                      Icons.mode,
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      size: 24.0,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          20.0, 0.0, 0.0, 0.0),
-                                      child: Text(
-                                        'Observação',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Open Sans',
-                                              fontSize: 14.0,
-                                            ),
+                                    Expanded(
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          setState(() {
+                                            FFAppState()
+                                                .updateProdutoVendaAtIndex(
+                                              FFAppState().subTotalItem,
+                                              (e) => e..incrementQuantidade(-1),
+                                            );
+                                          });
+                                        },
+                                        text: 'Remover cupom',
+                                        options: FFButtonOptions(
+                                          width: 130.0,
+                                          height: 45.2,
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          iconPadding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: const Color(0xFF585858),
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Open Sans',
+                                                    color: Colors.white,
+                                                  ),
+                                          borderSide: const BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
-                                TextFormField(
-                                  controller: _model.textController2,
-                                  focusNode: _model.textFieldFocusNode,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelText:
-                                        'Se desejar, digite aqui sua observação',
-                                    labelStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Open Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                        ),
-                                    alignLabelWithHint: false,
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium,
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    errorBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedErrorBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    filled: true,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        fontSize: 14.0,
-                                      ),
-                                  textAlign: TextAlign.start,
-                                  maxLines: 2,
-                                  validator: _model.textController2Validator
-                                      .asValidator(context),
-                                ),
-                              ],
-                            ),
-                          ),
+                              ),
+                          ],
                         ),
                       ),
                       Padding(
@@ -1037,8 +1105,17 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                             List<ProdutoVendaRecord>
                                 buttonProdutoVendaRecordList = snapshot.data!;
                             return FFButtonWidget(
-                              onPressed: () async {},
-                              text: 'Finalizar compra',
+                              onPressed: () async {
+                                FFAppState().update(() {
+                                  FFAppState().totalCompra =
+                                      (FFAppState().soma +
+                                              FFAppState().taxaEntrega) -
+                                          FFAppState().cupomValor;
+                                });
+
+                                context.pushNamed('selecionaEndereco');
+                              },
+                              text: 'Continuar para Pagamento',
                               options: FFButtonOptions(
                                 width: 250.0,
                                 height: 45.2,
