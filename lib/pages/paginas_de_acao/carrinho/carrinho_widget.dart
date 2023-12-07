@@ -347,11 +347,8 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                                                                   0.0),
                                                       child: Text(
                                                         formatNumber(
-                                                          functions.subtotalProdutos(
-                                                              itensCarrinhoItem
-                                                                  .valorSubtotal,
-                                                              itensCarrinhoItem
-                                                                  .quantidade),
+                                                          itensCarrinhoItem
+                                                              .valorSubtotal,
                                                           formatType:
                                                               FormatType.custom,
                                                           currency: 'R\$ ',
