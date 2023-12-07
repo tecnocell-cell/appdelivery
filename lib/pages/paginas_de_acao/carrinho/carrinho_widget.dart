@@ -1113,7 +1113,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                                           FFAppState().cupomValor;
                                 });
 
-                                context.pushNamed('selecionaEndereco');
+                                context.pushNamed('enderecoEntrega');
                               },
                               text: 'Continuar para Pagamento',
                               options: FFButtonOptions(

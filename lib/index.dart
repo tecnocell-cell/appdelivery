@@ -20,5 +20,3 @@ export '/pages/paginas_de_acao/pagamento/pagamento_widget.dart'
 export '/pages/endereco_entrega/endereco_entrega_widget.dart'
     show EnderecoEntregaWidget;
 export '/pages/filtro/filtro_widget.dart' show FiltroWidget;
-export '/pages/paginas_de_acao/seleciona_endereco/seleciona_endereco_widget.dart'
-    show SelecionaEnderecoWidget;

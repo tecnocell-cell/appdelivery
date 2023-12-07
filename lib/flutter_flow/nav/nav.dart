@@ -170,11 +170,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'filtro',
           path: '/filtro',
           builder: (context, params) => const FiltroWidget(),
-        ),
-        FFRoute(
-          name: 'selecionaEndereco',
-          path: '/selecionaEndereco',
-          builder: (context, params) => const SelecionaEnderecoWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

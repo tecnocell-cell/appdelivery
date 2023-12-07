@@ -1630,18 +1630,14 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 10.0, 0.0),
-                            child: Text(
-                              'Preços',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Open Sans',
-                                    fontSize: 20.0,
-                                  ),
-                            ),
+                          Text(
+                            'Preços',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Open Sans',
+                                  fontSize: 20.0,
+                                ),
                           ),
                         ],
                       ),
@@ -1665,7 +1661,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    'Suco de Manga',
+                                    'Valor Total dos Produtos',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -1676,7 +1672,13 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                                         ),
                                   ),
                                   Text(
-                                    '2x R\$10,00',
+                                    formatNumber(
+                                      FFAppState().soma,
+                                      formatType: FormatType.custom,
+                                      currency: 'R\$ ',
+                                      format: '.00',
+                                      locale: 'pt_BR',
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -1690,10 +1692,6 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                           ],
                         ),
                       ],
-                    ),
-                    Divider(
-                      thickness: 1.0,
-                      color: FlutterFlowTheme.of(context).secondaryText,
                     ),
                     Padding(
                       padding:
@@ -1730,6 +1728,46 @@ class _PagamentoWidgetState extends State<PagamentoWidget> {
                           ),
                         ],
                       ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 10.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Cupom de Desconto',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Open Sans',
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  fontSize: 16.0,
+                                ),
+                          ),
+                          Text(
+                            formatNumber(
+                              FFAppState().cupomValor,
+                              formatType: FormatType.custom,
+                              currency: 'R\$ ',
+                              format: '.00',
+                              locale: 'pt_BR',
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Open Sans',
+                                  fontSize: 15.0,
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Divider(
+                      thickness: 1.0,
+                      color: FlutterFlowTheme.of(context).secondaryText,
                     ),
                     Padding(
                       padding:
