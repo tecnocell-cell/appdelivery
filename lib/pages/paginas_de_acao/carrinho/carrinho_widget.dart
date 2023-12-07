@@ -347,8 +347,11 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                                                                   0.0),
                                                       child: Text(
                                                         formatNumber(
-                                                          itensCarrinhoItem
-                                                              .valorSubtotal,
+                                                          functions.subtotalProdutos(
+                                                              itensCarrinhoItem
+                                                                  .valorSubtotal,
+                                                              itensCarrinhoItem
+                                                                  .quantidade),
                                                           formatType:
                                                               FormatType.custom,
                                                           currency: 'R\$ ',
@@ -428,25 +431,31 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                                                                     -1),
                                                             );
                                                             FFAppState()
-                                                                    .addCarrinho =
-                                                                FFAppState()
-                                                                        .addCarrinho +
-                                                                    -1.0;
-                                                            FFAppState()
                                                                 .soma = FFAppState()
                                                                     .soma +
                                                                 functions.subtrair(
-                                                                    functions.subtotalProdutos(
-                                                                        itensCarrinhoItem
-                                                                            .valorSubtotal,
-                                                                        itensCarrinhoItem
-                                                                            .quantidade)!);
+                                                                    itensCarrinhoItem
+                                                                        .valorSubtotal);
                                                             FFAppState()
                                                                     .localRefer =
                                                                 FFAppState()
                                                                         .localRefer +
                                                                     -1;
                                                           });
+                                                          if (itensCarrinhoItem
+                                                                  .quantidade <=
+                                                              0) {
+                                                            setState(() {
+                                                              FFAppState()
+                                                                  .removeAtIndexFromProdutoVenda(
+                                                                      itensCarrinhoIndex);
+                                                              FFAppState()
+                                                                      .addCarrinho =
+                                                                  FFAppState()
+                                                                          .addCarrinho +
+                                                                      -1.0;
+                                                            });
+                                                          }
                                                         }
                                                       },
                                                       child: Icon(
@@ -538,508 +547,525 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                     ],
                   ),
                 ),
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Resumo de valores',
-                            style: FlutterFlowTheme.of(context).bodyMedium,
-                          ),
-                        ],
+                if (FFAppState().localRefer > 0)
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Resumo de valores',
+                              style: FlutterFlowTheme.of(context).bodyMedium,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
-                          10.0, 10.0, 10.0, 10.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Subtotal',
-                                style: FlutterFlowTheme.of(context).bodyMedium,
-                              ),
-                              StreamBuilder<List<ProdutoVendaRecord>>(
-                                stream: queryProdutoVendaRecord(
-                                  queryBuilder: (produtoVendaRecord) =>
-                                      produtoVendaRecord.where(
-                                    'usuario',
-                                    isEqualTo: currentUserReference,
-                                  ),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            10.0, 10.0, 10.0, 10.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Subtotal',
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
                                 ),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        child: CircularProgressIndicator(
-                                          valueColor:
-                                              AlwaysStoppedAnimation<Color>(
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                  List<ProdutoVendaRecord>
-                                      textProdutoVendaRecordList =
-                                      snapshot.data!;
-                                  return Text(
-                                    formatNumber(
-                                      FFAppState().soma,
-                                      formatType: FormatType.custom,
-                                      currency: 'R\$ ',
-                                      format: '.00',
-                                      locale: 'pt_BR',
+                                StreamBuilder<List<ProdutoVendaRecord>>(
+                                  stream: queryProdutoVendaRecord(
+                                    queryBuilder: (produtoVendaRecord) =>
+                                        produtoVendaRecord.where(
+                                      'usuario',
+                                      isEqualTo: currentUserReference,
                                     ),
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 10.0, 0.0, 10.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Taxa de entrega',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        color: const Color(0xFF363636),
-                                        fontSize: 15.0,
-                                      ),
-                                ),
-                                Text(
-                                  'R\$ 2,50',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        fontSize: 16.0,
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Total',
-                                style: FlutterFlowTheme.of(context).bodyMedium,
-                              ),
-                              StreamBuilder<List<ProdutoVendaRecord>>(
-                                stream: queryProdutoVendaRecord(
-                                  queryBuilder: (produtoVendaRecord) =>
-                                      produtoVendaRecord.where(
-                                    'usuario',
-                                    isEqualTo: currentUserReference,
                                   ),
-                                ),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        child: CircularProgressIndicator(
-                                          valueColor:
-                                              AlwaysStoppedAnimation<Color>(
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                  List<ProdutoVendaRecord>
-                                      textProdutoVendaRecordList =
-                                      snapshot.data!;
-                                  return Text(
-                                    'R\$ 5000',
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 20.0, 0.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Cupom apilicado',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.w300,
-                                      ),
-                                ),
-                                Text(
-                                  'Cupom apilicado',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        fontSize: 14.0,
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 15.0, 0.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 5.0, 0.0),
-                                    child: TextFormField(
-                                      controller:
-                                          _model.textFieldCUPOMController,
-                                      focusNode: _model.textFieldCUPOMFocusNode,
-                                      onChanged: (_) => EasyDebounce.debounce(
-                                        '_model.textFieldCUPOMController',
-                                        const Duration(milliseconds: 100),
-                                        () => setState(() {}),
-                                      ),
-                                      obscureText: false,
-                                      decoration: InputDecoration(
-                                        isDense: true,
-                                        labelText: 'Cupom',
-                                        hintText: 'Seu cupom',
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .bodySmall
-                                            .override(
-                                              fontFamily: 'Open Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
+                                  builder: (context, snapshot) {
+                                    // Customize what your widget looks like when it's loading.
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: SizedBox(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          child: CircularProgressIndicator(
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
                                             ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                            width: 1.0,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
                                         ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                            color: Color(0xFF5C5C5C),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        filled: true,
-                                        fillColor: FlutterFlowTheme.of(context)
-                                            .alternate,
+                                      );
+                                    }
+                                    List<ProdutoVendaRecord>
+                                        textProdutoVendaRecordList =
+                                        snapshot.data!;
+                                    return Text(
+                                      formatNumber(
+                                        FFAppState().soma,
+                                        formatType: FormatType.custom,
+                                        currency: 'R\$ ',
+                                        format: '.00',
+                                        locale: 'pt_BR',
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
-                                      validator: _model
-                                          .textFieldCUPOMControllerValidator
-                                          .asValidator(context),
-                                    ),
-                                  ),
-                                ),
-                                FFButtonWidget(
-                                  onPressed: () async {},
-                                  text: 'Aplicar',
-                                  icon: Icon(
-                                    Icons.confirmation_num,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    size: 15.0,
-                                  ),
-                                  options: FFButtonOptions(
-                                    width: 100.0,
-                                    height: 45.2,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .override(
-                                          fontFamily: 'Open Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          fontSize: 14.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                    borderSide: BorderSide(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
+                                    );
+                                  },
                                 ),
                               ],
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 15.0, 0.0, 0.0),
-                            child: Row(
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 10.0, 0.0, 10.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Taxa de entrega',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: const Color(0xFF363636),
+                                          fontSize: 15.0,
+                                        ),
+                                  ),
+                                  Text(
+                                    'R\$ 2,50',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          fontSize: 16.0,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Row(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Expanded(
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      setState(() {
-                                        FFAppState().updateProdutoVendaAtIndex(
-                                          FFAppState().subTotalItem,
-                                          (e) => e..incrementQuantidade(-1),
-                                        );
-                                      });
-                                    },
-                                    text: 'Remover cupom',
+                                Text(
+                                  'Total',
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                ),
+                                StreamBuilder<List<ProdutoVendaRecord>>(
+                                  stream: queryProdutoVendaRecord(
+                                    queryBuilder: (produtoVendaRecord) =>
+                                        produtoVendaRecord.where(
+                                      'usuario',
+                                      isEqualTo: currentUserReference,
+                                    ),
+                                  ),
+                                  builder: (context, snapshot) {
+                                    // Customize what your widget looks like when it's loading.
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: SizedBox(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          child: CircularProgressIndicator(
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                    List<ProdutoVendaRecord>
+                                        textProdutoVendaRecordList =
+                                        snapshot.data!;
+                                    return Text(
+                                      'R\$ 5000',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 20.0, 0.0, 0.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Cupom apilicado',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          fontSize: 14.0,
+                                          fontWeight: FontWeight.w300,
+                                        ),
+                                  ),
+                                  Text(
+                                    'Cupom apilicado',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          fontSize: 14.0,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 15.0, 0.0, 0.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 5.0, 0.0),
+                                      child: TextFormField(
+                                        controller:
+                                            _model.textFieldCUPOMController,
+                                        focusNode:
+                                            _model.textFieldCUPOMFocusNode,
+                                        onChanged: (_) => EasyDebounce.debounce(
+                                          '_model.textFieldCUPOMController',
+                                          const Duration(milliseconds: 100),
+                                          () => setState(() {}),
+                                        ),
+                                        obscureText: false,
+                                        decoration: InputDecoration(
+                                          isDense: true,
+                                          labelText: 'Cupom',
+                                          hintText: 'Seu cupom',
+                                          hintStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .bodySmall
+                                              .override(
+                                                fontFamily: 'Open Sans',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                              ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                              color: Color(0xFF5C5C5C),
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          filled: true,
+                                          fillColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .alternate,
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium,
+                                        validator: _model
+                                            .textFieldCUPOMControllerValidator
+                                            .asValidator(context),
+                                      ),
+                                    ),
+                                  ),
+                                  FFButtonWidget(
+                                    onPressed: () async {},
+                                    text: 'Aplicar',
+                                    icon: Icon(
+                                      Icons.confirmation_num,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      size: 15.0,
+                                    ),
                                     options: FFButtonOptions(
-                                      width: 130.0,
+                                      width: 100.0,
                                       height: 45.2,
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 0.0),
                                       iconPadding:
                                           const EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
-                                      color: const Color(0xFF585858),
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
                                             fontFamily: 'Open Sans',
-                                            color: Colors.white,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            fontSize: 14.0,
+                                            fontWeight: FontWeight.bold,
                                           ),
-                                      borderSide: const BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        width: 2.0,
                                       ),
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 120.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 0.0, 16.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Row(
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 15.0, 0.0, 0.0),
+                              child: Row(
                                 mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(
-                                    Icons.mode,
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    size: 24.0,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        20.0, 0.0, 0.0, 0.0),
-                                    child: Text(
-                                      'Observação',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Open Sans',
-                                            fontSize: 14.0,
-                                          ),
+                                  Expanded(
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        setState(() {
+                                          FFAppState()
+                                              .updateProdutoVendaAtIndex(
+                                            FFAppState().subTotalItem,
+                                            (e) => e..incrementQuantidade(-1),
+                                          );
+                                        });
+                                      },
+                                      text: 'Remover cupom',
+                                      options: FFButtonOptions(
+                                        width: 130.0,
+                                        height: 45.2,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 0.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: const Color(0xFF585858),
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Open Sans',
+                                              color: Colors.white,
+                                            ),
+                                        borderSide: const BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
                                     ),
                                   ),
                                 ],
                               ),
-                              TextFormField(
-                                controller: _model.textController2,
-                                focusNode: _model.textFieldFocusNode,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText:
-                                      'Se desejar, digite aqui sua observação',
-                                  labelStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                  alignLabelWithHint: false,
-                                  hintStyle:
-                                      FlutterFlowTheme.of(context).labelMedium,
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                        child: Container(
+                          width: double.infinity,
+                          height: 120.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 0.0, 16.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Icon(
+                                      Icons.mode,
                                       color:
                                           FlutterFlowTheme.of(context).primary,
-                                      width: 1.0,
+                                      size: 24.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  errorBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 1.0,
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          20.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'Observação',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Open Sans',
+                                              fontSize: 14.0,
+                                            ),
+                                      ),
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  focusedErrorBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  filled: true,
+                                  ],
                                 ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
+                                TextFormField(
+                                  controller: _model.textController2,
+                                  focusNode: _model.textFieldFocusNode,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    labelText:
+                                        'Se desejar, digite aqui sua observação',
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                    alignLabelWithHint: false,
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium,
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    errorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    focusedErrorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    filled: true,
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        fontSize: 14.0,
+                                      ),
+                                  textAlign: TextAlign.start,
+                                  maxLines: 2,
+                                  validator: _model.textController2Validator
+                                      .asValidator(context),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 30.0, 0.0, 10.0),
+                        child: StreamBuilder<List<ProdutoVendaRecord>>(
+                          stream: queryProdutoVendaRecord(
+                            queryBuilder: (produtoVendaRecord) =>
+                                produtoVendaRecord.where(
+                              'usuario',
+                              isEqualTo: currentUserReference,
+                            ),
+                          ),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).primary,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }
+                            List<ProdutoVendaRecord>
+                                buttonProdutoVendaRecordList = snapshot.data!;
+                            return FFButtonWidget(
+                              onPressed: () async {},
+                              text: 'Finalizar compra',
+                              options: FFButtonOptions(
+                                width: 250.0,
+                                height: 45.2,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
                                     .override(
                                       fontFamily: 'Open Sans',
-                                      fontSize: 14.0,
+                                      color: Colors.white,
                                     ),
-                                textAlign: TextAlign.start,
-                                maxLines: 2,
-                                validator: _model.textController2Validator
-                                    .asValidator(context),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 10.0),
-                      child: StreamBuilder<List<ProdutoVendaRecord>>(
-                        stream: queryProdutoVendaRecord(
-                          queryBuilder: (produtoVendaRecord) =>
-                              produtoVendaRecord.where(
-                            'usuario',
-                            isEqualTo: currentUserReference,
-                          ),
-                        ),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50.0,
-                                height: 50.0,
-                                child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    FlutterFlowTheme.of(context).primary,
-                                  ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
                                 ),
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
                             );
-                          }
-                          List<ProdutoVendaRecord>
-                              buttonProdutoVendaRecordList = snapshot.data!;
-                          return FFButtonWidget(
-                            onPressed: () async {},
-                            text: 'Finalizar compra',
-                            options: FFButtonOptions(
-                              width: 250.0,
-                              height: 45.2,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Open Sans',
-                                    color: Colors.white,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          );
-                        },
+                          },
+                        ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
               ],
             ),
           ),

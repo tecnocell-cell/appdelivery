@@ -916,9 +916,8 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                                           _model.countControllerValue!;
                                   FFAppState()
                                       .addToProdutoVenda(ProdutoVendaStruct(
-                                    valorSubtotal: functions.subtotalProdutos(
+                                    valorSubtotal:
                                         detalhePedidosProdutosRecord.preco,
-                                        _model.countControllerValue!),
                                     produto: widget.detalheProduto,
                                     quantidade: _model.countControllerValue,
                                     usuario: currentUserReference,
