@@ -47,11 +47,6 @@ class ProdutosRecord extends FirestoreRecord {
   String get image => _image ?? '';
   bool hasImage() => _image != null;
 
-  // "categori" field.
-  List<String>? _categori;
-  List<String> get categori => _categori ?? const [];
-  bool hasCategori() => _categori != null;
-
   // "tamanho" field.
   int? _tamanho;
   int get tamanho => _tamanho ?? 0;
@@ -84,7 +79,6 @@ class ProdutosRecord extends FirestoreRecord {
     _descri = snapshotData['descri'] as String?;
     _restaurante = snapshotData['restaurante'] as DocumentReference?;
     _image = snapshotData['image'] as String?;
-    _categori = getDataList(snapshotData['categori']);
     _tamanho = castToType<int>(snapshotData['tamanho']);
     _isActive = snapshotData['isActive'] as bool?;
     _qtdSabores = snapshotData['qtdSabores'] as DocumentReference?;
@@ -130,9 +124,6 @@ class ProdutosRecord extends FirestoreRecord {
             false,
           ),
           'image': snapshot.data['image'],
-          'categori': safeGet(
-            () => snapshot.data['categori'].toList(),
-          ),
           'tamanho': convertAlgoliaParam(
             snapshot.data['tamanho'],
             ParamType.int,
@@ -229,7 +220,6 @@ class ProdutosRecordDocumentEquality implements Equality<ProdutosRecord> {
         e1?.descri == e2?.descri &&
         e1?.restaurante == e2?.restaurante &&
         e1?.image == e2?.image &&
-        listEquality.equals(e1?.categori, e2?.categori) &&
         e1?.tamanho == e2?.tamanho &&
         e1?.isActive == e2?.isActive &&
         e1?.qtdSabores == e2?.qtdSabores &&
@@ -245,7 +235,6 @@ class ProdutosRecordDocumentEquality implements Equality<ProdutosRecord> {
         e?.descri,
         e?.restaurante,
         e?.image,
-        e?.categori,
         e?.tamanho,
         e?.isActive,
         e?.qtdSabores,

@@ -1197,15 +1197,10 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                 padding: const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
                 child: StreamBuilder<List<ProdutosRecord>>(
                   stream: queryProdutosRecord(
-                    queryBuilder: (produtosRecord) => produtosRecord
-                        .where(
-                          'restaurante',
-                          isEqualTo: widget.paramRestaurantes,
-                        )
-                        .where(
-                          'categori',
-                          arrayContains: _model.filtroCategoriaValue,
-                        ),
+                    queryBuilder: (produtosRecord) => produtosRecord.where(
+                      'restaurante',
+                      isEqualTo: widget.paramRestaurantes,
+                    ),
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
