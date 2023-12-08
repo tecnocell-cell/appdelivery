@@ -20,6 +20,28 @@ double? subtotalProdutos(
   return valor * quantidade;
 }
 
+dynamic recebedoresJSON(
+  List<ProdutoVendaRecord> produtosVenda,
+  List<DocumentReference> plocais,
+) {
+  List lista = [];
+  for (var p in produtosVenda) {
+    for (var local in plocais) {
+      if (local == p.reference) {
+        lista.add({
+          "amount": p.pagamento.valor * 100,
+          "recipient_id": p.pagamento.idrecebedor,
+          'type': "flat"
+        });
+      }
+    }
+  }
+
+  print("recebedores: ${lista}");
+
+  return lista;
+}
+
 double subtrair(double valor1) {
   return valor1 * -1;
 }
@@ -59,4 +81,78 @@ double subtotalSacola(
   }
 
   return resultado;
+}
+
+List<DocumentReference> listarRestaurantes(
+  List<ProdutoVendaRecord> produtoVenda,
+  List<DocumentReference> produtoVendaLocal,
+) {
+  List<DocumentReference> restaurantes = [];
+
+  for (var pv in produtoVenda) {
+    if (produtoVendaLocal.contains(pv.reference)) {
+      restaurantes.add(pv.restaurante!);
+    }
+  }
+  return restaurantes;
+}
+
+int obterDia(DateTime data) {
+  return data.day;
+}
+
+String obterMesCopy(DateTime date) {
+  var meses = [
+    'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro'
+  ];
+
+  return meses[date.month - 1];
+}
+
+int obterAno(DateTime data) {
+  return data.year;
+}
+
+dynamic itensToJson(
+  List<ProdutoVendaRecord> produtosVenda,
+  List<DocumentReference> pvendaLocais,
+) {
+  List meusprodutos = [];
+
+  for (ProdutoVendaRecord produto in produtosVenda) {
+    for (DocumentReference local in pvendaLocais) {
+      if (produto.reference == local) {
+        meusprodutos.add({
+          "amount": produto.valorSubtotal * 100,
+          "description": "descrição",
+          "quantity": 1,
+          "code": produto.reference.id
+        });
+      }
+    }
+  }
+
+  // "items": [
+  //   {
+  //     "amount": 23,
+  //     "description": "asd",
+  //     "quantity": 2,
+  //     "code": "234"
+  //   }
+  // ]
+
+  print("itens: ${meusprodutos}");
+
+  return meusprodutos;
 }
