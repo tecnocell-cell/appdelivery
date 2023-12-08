@@ -309,7 +309,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget>
                                       final identificadorEnderecoRecord =
                                           snapshot.data!;
                                       return Text(
-                                        '${identificadorEnderecoRecord.rua}, ${identificadorEnderecoRecord.numero}, ${identificadorEnderecoRecord.bairro}, ${identificadorEnderecoRecord.cidade}, ${identificadorEnderecoRecord.complemento}',
+                                        '${identificadorEnderecoRecord.rua}, ${identificadorEnderecoRecord.numero}, ${identificadorEnderecoRecord.bairro}, ${identificadorEnderecoRecord.complemento}',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -776,153 +776,144 @@ class _PagamentoWidgetState extends State<PagamentoWidget>
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                8.0, 0.0, 8.0, 0.0),
-                            child: Material(
-                              color: Colors.transparent,
-                              elevation: 5.0,
-                              shape: RoundedRectangleBorder(
+                          Material(
+                            color: Colors.transparent,
+                            elevation: 5.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Container(
+                              constraints: const BoxConstraints(
+                                maxWidth: 350.0,
+                              ),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF78C9E5),
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
-                              child: Container(
-                                constraints: const BoxConstraints(
-                                  maxWidth: 350.0,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFF78C9E5),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 10.0, 10.0, 10.0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 30.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              child: Image.network(
-                                                'https://picsum.photos/seed/787/600',
-                                                width: 96.0,
-                                                height: 50.0,
-                                                fit: BoxFit.contain,
-                                              ),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 10.0, 10.0, 10.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 30.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            child: Image.network(
+                                              'https://picsum.photos/seed/787/600',
+                                              width: 96.0,
+                                              height: 50.0,
+                                              fit: BoxFit.contain,
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 20.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Text(
-                                              valueOrDefault<String>(
-                                                _model.cardController.text,
-                                                '5031 4332 1540 6351',
-                                              ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Open Sans',
-                                                    color: const Color(0xFF0E0E0E),
-                                                    fontSize: 20.0,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 20.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Text(
+                                            valueOrDefault<String>(
+                                              _model.cardController.text,
+                                              '5031 4332 1540 6351',
                                             ),
-                                          ],
-                                        ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Open Sans',
+                                                  color: const Color(0xFF0E0E0E),
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                          ),
+                                        ],
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 0.0, 10.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'Nome',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Open Sans',
-                                                    color: const Color(0xFF0E0E0E),
-                                                    fontSize: 15.0,
-                                                    fontWeight: FontWeight.w300,
-                                                  ),
-                                            ),
-                                            Text(
-                                              'Exp.',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Open Sans',
-                                                    color: const Color(0xFF0E0E0E),
-                                                    fontSize: 15.0,
-                                                    fontWeight: FontWeight.w300,
-                                                  ),
-                                            ),
-                                          ],
-                                        ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          10.0, 0.0, 10.0, 0.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Nome',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Open Sans',
+                                                  color: const Color(0xFF0E0E0E),
+                                                  fontSize: 15.0,
+                                                  fontWeight: FontWeight.w300,
+                                                ),
+                                          ),
+                                          Text(
+                                            'Exp.',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Open Sans',
+                                                  color: const Color(0xFF0E0E0E),
+                                                  fontSize: 15.0,
+                                                  fontWeight: FontWeight.w300,
+                                                ),
+                                          ),
+                                        ],
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 0.0, 10.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              valueOrDefault<String>(
-                                                _model.nomeController.text,
-                                                'Jose Silva',
-                                              ).maybeHandleOverflow(
-                                                maxChars: 15,
-                                                replacement: '…',
-                                              ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Open Sans',
-                                                    color: const Color(0xFF0E0E0E),
-                                                    fontSize: 20.0,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          10.0, 0.0, 10.0, 0.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            valueOrDefault<String>(
+                                              _model.nomeController.text,
+                                              'Jose Silva',
+                                            ).maybeHandleOverflow(
+                                              maxChars: 15,
+                                              replacement: '…',
                                             ),
-                                            Text(
-                                              valueOrDefault<String>(
-                                                _model.expDataController.text,
-                                                '11/25',
-                                              ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Open Sans',
-                                                    color: const Color(0xFF0E0E0E),
-                                                    fontSize: 17.0,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Open Sans',
+                                                  color: const Color(0xFF0E0E0E),
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                          ),
+                                          Text(
+                                            valueOrDefault<String>(
+                                              _model.expDataController.text,
+                                              '11/25',
                                             ),
-                                          ],
-                                        ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Open Sans',
+                                                  color: const Color(0xFF0E0E0E),
+                                                  fontSize: 17.0,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
