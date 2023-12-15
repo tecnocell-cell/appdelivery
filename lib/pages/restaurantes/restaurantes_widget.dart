@@ -231,7 +231,12 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                     children: [
                       badges.Badge(
                         badgeContent: Text(
-                          FFAppState().addCarrinho.toString(),
+                          formatNumber(
+                            FFAppState().addCarrinho,
+                            formatType: FormatType.custom,
+                            format: '',
+                            locale: '',
+                          ),
                           textAlign: TextAlign.justify,
                           style: FlutterFlowTheme.of(context)
                               .titleSmall
