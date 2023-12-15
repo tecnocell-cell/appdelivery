@@ -241,8 +241,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                                       shape: BoxShape.rectangle,
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          5.0, 5.0, 5.0, 5.0),
+                                      padding: const EdgeInsets.all(5.0),
                                       child: ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(8.0),
@@ -569,8 +568,7 @@ class _CarrinhoWidgetState extends State<CarrinhoWidget>
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            10.0, 10.0, 10.0, 10.0),
+                        padding: const EdgeInsets.all(10.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [

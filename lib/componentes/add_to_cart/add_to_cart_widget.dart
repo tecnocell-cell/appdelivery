@@ -42,7 +42,7 @@ class _AddToCartWidgetState extends State<AddToCartWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.00, 0.00),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 100.0),
         child: Container(
@@ -72,7 +72,7 @@ class _AddToCartWidgetState extends State<AddToCartWidget> {
                 animate: true,
               ),
               Align(
-                alignment: const AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.0, 0.0),
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: SelectionArea(

@@ -332,10 +332,9 @@ class _PagamentoWidgetState extends State<PagamentoWidget>
                 ],
               ),
               Align(
-                alignment: const AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.0, 0.0),
                 child: Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -570,8 +569,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget>
                                   borderRadius: BorderRadius.circular(6.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      6.0, 6.0, 6.0, 6.0),
+                                  padding: const EdgeInsets.all(6.0),
                                   child: Text(
                                     'R\$ 118,00',
                                     style: FlutterFlowTheme.of(context)
@@ -734,8 +732,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget>
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    10.0, 10.0, 10.0, 10.0),
+                                padding: const EdgeInsets.all(10.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -796,8 +793,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget>
                             ),
                           ),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                10.0, 10.0, 10.0, 10.0),
+                            padding: const EdgeInsets.all(10.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -912,8 +908,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget>
                 ),
               if (FFAppState().statusPag == 'cartao')
                 Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -932,8 +927,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget>
                             ),
                           ),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                10.0, 10.0, 10.0, 10.0),
+                            padding: const EdgeInsets.all(10.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1016,8 +1010,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget>
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 10.0, 10.0, 10.0),
+                                  padding: const EdgeInsets.all(10.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
@@ -1763,8 +1756,7 @@ class _PagamentoWidgetState extends State<PagamentoWidget>
                         color: FlutterFlowTheme.of(context).secondaryText,
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            10.0, 10.0, 10.0, 10.0),
+                        padding: const EdgeInsets.all(10.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.end,

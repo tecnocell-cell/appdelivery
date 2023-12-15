@@ -92,7 +92,7 @@ class _CarrinhoVazioWidgetState extends State<CarrinhoVazioWidget> {
             },
             text: 'Comprar',
             options: FFButtonOptions(
-              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
+              padding: const EdgeInsets.all(10.0),
               iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
               color: FlutterFlowTheme.of(context).primary,
               textStyle: FlutterFlowTheme.of(context).titleSmall.override(

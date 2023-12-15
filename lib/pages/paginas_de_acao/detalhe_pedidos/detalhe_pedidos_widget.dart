@@ -502,8 +502,7 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                                               shape: badges.BadgeShape.circle,
                                               badgeColor: const Color(0x00EEABAC),
                                               elevation: 4.0,
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(2.0, 2.0, 2.0, 2.0),
+                                              padding: const EdgeInsets.all(2.0),
                                               position:
                                                   badges.BadgePosition.topEnd(),
                                               animationType: badges
@@ -874,8 +873,7 @@ class _DetalhePedidosWidgetState extends State<DetalhePedidosWidget>
                                 () => _model.countControllerValue = count),
                             stepSize: 1,
                             minimum: 1,
-                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                                5.0, 5.0, 5.0, 5.0),
+                            contentPadding: const EdgeInsets.all(5.0),
                           ),
                         ).animateOnPageLoad(animationsMap[
                             'countControllerOnPageLoadAnimation']!),

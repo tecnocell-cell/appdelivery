@@ -195,8 +195,7 @@ class _EditarEnderecoWidgetState extends State<EditarEnderecoWidget>
                                   borderRadius: BorderRadius.circular(5.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 10.0, 10.0, 10.0),
+                                  padding: const EdgeInsets.all(10.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment:

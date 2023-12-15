@@ -600,7 +600,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                           ),
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(0.00, -1.00),
+                          alignment: const AlignmentDirectional(0.0, -1.0),
                           child: Container(
                             width: 50.0,
                             height: 40.0,
@@ -750,7 +750,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                       children: [
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(0.00, 0.00),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Container(
                                             width: double.infinity,
                                             height: 150.0,
@@ -775,8 +775,8 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                                   BorderRadius.circular(16.0),
                                               shape: BoxShape.rectangle,
                                             ),
-                                            alignment: const AlignmentDirectional(
-                                                0.00, 0.00),
+                                            alignment:
+                                                const AlignmentDirectional(0.0, 0.0),
                                           ).animateOnPageLoad(animationsMap[
                                               'containerOnPageLoadAnimation2']!),
                                         ),
@@ -811,9 +811,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(5.0, 5.0,
-                                                                5.0, 5.0),
+                                                        const EdgeInsets.all(5.0),
                                                     child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -1194,7 +1192,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                 ],
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+                padding: const EdgeInsets.all(12.0),
                 child: StreamBuilder<List<ProdutosRecord>>(
                   stream: queryProdutosRecord(
                     queryBuilder: (produtosRecord) => produtosRecord.where(
@@ -1343,8 +1341,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        8.0, 8.0, 8.0, 8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Stack(
                                       alignment: const AlignmentDirectional(0.0, 1.0),
                                       children: [

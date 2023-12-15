@@ -224,7 +224,7 @@ class _InicialWidgetState extends State<InicialWidget>
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(0.00, 1.00),
+                alignment: const AlignmentDirectional(0.0, 1.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30.0),
                   child: BackdropFilter(

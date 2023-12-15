@@ -200,8 +200,7 @@ class _LoginWidgetState extends State<LoginWidget>
                         elevation: 10.0,
                         buttonMargin:
                             const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
+                        padding: const EdgeInsets.all(4.0),
                         tabs: const [
                           Tab(
                             text: 'Entrar',
@@ -218,13 +217,12 @@ class _LoginWidgetState extends State<LoginWidget>
                         controller: _model.tabBarController,
                         children: [
                           Align(
-                            alignment: const AlignmentDirectional(0.00, -1.00),
+                            alignment: const AlignmentDirectional(0.0, -1.0),
                             child: Form(
                               key: _model.formKey1,
                               autovalidateMode: AutovalidateMode.disabled,
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    20.0, 20.0, 20.0, 20.0),
+                                padding: const EdgeInsets.all(20.0),
                                 child: SingleChildScrollView(
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -273,7 +271,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 BorderRadius.circular(12.0),
                                           ),
                                           alignment:
-                                              const AlignmentDirectional(0.00, 0.00),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
@@ -391,7 +389,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 BorderRadius.circular(12.0),
                                           ),
                                           alignment:
-                                              const AlignmentDirectional(0.00, 0.00),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
@@ -514,7 +512,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.00, 0.00),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
@@ -581,7 +579,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.00, 0.00),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
@@ -636,13 +634,12 @@ class _LoginWidgetState extends State<LoginWidget>
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.00, -1.00),
+                            alignment: const AlignmentDirectional(0.0, -1.0),
                             child: Form(
                               key: _model.formKey2,
                               autovalidateMode: AutovalidateMode.disabled,
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    20.0, 20.0, 20.0, 20.0),
+                                padding: const EdgeInsets.all(20.0),
                                 child: SingleChildScrollView(
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -685,7 +682,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 BorderRadius.circular(12.0),
                                           ),
                                           alignment:
-                                              const AlignmentDirectional(0.00, 0.00),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
@@ -791,7 +788,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 BorderRadius.circular(12.0),
                                           ),
                                           alignment:
-                                              const AlignmentDirectional(0.00, 0.00),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
@@ -899,7 +896,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 BorderRadius.circular(12.0),
                                           ),
                                           alignment:
-                                              const AlignmentDirectional(0.00, 0.00),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
@@ -1027,7 +1024,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 BorderRadius.circular(12.0),
                                           ),
                                           alignment:
-                                              const AlignmentDirectional(0.00, 0.00),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
@@ -1144,7 +1141,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.00, 0.00),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(

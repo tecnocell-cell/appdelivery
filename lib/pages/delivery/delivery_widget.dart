@@ -382,7 +382,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(0.00, -1.00),
+                              alignment: const AlignmentDirectional(0.0, -1.0),
                               child: Container(
                                 width: 50.0,
                                 height: 40.0,
@@ -494,7 +494,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(0.00, 1.00),
+                              alignment: const AlignmentDirectional(0.0, 1.0),
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 0.0, 16.0),
@@ -615,8 +615,8 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                       Stack(
                                         children: [
                                           Align(
-                                            alignment: const AlignmentDirectional(
-                                                0.00, 0.00),
+                                            alignment:
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Container(
                                               width: double.infinity,
                                               height: 150.0,
@@ -642,7 +642,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                 shape: BoxShape.rectangle,
                                               ),
                                               alignment: const AlignmentDirectional(
-                                                  0.00, 0.00),
+                                                  0.0, 0.0),
                                             ).animateOnPageLoad(animationsMap[
                                                 'containerOnPageLoadAnimation2']!),
                                           ),
@@ -677,12 +677,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                     ),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  5.0,
-                                                                  5.0,
-                                                                  5.0,
-                                                                  5.0),
+                                                          const EdgeInsets.all(5.0),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -1000,9 +995,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                           ),
                                         ),
                                         child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  2.0, 2.0, 2.0, 2.0),
+                                          padding: const EdgeInsets.all(2.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
@@ -1020,9 +1013,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                           20.0),
                                                 ),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          8.0, 8.0, 8.0, 8.0),
+                                                  padding: const EdgeInsets.all(8.0),
                                                   child: Stack(
                                                     alignment:
                                                         const AlignmentDirectional(
@@ -1145,7 +1136,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                         child: Align(
                                                           alignment:
                                                               const AlignmentDirectional(
-                                                                  0.00, 0.00),
+                                                                  0.0, 0.0),
                                                           child: Padding(
                                                             padding:
                                                                 const EdgeInsetsDirectional
@@ -1162,8 +1153,8 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                                 Align(
                                                                   alignment:
                                                                       const AlignmentDirectional(
-                                                                          0.00,
-                                                                          0.00),
+                                                                          0.0,
+                                                                          0.0),
                                                                   child: Text(
                                                                     restautanteFilhosItem
                                                                         .nome,
@@ -1189,7 +1180,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                         child: Align(
                                                           alignment:
                                                               const AlignmentDirectional(
-                                                                  0.00, 0.00),
+                                                                  0.0, 0.0),
                                                           child: Row(
                                                             mainAxisSize:
                                                                 MainAxisSize
@@ -1198,8 +1189,8 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                               Align(
                                                                 alignment:
                                                                     const AlignmentDirectional(
-                                                                        0.00,
-                                                                        0.00),
+                                                                        0.0,
+                                                                        0.0),
                                                                 child: StreamBuilder<
                                                                     TipoComercioRecord>(
                                                                   stream: TipoComercioRecord
@@ -1256,7 +1247,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                         child: Align(
                                                           alignment:
                                                               const AlignmentDirectional(
-                                                                  0.00, 0.00),
+                                                                  0.0, 0.0),
                                                           child: Row(
                                                             mainAxisSize:
                                                                 MainAxisSize
@@ -1265,8 +1256,8 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                               Align(
                                                                 alignment:
                                                                     const AlignmentDirectional(
-                                                                        0.00,
-                                                                        0.00),
+                                                                        0.0,
+                                                                        0.0),
                                                                 child: StreamBuilder<
                                                                     TipoComercioRecord>(
                                                                   stream: TipoComercioRecord
@@ -1322,7 +1313,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
-                                                                0.00, 1.00),
+                                                                0.0, 1.0),
                                                         child: Padding(
                                                           padding:
                                                               const EdgeInsetsDirectional
@@ -1471,9 +1462,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        5.0, 5.0, 5.0, 5.0),
+                                                padding: const EdgeInsets.all(5.0),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,

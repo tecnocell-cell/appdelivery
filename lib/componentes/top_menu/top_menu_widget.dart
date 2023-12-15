@@ -43,7 +43,7 @@ class _TopMenuWidgetState extends State<TopMenuWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.00, -0.96),
+      alignment: const AlignmentDirectional(0.0, -0.96),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -110,7 +110,7 @@ class _TopMenuWidgetState extends State<TopMenuWidget> {
               shape: badges.BadgeShape.circle,
               badgeColor: FlutterFlowTheme.of(context).primary,
               elevation: 4.0,
-              padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+              padding: const EdgeInsets.all(8.0),
               position: badges.BadgePosition.topEnd(),
               animationType: badges.BadgeAnimationType.scale,
               toAnimate: true,
